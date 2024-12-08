@@ -11,7 +11,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import platform.Foundation.NSHomeDirectory
 
-actual fun sharedModulePlatform(): Module = module {
+actual fun databasePlatformModule(): Module = module {
     single<SchedulesDataBase> { getScheduleDatabase() }
     single<SettingsDataBase> { getSettingsDatabase() }
 }

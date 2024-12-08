@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-actual fun sharedModulePlatform(): Module = module {
+actual fun databasePlatformModule(): Module = module {
     single<SchedulesDataBase> { getSchedulesDatabase(get()) }
     single<SettingsDataBase> { getSettingsDatabase(get()) }
 }

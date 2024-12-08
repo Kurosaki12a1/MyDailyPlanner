@@ -6,7 +6,6 @@ import com.kuro.mdp.shared.utils.managers.DateManager
 import com.kuro.mdp.shared.utils.managers.DateManagerImpl
 import com.kurp.mdp.shared.data.mappers.schedules.ScheduleDataToDomainMapper
 import com.kurp.mdp.shared.data.mappers.schedules.ScheduleDataToDomainMapperImpl
-import com.kurp.mdp.shared.data.sharedModulePlatform
 import com.kurp.mdp.shared.data.repository.common.ScheduleStatusCheckerImpl
 import com.kurp.mdp.shared.data.repository.common.TimeTaskStatusCheckerImpl
 import org.koin.dsl.module
@@ -18,10 +17,6 @@ val sharedCommonModule = module {
 
 val sharedMapperModule = module {
     single<ScheduleDataToDomainMapper> { ScheduleDataToDomainMapperImpl(get(), get()) }
-}
-
-val sharedDatabaseModule = module {
-    includes(sharedModulePlatform())
 }
 
 val sharedUtilsModule = module {
