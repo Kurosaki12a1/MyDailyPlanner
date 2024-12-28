@@ -7,4 +7,4 @@ import org.koin.core.module.Module
  *
  * Description:
  */
-expect fun appPlatformModule() : Module
+expect fun appPlatformModule(): Module

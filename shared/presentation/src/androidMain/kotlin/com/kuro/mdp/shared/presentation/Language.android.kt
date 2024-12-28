@@ -1,6 +1,5 @@
 package com.kuro.mdp.shared.presentation
 
-import android.annotation.SuppressLint
 import java.util.Locale
 
 /**

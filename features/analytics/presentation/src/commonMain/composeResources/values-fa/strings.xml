@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarAnalyticTitle">تحلیل ها</string>
+    <string name="menuIconDesc">منو</string>
+    <string name="timeTabTitle">زمان</string>
+    <string name="workLoadTabTitle">حجم کار</string>
+    <string name="intelligenceTabTitle">اطلاعات</string>
+    <string name="weekTimePeriod">هفته</string>
+    <string name="monthTimePeriod">ماه</string>
+    <string name="yearTimePeriod">سال</string>
+    <string name="timeSelectorTitle">بازه زمانی:</string>
+    <string name="refreshAnalyticIconDesc">بروزرسانی تحلیل ها</string>
+    <string name="otherAnalyticsName">دیگر</string>
+    <string name="allTimeTitle">کل:</string>
+    <string name="totalCountTaskTitle">تعداد\n وظایف</string>
+    <string name="averageCountTaskTitle">تعداد\n وظایف در روز</string>
+    <string name="totalTimeTaskTitle">زمان کل\n ظایف</string>
+    <string name="averageTimeTaskTitle">میانگین کل\n وظایف</string>
+    <string name="workLoadAnalyticsTitle">آمار حجم کار</string>
+    <string name="planningAnalyticsTitle">آمار برنامه ریزی</string>
+    <string name="otherError">خطا! با توسعه دهنده تماس بگیرید.</string>
+    <string name="halfYearTimePeriod">نصف سال</string>
+    <string name="categoryStatisticsTitle">آمار دسته بندی</string>
+    <string name="executedStatisticsTitle">آمار اجرایی</string>
+</resources>

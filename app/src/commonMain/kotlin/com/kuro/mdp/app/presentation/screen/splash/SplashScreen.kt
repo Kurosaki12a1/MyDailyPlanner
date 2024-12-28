@@ -29,6 +29,7 @@ import com.kuro.mdp.shared.presentation.theme.materials.splashGradientColors
 import com.kuro.mdp.shared.utils.functional.Constants
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import shared.resources.Res
 import shared.resources.ic_splash
@@ -58,7 +59,7 @@ fun SplashScreen(
                 Image(
                     modifier = Modifier.size(100.dp),
                     painter = painterResource(Res.drawable.ic_splash),
-                    contentDescription = AppTheme.strings.appName
+                    contentDescription = stringResource(AppTheme.strings.appName)
                 )
             }
             AnimatedVisibility(

@@ -21,4 +21,5 @@ class AppApplication : Application() {
             modules(appPlatformModule())
         }
     }
+
 }

@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -11,7 +10,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
@@ -29,9 +27,6 @@ kotlin {
     }
 
     sourceSets {
-        named("commonMain") {
-            resources.srcDirs("resources")
-        }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
         }
@@ -66,13 +61,9 @@ android {
     sourceSets {
         named("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            res.srcDirs("resources")
+            res.srcDirs("src/commonMain/composeResources")
         }
     }
-
-//    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-//    sourceSets["main"].res.srcDirs("src/androidMain/res")
-//    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = 29

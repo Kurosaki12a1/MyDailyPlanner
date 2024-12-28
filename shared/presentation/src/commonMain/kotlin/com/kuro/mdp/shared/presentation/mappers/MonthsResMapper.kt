@@ -1,16 +1,15 @@
 package com.kuro.mdp.shared.presentation.mappers
 
-import androidx.compose.runtime.Composable
-import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
 import kotlinx.datetime.Month
+import org.jetbrains.compose.resources.StringResource
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-fun Month.mapToString(strings: AppStrings): String = when (this) {
+fun Month.mapToString(strings: AppStrings): StringResource = when (this) {
     Month.JANUARY -> strings.januaryTitle
     Month.FEBRUARY -> strings.februaryTitle
     Month.MARCH -> strings.marchTitle
@@ -25,6 +24,3 @@ fun Month.mapToString(strings: AppStrings): String = when (this) {
     Month.DECEMBER -> strings.decemberTitle
     else -> strings.januaryTitle
 }
-
-@Composable
-fun Month.mapToString(): String = mapToString(AppTheme.strings)

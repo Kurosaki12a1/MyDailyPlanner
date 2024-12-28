@@ -11,11 +11,9 @@ import com.kuro.mdp.shared.presentation.theme.materials.baseTypography
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppColorsType
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppElevations
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppIcons
-import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppColorsType
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppElevations
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
-import com.kuro.mdp.shared.presentation.theme.resources.fetchAppStrings
 
 /**
  * Created by: minhthinh.h on 12/9/2024
@@ -31,7 +29,6 @@ fun MyDailyPlannerTheme(
     val colorsScheme = colorsType.fetchColorScheme(themeUiType)
     val appColorsType = fetchAppColorsType(themeUiType, colorsType)
     val appLanguage = fetchAppLanguage(language)
-    val appStrings = fetchAppStrings(appLanguage)
     val appElevations = fetchAppElevations()
     val appIcons = fetchAppIcons()
     MaterialTheme(
@@ -43,7 +40,6 @@ fun MyDailyPlannerTheme(
             LocalAppElevations provides appElevations,
             LocalAppIcons provides appIcons,
             LocalAppColorsType provides appColorsType,
-            LocalAppStrings provides appStrings,
             LocalAppLanguage provides appLanguage
         ) {
             content()

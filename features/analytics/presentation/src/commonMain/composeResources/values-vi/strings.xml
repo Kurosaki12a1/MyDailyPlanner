@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarTitle">Phân tích</string>
+    <string name="menuIconDesc">Thực đơn</string>
+    <string name="timeTabTitle">Thời gian</string>
+    <string name="workLoadTabTitle">Khối lượng công việc</string>
+    <string name="intelligenceTabTitle">Thông tin</string>
+    <string name="weekTimePeriod">Tuần</string>
+    <string name="monthTimePeriod">Tháng</string>
+    <string name="yearTimePeriod">Năm</string>
+    <string name="timeSelectorTitle">Khoảng thời gian:</string>
+    <string name="refreshAnalyticIconDesc">Làm mới phân tích</string>
+    <string name="otherAnalyticsName">Khác</string>
+    <string name="allTimeTitle">Tổng cộng:</string>
+    <string name="totalCountTaskTitle">Số\ncủa nhiệm vụ</string>
+    <string name="averageCountTaskTitle">Số\ncủa nhiệm vụ mỗi ngày</string>
+    <string name="totalTimeTaskTitle">Tổng thời gian\ncủa nhiệm vụ</string>
+    <string name="averageTimeTaskTitle">Thời gian trung bình\ncủa nhiệm vụ</string>
+    <string name="workLoadAnalyticsTitle">Thống kê khối lượng công việc</string>
+    <string name="planningAnalyticsTitle">Thống kê kế hoạch</string>
+    <string name="otherError">Lỗi! Hãy liên hệ với nhà phát triển.</string>
+    <string name="halfYearTimePeriod">Nửa năm</string>
+    <string name="categoryStatisticsTitle">Thống kê danh mục</string>
+    <string name="executedStatisticsTitle">Thống kê sự tuân thủ</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarAnalyticsTitle">Аналитика</string>
+    <string name="menuIconDesc">Меню</string>
+    <string name="timeTabTitle">Время</string>
+    <string name="workLoadTabTitle">Загруженность</string>
+    <string name="intelligenceTabTitle">Сведения</string>
+    <string name="weekTimePeriod">Неделя</string>
+    <string name="monthTimePeriod">Месяц</string>
+    <string name="yearTimePeriod">Год</string>
+    <string name="timeSelectorTitle">Временной промежуток:</string>
+    <string name="refreshAnalyticIconDesc">Обновить аналитику</string>
+    <string name="otherAnalyticsName">Прочее</string>
+    <string name="allTimeTitle">Всего:</string>
+    <string name="totalCountTaskTitle">Количество\nзадач</string>
+    <string name="averageCountTaskTitle">Число задач\nв день</string>
+    <string name="totalTimeTaskTitle">Общее время\nзадач</string>
+    <string name="averageTimeTaskTitle">Среднее время\nзадачи</string>
+    <string name="workLoadAnalyticsTitle">Статистика загруженности</string>
+    <string name="planningAnalyticsTitle">Статистика планирования</string>
+    <string name="otherError">Ошибка! Обратитесь к разработчику.</string>
+    <string name="halfYearTimePeriod">Полгода</string>
+    <string name="categoryStatisticsTitle">Статистика категорий</string>
+    <string name="executedStatisticsTitle">Статистика выполнения</string>
+</resources>

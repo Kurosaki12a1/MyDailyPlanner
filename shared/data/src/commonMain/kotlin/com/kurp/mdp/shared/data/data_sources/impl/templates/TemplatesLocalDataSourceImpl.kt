@@ -7,7 +7,7 @@ import com.kurp.mdp.shared.data.entities.template.TemplateDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 
-class TemplatesLocalDataSourceImpl (
+class TemplatesLocalDataSourceImpl(
     private val templatesDao: TemplatesDao,
 ) : TemplatesLocalDataSource {
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarAnalyticsTitle">Analytics</string>
+    <string name="menuIconDesc">Menu</string>
+    <string name="timeTabTitle">Time</string>
+    <string name="workLoadTabTitle">Workload</string>
+    <string name="intelligenceTabTitle">Information</string>
+    <string name="weekTimePeriod">Week</string>
+    <string name="monthTimePeriod">Month</string>
+    <string name="yearTimePeriod">Year</string>
+    <string name="timeSelectorTitle">Time period:</string>
+    <string name="refreshAnalyticIconDesc">Refresh analytics</string>
+    <string name="otherAnalyticsName">Else</string>
+    <string name="allTimeTitle">Total:</string>
+    <string name="totalCountTaskTitle">Total tasks</string>
+    <string name="averageCountTaskTitle">Tasks per day</string>
+    <string name="totalTimeTaskTitle">Time spent\non tasks</string>
+    <string name="averageTimeTaskTitle">Average time\nper task</string>
+    <string name="workLoadAnalyticsTitle">Workload stats</string>
+    <string name="planningAnalyticsTitle">Planning stats</string>
+    <string name="otherError">Something went wrong. Contact the developer for help.</string>
+    <string name="halfYearTimePeriod">Half a year</string>
+    <string name="categoryStatisticsTitle">Category stats</string>
+    <string name="executedStatisticsTitle">Execution stats</string>
+</resources>

@@ -4,13 +4,14 @@ import androidx.compose.runtime.Composable
 import com.kuro.mdp.shared.domain.model.template.RepeatTimeType
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
+import org.jetbrains.compose.resources.StringResource
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-fun RepeatTimeType.mapToString(strings: AppStrings): String = when (this) {
+fun RepeatTimeType.mapToString(strings: AppStrings): StringResource = when (this) {
     RepeatTimeType.WEEK_DAY -> strings.repeatTimeDayInWeekTitle
     RepeatTimeType.WEEK_DAY_IN_MONTH -> strings.repeatTimeWeekDayInMonthTitle
     RepeatTimeType.MONTH_DAY -> strings.repeatTimeDayInMonthTitle

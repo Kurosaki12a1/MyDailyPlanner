@@ -5,17 +5,16 @@ import com.kuro.mdp.shared.domain.model.categories.DefaultCategoryType
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
-import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
-import shared.resources.Res
-import shared.resources.allDrawableResources
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-fun DefaultCategoryType.mapToIcon(icons: AppIcons): String = when (this) {
+fun DefaultCategoryType.mapToIcon(icons: AppIcons): DrawableResource = when (this) {
     DefaultCategoryType.WORK -> icons.categoriesIcon
     DefaultCategoryType.REST -> icons.categoryRestIcon
     DefaultCategoryType.AFFAIRS -> icons.categoryAffairsIcon
@@ -33,7 +32,7 @@ fun DefaultCategoryType.mapToIcon(icons: AppIcons): String = when (this) {
     DefaultCategoryType.SHOPPING -> icons.categoryShopping
 }
 
-fun DefaultCategoryType.mapToString(strings: AppStrings): String = when (this) {
+fun DefaultCategoryType.mapToString(strings: AppStrings): StringResource = when (this) {
     DefaultCategoryType.WORK -> strings.categoryWorkTitle
     DefaultCategoryType.REST -> strings.categoryRestTitle
     DefaultCategoryType.AFFAIRS -> strings.categoryChoresTitle
@@ -52,9 +51,7 @@ fun DefaultCategoryType.mapToString(strings: AppStrings): String = when (this) {
 }
 
 @Composable
-fun DefaultCategoryType.mapToName() = mapToString(AppTheme.strings)
+fun DefaultCategoryType.mapToKey(): String = mapToString(AppTheme.strings).key
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun DefaultCategoryType.mapToIconPainter() =
-    painterResource(resource = Res.allDrawableResources[mapToIcon(AppTheme.icons)]!!)
+fun DefaultCategoryType.mapToIconPainter() = painterResource(resource = mapToIcon(AppTheme.icons))

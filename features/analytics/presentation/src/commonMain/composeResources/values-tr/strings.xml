@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarAnalyticsTitle">Analiz</string>
+    <string name="menuIconDesc">Menü</string>
+    <string name="timeTabTitle">Zaman</string>
+    <string name="workLoadTabTitle">İş Yükü</string>
+    <string name="intelligenceTabTitle">Bilgi</string>
+    <string name="weekTimePeriod">Hafta</string>
+    <string name="monthTimePeriod">Ay</string>
+    <string name="yearTimePeriod">Yıl</string>
+    <string name="timeSelectorTitle">Zaman periyodu:</string>
+    <string name="refreshAnalyticIconDesc">Analizi yenile</string>
+    <string name="otherAnalyticsName">Diğer</string>
+    <string name="allTimeTitle">Toplam:</string>
+    <string name="totalCountTaskTitle">Görev\nsayısı</string>
+    <string name="averageCountTaskTitle">Günlük\nortalama görev sayısı</string>
+    <string name="totalTimeTaskTitle">Görevlerin\ntoplam süresi</string>
+    <string name="averageTimeTaskTitle">Görevlerin\nortalama süresi</string>
+    <string name="workLoadAnalyticsTitle">İş yükü istatistikleri</string>
+    <string name="planningAnalyticsTitle">Planlama istatistikleri</string>
+    <string name="otherError">Hata! Geliştirici ile iletişime geçin.</string>
+    <string name="halfYearTimePeriod">Yarım yıl</string>
+    <string name="categoryStatisticsTitle">Kategori istatistikleri</string>
+    <string name="executedStatisticsTitle">Yürütme istatistikleri</string>
+</resources>

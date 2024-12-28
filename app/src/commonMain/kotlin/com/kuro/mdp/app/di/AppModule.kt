@@ -1,5 +1,6 @@
 package com.kuro.mdp.app.di
 
+import com.kurp.mdp.shared.data.sharedDataModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
@@ -12,7 +13,7 @@ import org.koin.dsl.KoinAppDeclaration
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
-        modules(listOf(sharedModule))
+        modules(listOf(sharedModule, featureModules))
     }
 
 // Called by iOS?

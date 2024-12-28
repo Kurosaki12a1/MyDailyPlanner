@@ -2,7 +2,6 @@ package com.kuro.mdp.app.framework.receiver
 
 import android.content.Context
 import android.content.Intent
-import com.kuro.mdp.app.R
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
 import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
 import com.kuro.mdp.shared.presentation.notifications.AlarmReceiverProvider

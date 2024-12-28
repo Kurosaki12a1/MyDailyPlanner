@@ -11,6 +11,66 @@ object Constants {
         const val PERMISSION_TAG = "Notification_Permission"
     }
 
+    object DATABASE {
+        const val SCHEDULES_DB_NAME = "schedules_db"
+        const val SETTINGS_DB_NAME = "settings_db"
+        const val INIT_TASK_SETTINGS_DB = """
+            INSERT INTO TasksSettings (id, task_view_status, task_analytics_range, calendar_button_behavior, secure_mode) 
+            VALUES (0,'COMPACT', 'WEEK', 'SET_CURRENT_DATE', 0)
+        """
+        const val INIT_THEME_SETTINGS_DB = """
+            INSERT INTO ThemeSettings (id, language, theme_colors, colors_type, dynamic_color) 
+            VALUES (0,'DEFAULT', 'DEFAULT', 'PINK', 0)
+        """
+
+        const val INIT_CATEGORIES_SCHEDULES_DB = """
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (1, NULL, 'SHOPPING');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (2, NULL, 'HEALTH');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (3, NULL, 'EMPTY');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (4, NULL, 'STUDY');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (5, NULL, 'SLEEP');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (6, NULL, 'WORK');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (7, NULL, 'SPORT');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (8, NULL, 'REST');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (9, NULL, 'CULTURE');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (10, NULL, 'AFFAIRS');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (11, NULL, 'TRANSPORT');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (12, NULL, 'ENTERTAINMENTS');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (13, NULL, 'HYGIENE');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (14, NULL, 'EAT');
+            
+            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            VALUES (15, NULL, 'OTHER');
+        """
+    }
+
     object NavigationGraph {
         const val HOME = "Home"
         const val SPLASH = "Splash"
@@ -70,5 +130,10 @@ object Constants {
         const val WEEK_DAY = "REPEAT_WEEK_DAY"
         const val WEEK_NUMBER = "REPEAT_WEEK_NUMBER"
         const val MONTH = "REPEAT_MONTH"
+    }
+
+    object State {
+        const val LOADING = "LOADING"
+        const val DEFAULT = "DEFAULT"
     }
 }

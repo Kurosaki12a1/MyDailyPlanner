@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="topAppBarAnalyticsTitle">Analizy</string>
+    <string name="menuIconDesc">Menu</string>
+    <string name="timeTabTitle">Czas</string>
+    <string name="workLoadTabTitle">Obciążenie</string>
+    <string name="intelligenceTabTitle">Informacje</string>
+    <string name="weekTimePeriod">Tydzień</string>
+    <string name="monthTimePeriod">Miesiąc</string>
+    <string name="yearTimePeriod">Rok</string>
+    <string name="timeSelectorTitle">Okres czasu:</string>
+    <string name="refreshAnalyticIconDesc">Odśwież analizy</string>
+    <string name="otherAnalyticsName">Inne</string>
+    <string name="allTimeTitle">Wszystkie:</string>
+    <string name="totalCountTaskTitle">Zadań ogółem</string>
+    <string name="averageCountTaskTitle">Zadań dziennie</string>
+    <string name="totalTimeTaskTitle">Czas spędzony na zadaniach</string>
+    <string name="averageTimeTaskTitle">Średni czas na jedno zadanie</string>
+    <string name="workLoadAnalyticsTitle">Statystyki obciążenia</string>
+    <string name="planningAnalyticsTitle">Statystyki planowania</string>
+    <string name="otherError">Coś poszło nie tak. Skontaktuj się z twórcą aplikacji by otrzymać pomoc.</string>
+    <string name="halfYearTimePeriod">Pół roku</string>
+    <string name="categoryStatisticsTitle">Statystyki kategorii</string>
+    <string name="executedStatisticsTitle">Statystyki wykonania</string>
+</resources>

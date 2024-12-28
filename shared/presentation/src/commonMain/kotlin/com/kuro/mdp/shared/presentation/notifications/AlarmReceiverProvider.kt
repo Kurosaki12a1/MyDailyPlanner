@@ -9,7 +9,7 @@ import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
  */
 
 interface AlarmReceiverProvider {
-    fun provideReceiverIntent(receiverIntent: AlarmReceiverIntent) : PlatformIntent
+    fun provideReceiverIntent(receiverIntent: AlarmReceiverIntent): PlatformIntent
 }
 
 expect class PlatformIntent

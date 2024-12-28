@@ -13,18 +13,23 @@ sealed class NavigationGraph() {
     @Serializable
     @SerialName("Splash")
     data object SplashGraph : NavigationGraph()
+
     @Serializable
     @SerialName("Home")
     data object HomeGraph : NavigationGraph()
+
     @Serializable
     @SerialName("Analytics")
     data object AnalyticsGraph : NavigationGraph()
+
     @Serializable
     @SerialName("Settings")
     data object SettingsGraph : NavigationGraph()
+
     @Serializable
     @SerialName("Overview")
     data object OverviewGraph : NavigationGraph()
+
     @Serializable
     @SerialName("Categories")
     data object CategoriesGraph : NavigationGraph()

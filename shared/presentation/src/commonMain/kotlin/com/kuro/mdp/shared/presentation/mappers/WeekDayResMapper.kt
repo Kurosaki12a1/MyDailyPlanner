@@ -4,13 +4,14 @@ import androidx.compose.runtime.Composable
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
 import kotlinx.datetime.DayOfWeek
+import org.jetbrains.compose.resources.StringResource
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-fun DayOfWeek.mapToString(strings: AppStrings): String = when (this) {
+fun DayOfWeek.mapToString(strings: AppStrings): StringResource = when (this) {
     DayOfWeek.SUNDAY -> strings.sundayTitle
     DayOfWeek.MONDAY -> strings.mondayTitle
     DayOfWeek.TUESDAY -> strings.tuesdayTitle

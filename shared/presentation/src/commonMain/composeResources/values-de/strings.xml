@@ -24,7 +24,7 @@
     <string name="confirmTitle">Wählen</string>
     <string name="okConfirmTitle">OK</string>
     <string name="categoryEmptyTitle">Leer</string>
-    <string name="expandViewToggleTitle">Erweiterte Ansicht</string>
+    <string name="expandViewToggleTittle">Erweiterte Ansicht</string>
     <string name="compactViewToggleTittle">Kompakte Ansicht</string>
     <string name="warningDialogTitle">Warnung!</string>
     <string name="warningDeleteConfirmTitle">Entfernen</string>

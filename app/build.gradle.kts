@@ -1,7 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -12,12 +9,11 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,19 +24,27 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
-            implementation(project(":shared:data"))
-            implementation(project(":shared:domain"))
-            implementation(project(":shared:utils"))
-            implementation(project(":shared:presentation"))
+            implementation(projects.shared.data)
+            implementation(projects.shared.domain)
+            implementation(projects.shared.utils)
+            implementation(projects.shared.presentation)
+
+            implementation(projects.features.home.presentation)
+            implementation(projects.features.home.domain)
+            implementation(projects.features.home.data)
+
+            implementation(projects.features.settings.presentation)
+            implementation(projects.features.settings.domain)
+            implementation(projects.features.settings.data)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -54,6 +58,7 @@ kotlin {
             // Koin (di)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
 
             // Kotlin Date Time
             implementation(libs.kotlinx.datetime)

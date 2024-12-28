@@ -6,18 +6,17 @@ import android.content.Context
 import android.content.Intent
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
 import com.kuro.mdp.shared.domain.model.template.Template
-import com.kuro.mdp.shared.presentation.fetchAppLanguage
-import com.kuro.mdp.shared.presentation.language
 import com.kuro.mdp.shared.presentation.mappers.mapToIcon
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
 import com.kuro.mdp.shared.presentation.model.NotificationTimeType
+import com.kuro.mdp.shared.presentation.provider.IconProvider
 import com.kuro.mdp.shared.presentation.theme.resources.AppIcons
-import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
+import com.kuro.mdp.shared.presentation.theme.resources.baseAppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
-import com.kuro.mdp.shared.presentation.theme.resources.fetchAppStrings
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
-import extensions.toResInt
+import extensions.getId
+import extensions.getString
 import kotlinx.datetime.LocalDateTime
 
 /**
@@ -35,17 +34,14 @@ class TemplatesAlarmManagerImpl(
     private val appIcons: AppIcons
         get() = fetchAppIcons()
 
-    private val appStrings: AppStrings
-        get() = fetchAppStrings(fetchAppLanguage(language))
-
     override fun addOrUpdateNotifyAlarm(template: Template, repeatTime: RepeatTime) = addRawNotifyAlarm(
         templateId = template.templateId,
         timeType = NotificationTimeType.START_TASK,
         repeatTime = repeatTime,
         time = template.startTime,
-        category = template.category.let { it.default?.mapToString(appStrings) ?: it.customName } ?: "",
+        category = template.category.let { context.getString(it.default?.mapToString(baseAppStrings)) },
         subCategory = template.subCategory?.name,
-        icon = template.category.default?.mapToIcon(appIcons)?.toResInt(context)
+        icon = template.category.default?.mapToIcon(appIcons)?.getId(context) { IconProvider.get(it) }
     )
 
     override fun addRawNotifyAlarm(
@@ -63,7 +59,7 @@ class TemplatesAlarmManagerImpl(
                 category = category,
                 subCategory = subCategory.orEmpty(),
                 icon = icon,
-                appIcon = fetchAppIcons().logo.toResInt(context),
+                appIcon = fetchAppIcons().logo.getId(context) { IconProvider.get(it) },
                 time = time,
                 templateId = templateId,
                 repeatTime = repeatTime,
@@ -83,10 +79,10 @@ class TemplatesAlarmManagerImpl(
         val id = template.templateId + repeatTime.key
         val alarmIntent = receiverProvider.provideReceiverIntent(
             AlarmReceiverIntent(
-                category = template.category.let { it.default?.mapToString(appStrings) ?: it.customName } ?: "",
+                category = template.category.let { context.getString(it.default?.mapToString(baseAppStrings)) },
                 subCategory = template.subCategory?.name.orEmpty(),
-                icon = template.category.default?.mapToIcon(appIcons)?.toResInt(context),
-                appIcon = fetchAppIcons().logo.toResInt(context),
+                icon = template.category.default?.mapToIcon(appIcons)?.getId(context) { IconProvider.get(it) },
+                appIcon = fetchAppIcons().logo.getId(context) { IconProvider.get(it) },
                 time = template.startTime,
                 templateId = template.templateId,
                 repeatTime = repeatTime,

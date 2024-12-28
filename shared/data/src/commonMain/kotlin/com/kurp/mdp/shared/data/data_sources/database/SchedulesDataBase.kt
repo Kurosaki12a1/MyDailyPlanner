@@ -27,7 +27,8 @@ import com.kurp.mdp.shared.data.entities.template.TemplateEntity
         UndefinedTaskEntity::class,
         MainCategoryEntity::class,
         SubCategoryEntity::class,
-    ]
+    ],
+    exportSchema = true
 )
 @ConstructedBy(SchedulesDatabaseConstructor::class)
 abstract class SchedulesDataBase : RoomDatabase() {

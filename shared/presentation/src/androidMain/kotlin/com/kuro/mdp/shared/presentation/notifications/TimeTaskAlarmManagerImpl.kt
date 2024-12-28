@@ -8,19 +8,19 @@ import com.kuro.mdp.shared.domain.model.categories.MainCategory
 import com.kuro.mdp.shared.domain.model.categories.SubCategory
 import com.kuro.mdp.shared.domain.model.schedules.TaskNotificationType
 import com.kuro.mdp.shared.domain.model.schedules.TimeTask
-import com.kuro.mdp.shared.presentation.fetchAppLanguage
-import com.kuro.mdp.shared.presentation.language
 import com.kuro.mdp.shared.presentation.mappers.mapToIcon
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
 import com.kuro.mdp.shared.presentation.model.NotificationTimeType
 import com.kuro.mdp.shared.presentation.model.toTimeType
+import com.kuro.mdp.shared.presentation.provider.IconProvider
+import com.kuro.mdp.shared.presentation.theme.resources.baseAppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
-import com.kuro.mdp.shared.presentation.theme.resources.fetchAppStrings
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.Constants
 import com.kuro.mdp.shared.utils.managers.DateManager
-import extensions.toResInt
+import extensions.getId
+import extensions.getString
 import kotlinx.datetime.LocalDateTime
 
 /**
@@ -29,9 +29,7 @@ import kotlinx.datetime.LocalDateTime
  * Description:
  */
 class TimeTaskAlarmManagerImpl(
-    private val context: Context,
-    private val receiverProvider: AlarmReceiverProvider,
-    private val dateManager: DateManager
+    private val context: Context, private val receiverProvider: AlarmReceiverProvider, private val dateManager: DateManager
 ) : TimeTaskAlarmManager {
     private val alarmManager: AlarmManager
         get() = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -66,19 +64,14 @@ class TimeTaskAlarmManagerImpl(
         subCategory: SubCategory?,
         timeType: NotificationTimeType = NotificationTimeType.START_TASK,
     ): Intent {
-        val language = fetchAppLanguage(language)
-        val categoryName = category.let { it.default?.mapToString(fetchAppStrings(language)) ?: it.customName }
+        val categoryName = category.let { context.getString(resource = it.default?.mapToString(baseAppStrings), defaultName = Constants.App.NAME) }
         val subCategoryName = subCategory?.name ?: ""
-        val categoryIcon = category.default?.mapToIcon(fetchAppIcons())?.toResInt(context)
-        val appIcon = fetchAppIcons().logo.toResInt(context)
+        val categoryIcon = category.default?.mapToIcon(fetchAppIcons())?.getId(context) { IconProvider.get(it) }
+        val appIcon = fetchAppIcons().logo.getId(context) { IconProvider.get(it) }
 
         return receiverProvider.provideReceiverIntent(
             AlarmReceiverIntent(
-                category = categoryName ?: Constants.App.NAME,
-                subCategory = subCategoryName,
-                icon = categoryIcon,
-                appIcon = appIcon,
-                timeType = timeType
+                category = categoryName, subCategory = subCategoryName, icon = categoryIcon, appIcon = appIcon, timeType = timeType
             )
         )
     }

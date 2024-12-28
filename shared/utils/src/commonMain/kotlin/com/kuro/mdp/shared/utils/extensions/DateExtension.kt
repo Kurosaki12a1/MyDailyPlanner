@@ -1,5 +1,8 @@
 package com.kuro.mdp.shared.utils.extensions
 
+import com.kuro.mdp.shared.utils.format
+import com.kuro.mdp.shared.utils.functional.Constants
+import com.kuro.mdp.shared.utils.functional.TimeRange
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DateTimeUnit
@@ -14,6 +17,8 @@ import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
 
@@ -161,8 +166,20 @@ fun LocalDate.withWeekDayInMonth(weekNumber: Int, dayOfWeek: DayOfWeek): LocalDa
     }
 }
 
+fun LocalDateTime.startThisDay(): LocalDateTime {
+    return LocalDateTime(year = this.year, month = this.month, dayOfMonth = this.dayOfMonth, hour = 0, minute = 0, second = 0)
+}
+
+fun LocalDateTime.endThisDay(): LocalDateTime {
+    return LocalDateTime(year = this.year, month = this.month, dayOfMonth = this.dayOfMonth, hour = 23, minute = 59, second = 59)
+}
+
 fun LocalDateTime.isCurrentDay(date: LocalDateTime): Boolean {
     return this.date == date.date
+}
+
+fun LocalDateTime.isNotZeroDifference(end: LocalDateTime): Boolean {
+    return duration(this, end) > 0L
 }
 
 fun Long.toSeconds(): Long {
@@ -190,3 +207,69 @@ fun Long.mapToDate(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalD
 }
 
 fun getLocalDateTimeNow() = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+
+fun duration(start: LocalDateTime, end: LocalDateTime): Long {
+    return abs(end.toEpochMillis() - start.toEpochMillis())
+}
+
+fun duration(timeRange: TimeRange): Long {
+    return abs(timeRange.to.toEpochMillis() - timeRange.from.toEpochMillis())
+}
+
+
+fun Long.daysToMillis(): Long {
+    val hours = this * Constants.Date.HOURS_IN_DAY
+    val minutes = hours * Constants.Date.MINUTES_IN_HOUR
+    val seconds = minutes * Constants.Date.SECONDS_IN_MINUTE
+    return seconds * Constants.Date.MILLIS_IN_SECONDS
+}
+
+fun Long.toMinutesOrHoursString(minutesSymbol: String, hoursSymbol: String): String {
+    val minutes = this.toMinutes()
+    val hours = this.toHours()
+
+    return if (minutes == 0L) {
+        Constants.Date.MINUTES_FORMAT.format("1", minutesSymbol)
+    } else if (minutes in 1L..59L) {
+        Constants.Date.MINUTES_FORMAT.format(minutes.toString(), minutesSymbol)
+    } else if (minutes > 59L && (minutes % 60L) != 0L) {
+        Constants.Date.HOURS_AND_MINUTES_FORMAT.format(
+            hours.toString(),
+            hoursSymbol,
+            toMinutesInHours().toString(),
+            minutesSymbol,
+        )
+    } else {
+        Constants.Date.HOURS_FORMAT.format(hours.toString(), hoursSymbol)
+    }
+}
+
+fun Long.toMinutesAndHoursString(minutesSymbol: String, hoursSymbol: String): String {
+    val minutes = this.toMinutes()
+    val hours = this.toHours()
+
+    return Constants.Date.HOURS_AND_MINUTES_FORMAT.format(
+        hours.toString(),
+        hoursSymbol,
+        (minutes - hours * Constants.Date.MINUTES_IN_HOUR).toString(),
+        minutesSymbol,
+    )
+}
+
+fun Long.toDaysString(dayTitle: String): String {
+    val hours = this.toHours()
+    val rawDays = hours / Constants.Date.HOURS_IN_DAY.toFloat()
+    val days = rawDays.roundToInt()
+    return if (days > 0) "< $days $dayTitle" else "$days $dayTitle"
+}
+
+fun Long.toMinutesInHours(): Long {
+    val hours = toHours()
+    val minutes = toMinutes()
+    return minutes - hours * Constants.Date.MINUTES_IN_HOUR
+}
+
+fun LocalDateTime.changeDay(date: LocalDateTime): LocalDateTime {
+    return LocalDateTime(date.year, date.month, date.dayOfMonth, this.hour, this.minute, this.second, this.nanosecond)
+}
+

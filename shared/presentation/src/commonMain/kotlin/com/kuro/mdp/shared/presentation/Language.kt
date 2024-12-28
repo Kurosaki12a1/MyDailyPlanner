@@ -1,14 +1,13 @@
 package com.kuro.mdp.shared.presentation
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.text.intl.Locale
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-expect val language : String
+expect val language: String
 
 enum class AppLanguage(val code: String) {
     EN("en"),
@@ -24,7 +23,7 @@ enum class AppLanguage(val code: String) {
 }
 
 
-enum class LanguageUiType(val code: String?)  {
+enum class LanguageUiType(val code: String?) {
     DEFAULT(null),
     EN("en"),
     RU("ru"),
@@ -34,7 +33,7 @@ enum class LanguageUiType(val code: String?)  {
     FR("fr"),
     PT_BR("pt-br"),
     TR("tr"),
-    VN("vn"),
+    VN("vi"),
     PL("pl"),
 }
 

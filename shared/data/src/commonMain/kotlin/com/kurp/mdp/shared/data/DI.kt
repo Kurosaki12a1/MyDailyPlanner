@@ -1,5 +1,15 @@
 package com.kurp.mdp.shared.data
 
+import com.kuro.mdp.shared.domain.common.ScheduleStatusChecker
+import com.kuro.mdp.shared.domain.common.TimeTaskStatusChecker
+import com.kuro.mdp.shared.domain.repository.CategoriesRepository
+import com.kuro.mdp.shared.domain.repository.ScheduleRepository
+import com.kuro.mdp.shared.domain.repository.SubCategoriesRepository
+import com.kuro.mdp.shared.domain.repository.TasksSettingsRepository
+import com.kuro.mdp.shared.domain.repository.TemplatesRepository
+import com.kuro.mdp.shared.domain.repository.ThemeSettingsRepository
+import com.kuro.mdp.shared.domain.repository.TimeTaskRepository
+import com.kuro.mdp.shared.domain.repository.UndefinedTasksRepository
 import com.kurp.mdp.shared.data.data_sources.api.categories.CategoriesLocalDataSource
 import com.kurp.mdp.shared.data.data_sources.api.schedules.SchedulesLocalDataSource
 import com.kurp.mdp.shared.data.data_sources.api.settings.TasksSettingsLocalDataSource
@@ -23,6 +33,18 @@ import com.kurp.mdp.shared.data.data_sources.impl.settings.ThemeSettingsLocalDat
 import com.kurp.mdp.shared.data.data_sources.impl.subcategories.SubCategoriesLocalDataSourceImpl
 import com.kurp.mdp.shared.data.data_sources.impl.templates.TemplatesLocalDataSourceImpl
 import com.kurp.mdp.shared.data.data_sources.impl.undefinedtasks.UndefinedTasksLocalDataSourceImpl
+import com.kurp.mdp.shared.data.mappers.schedules.ScheduleDataToDomainMapper
+import com.kurp.mdp.shared.data.mappers.schedules.ScheduleDataToDomainMapperImpl
+import com.kurp.mdp.shared.data.repository.CategoriesRepositoryImpl
+import com.kurp.mdp.shared.data.repository.ScheduleRepositoryImpl
+import com.kurp.mdp.shared.data.repository.SubCategoriesRepositoryImpl
+import com.kurp.mdp.shared.data.repository.TasksSettingsRepositoryImpl
+import com.kurp.mdp.shared.data.repository.TemplatesRepositoryImpl
+import com.kurp.mdp.shared.data.repository.ThemeSettingsRepositoryImpl
+import com.kurp.mdp.shared.data.repository.TimeTaskRepositoryImpl
+import com.kurp.mdp.shared.data.repository.UndefinedTasksRepositoryImpl
+import com.kurp.mdp.shared.data.repository.common.ScheduleStatusCheckerImpl
+import com.kurp.mdp.shared.data.repository.common.TimeTaskStatusCheckerImpl
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -46,9 +68,26 @@ internal val databaseModule = module {
 
     single<TasksSettingsLocalDataSource> { TasksSettingsLocalDataSourceImpl(get()) }
     single<ThemeSettingsLocalDataSource> { ThemeSettingsLocalDataSourceImpl(get()) }
+
 }
 
-val sharedDatabaseModule = listOf(databasePlatformModule(), databaseModule)
+internal val repositoryModule = module {
+    // Common
+    single<ScheduleStatusChecker> { ScheduleStatusCheckerImpl() }
+    single<TimeTaskStatusChecker> { TimeTaskStatusCheckerImpl() }
+    single<ScheduleDataToDomainMapper> { ScheduleDataToDomainMapperImpl(get(), get()) }
+
+    single<CategoriesRepository> { CategoriesRepositoryImpl(get()) }
+    single<ScheduleRepository> { ScheduleRepositoryImpl(get(), get()) }
+    single<SubCategoriesRepository> { SubCategoriesRepositoryImpl(get()) }
+    single<TasksSettingsRepository> { TasksSettingsRepositoryImpl(get()) }
+    single<TemplatesRepository> { TemplatesRepositoryImpl(get()) }
+    single<ThemeSettingsRepository> { ThemeSettingsRepositoryImpl(get()) }
+    single<TimeTaskRepository> { TimeTaskRepositoryImpl(get()) }
+    single<UndefinedTasksRepository> { UndefinedTasksRepositoryImpl(get()) }
+}
+
+val sharedDataModule = listOf(databasePlatformModule(), databaseModule, repositoryModule)
 
 internal fun createMainCategoriesDao(database: SchedulesDataBase): MainCategoriesDao =
     database.fetchMainCategoriesDao()

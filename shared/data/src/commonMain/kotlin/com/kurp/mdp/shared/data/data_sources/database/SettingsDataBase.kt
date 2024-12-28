@@ -12,6 +12,7 @@ import com.kurp.mdp.shared.data.entities.settings.ThemeSettingsEntity
 @Database(
     version = 1,
     entities = [ThemeSettingsEntity::class, TasksSettingsEntity::class],
+    exportSchema = true
 )
 @ConstructedBy(SettingsDatabaseConstructor::class)
 abstract class SettingsDataBase : RoomDatabase() {

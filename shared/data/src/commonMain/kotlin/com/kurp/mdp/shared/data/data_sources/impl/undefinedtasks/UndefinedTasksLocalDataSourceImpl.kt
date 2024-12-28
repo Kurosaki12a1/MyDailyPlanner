@@ -6,7 +6,7 @@ import com.kurp.mdp.shared.data.entities.tasks.UndefinedTaskDetails
 import com.kurp.mdp.shared.data.entities.tasks.UndefinedTaskEntity
 import kotlinx.coroutines.flow.Flow
 
-class UndefinedTasksLocalDataSourceImpl (
+class UndefinedTasksLocalDataSourceImpl(
     private val undefinedTasksDao: UndefinedTasksDao,
 ) : UndefinedTasksLocalDataSource {
 

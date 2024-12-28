@@ -28,6 +28,7 @@ import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppElevations
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
+import kotlinx.serialization.Serializable
 
 /**
  * Created by: minhthinh.h on 12/9/2024
@@ -70,6 +71,7 @@ object AppTheme {
 val LocalThemeUiType = staticCompositionLocalOf { ThemeUiType(name = ThemeUiTypeName.DEFAULT) }
 val LocalColorsUiType = staticCompositionLocalOf { ColorsUiType(name = ColorsUiTypeName.BLUE) }
 
+@Serializable
 data class ThemeUiType(
     val name: ThemeUiTypeName
 ) {
@@ -81,6 +83,7 @@ data class ThemeUiType(
     }
 }
 
+@Serializable
 data class ColorsUiType(
     val name: ColorsUiTypeName
 ) {
