@@ -3,7 +3,7 @@ package com.kuro.mdp.app.presentation.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.kuro.mdp.app.presentation.screen.splash.SplashScreen
+import com.kuro.mdp.app.presentation.ui.splash.SplashScreen
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 

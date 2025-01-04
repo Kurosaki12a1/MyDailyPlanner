@@ -60,6 +60,18 @@ suspend fun <T> wrapFlow(block: suspend () -> Flow<T>): Flow<ResultState<T>> = f
         .collect { data -> emit(ResultState.Success(data)) }
 }
 
+suspend fun <T> ResultState<T>.handle(
+    onDefault: suspend () -> Unit = {},
+    onLoading: suspend () -> Unit = {},
+    onFailure: suspend (Throwable) -> Unit = {},
+    onSuccess: suspend (T) -> Unit = {}
+) = when (this) {
+    is ResultState.Default -> onDefault.invoke()
+    is ResultState.Loading -> onLoading.invoke()
+    is ResultState.Success -> onSuccess(data)
+    is ResultState.Failure -> onFailure(exception)
+}
+
 suspend fun <T> Flow<ResultState<T>>.collectAndHandle(
     onDefault: suspend () -> Unit = {},
     onLoading: suspend () -> Unit = {},

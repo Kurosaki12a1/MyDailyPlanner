@@ -1,4 +1,4 @@
-package com.kuro.mdp.app.presentation.screen
+package com.kuro.mdp.app.presentation.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -10,14 +10,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kuro.mdp.app.presentation.navigation.AppNavGraph
-import com.kuro.mdp.app.presentation.screen.bottombar.TabsBottomNavigationBar
-import com.kuro.mdp.app.presentation.screen.bottombar.shouldBottomBarVisible
+import com.kuro.mdp.app.presentation.ui.bottombar.TabsBottomNavigationBar
+import com.kuro.mdp.app.presentation.ui.bottombar.shouldBottomBarVisible
+import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
+import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.debounce
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 
 /**
  * Created by: minhthinh.h on 12/11/2024
@@ -26,46 +29,38 @@ import org.koin.compose.koinInject
  */
 @Composable
 fun MainScreen(
-    navigator: Navigator = koinInject()
+    viewModel : MainViewModel = koinViewModel()
 ) {
-
+    val viewState by viewModel.state
     val navController = rememberNavController()
     val currentDestination by navController.currentBackStackEntryAsState()
 
     NavigationEffect(
         navHostController = navController,
-        navigationFlow = navigator.navigationFlow
+        navigationFlow = viewModel.navigationFlow
     )
 
-//    AppNavGraph(
-//        navHostController = navController
-//    )
-    Scaffold(
-//        topBar = {
-//            when (val destination = currentDestination?.destination?.parent?.route) {
-//                null -> {
-//
-//                }
-//                Constants.NavigationGraph.HOME -> {
-//                    HomeTopBar()
-//                }
-//            }
-//        },
-        bottomBar = {
-            if (shouldBottomBarVisible(currentDestination?.destination?.parent?.route)) {
-                TabsBottomNavigationBar(
-                    selectedItem = currentDestination?.destination?.parent?.route,
-                    onItemSelected = {
-                        navController.navigate(it.destination)
-                    }
-                )
-            }
-        }
+    MyDailyPlannerTheme(
+        themeUiType = viewState.theme,
+        colorsType = viewState.colors,
     ) {
-        AppNavGraph(
-            modifier = Modifier.padding(it),
-            navHostController = navController
-        )
+        Scaffold(
+            bottomBar = {
+                if (shouldBottomBarVisible(currentDestination?.destination?.parent?.route)) {
+                    TabsBottomNavigationBar(
+                        selectedItem = currentDestination?.destination?.parent?.route,
+                        onItemSelected = {
+                            navController.navigate(it.destination)
+                        }
+                    )
+                }
+            }
+        ) {
+            AppNavGraph(
+                modifier = Modifier.padding(it),
+                navHostController = navController
+            )
+        }
     }
 }
 

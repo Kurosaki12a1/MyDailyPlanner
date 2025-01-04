@@ -1,4 +1,4 @@
-package com.kuro.mdp.app.presentation.screen.topbar
+package com.kuro.mdp.app.presentation.ui.topbar
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry

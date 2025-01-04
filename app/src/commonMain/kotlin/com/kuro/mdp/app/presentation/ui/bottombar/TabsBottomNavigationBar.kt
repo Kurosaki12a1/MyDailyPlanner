@@ -1,4 +1,4 @@
-package com.kuro.mdp.app.presentation.screen.bottombar
+package com.kuro.mdp.app.presentation.ui.bottombar
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable

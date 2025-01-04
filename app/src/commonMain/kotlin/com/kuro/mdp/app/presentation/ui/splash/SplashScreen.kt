@@ -1,4 +1,4 @@
-package com.kuro.mdp.app.presentation.screen.splash
+package com.kuro.mdp.app.presentation.ui.splash
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn

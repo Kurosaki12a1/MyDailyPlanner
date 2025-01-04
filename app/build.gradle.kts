@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -65,6 +66,8 @@ kotlin {
 
             // Navigation
             implementation(libs.navigation.compose)
+
+            implementation(libs.kotlin.serilization)
         }
     }
 }

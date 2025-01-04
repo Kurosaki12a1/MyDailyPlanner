@@ -25,7 +25,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(projects.features.settings.domain)
+            implementation(projects.shared.domain)
+            implementation(projects.shared.presentation)
+            implementation(projects.shared.utils)
+
+            // Flow
+            implementation(libs.kotlinx.coroutines.core)
+
+            // Koin
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

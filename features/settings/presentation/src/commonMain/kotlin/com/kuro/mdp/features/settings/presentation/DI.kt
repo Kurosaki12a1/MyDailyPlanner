@@ -10,5 +10,5 @@ import org.koin.dsl.module
  * Description:
  */
 val settingsPresentationModule = module {
-    viewModel<SettingsViewModel> { SettingsViewModel(get()) }
+    viewModel<SettingsViewModel> { SettingsViewModel(get(), get()) }
 }
