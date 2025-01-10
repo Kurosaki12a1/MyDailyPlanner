@@ -25,7 +25,7 @@ sealed class Destination {
     data object Settings : Destination()
 
     @Serializable
-    data object Donate: Destination()
+    data object Donate : Destination()
 
     @Serializable
     data object Templates : Destination()

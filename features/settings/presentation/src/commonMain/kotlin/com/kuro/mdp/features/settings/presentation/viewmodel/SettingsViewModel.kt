@@ -36,8 +36,7 @@ internal class SettingsViewModel(
                         onFailure = {
                             updateState(state.value.copy(failure = it.message))
                         },
-                        onSuccess =  {
-                            println("onSuccess")
+                        onSuccess = {
                         }
                     )
                 }
@@ -47,7 +46,6 @@ internal class SettingsViewModel(
                 viewModelScope.launch {
                     menuSettingsRepository.updateThemeSettings(event.themeSettings.mapToDomain()).handle(
                         onSuccess = {
-                            println("onSuccess")
                         },
                         onFailure = {
                             updateState(state.value.copy(failure = it.message))
@@ -81,6 +79,19 @@ internal class SettingsViewModel(
 
             is SettingsEvent.ClearFailure -> {
                 updateState(state.value.copy(failure = null))
+            }
+
+            is SettingsEvent.ResetToDefault -> {
+                viewModelScope.launch {
+                    menuSettingsRepository.resetAllSettings().handle(
+                        onSuccess = {
+
+                        },
+                        onFailure = {
+                            updateState(state.value.copy(failure = it.message))
+                        }
+                    )
+                }
             }
         }
     }

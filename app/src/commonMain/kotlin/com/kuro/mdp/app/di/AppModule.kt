@@ -1,6 +1,5 @@
 package com.kuro.mdp.app.di
 
-import com.kurp.mdp.shared.data.sharedDataModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 

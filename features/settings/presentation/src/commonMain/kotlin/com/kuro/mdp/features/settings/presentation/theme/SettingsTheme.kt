@@ -27,7 +27,6 @@ internal fun SettingsTheme(content: @Composable () -> Unit) {
     )
 }
 
-
 internal object SettingsTheme {
     val strings: SettingsStrings
         @Composable get() = LocalSettingsStrings.current

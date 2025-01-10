@@ -30,7 +30,7 @@ internal fun ThemeSettingsUi.mapToDomain() = ThemeSettings(
     colorsType = colorsType.mapToDomain(),
 )
 
-fun LanguageType.mapToUi() = LanguageUiType.entries.find { it.code == this.code }!!
+fun LanguageType.mapToUi(): LanguageUiType = LanguageUiType.entries.find { it.code == this.code } ?: LanguageUiType.DEFAULT
 
 fun ThemeType.mapToUi(): ThemeUiType = when (this) {
     ThemeType.DEFAULT -> ThemeUiType(ThemeUiTypeName.DEFAULT)
@@ -45,7 +45,7 @@ fun ColorsType.mapToUi(): ColorsUiType = when (this) {
     ColorsType.BLUE -> ColorsUiType(ColorsUiTypeName.BLUE)
 }
 
-fun LanguageUiType.mapToDomain() = LanguageType.entries.find { it.code == this.code }!!
+fun LanguageUiType.mapToDomain() = LanguageType.entries.find { it.code == this.code } ?: LanguageType.DEFAULT
 
 fun ThemeUiType.mapToDomain(): ThemeType = when (this.name) {
     ThemeUiTypeName.DEFAULT -> ThemeType.DEFAULT

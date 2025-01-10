@@ -26,7 +26,7 @@ fun Context.setClipboard(text: String?) {
 
 fun StringResource.getId(context: Context): Int = context.resources.getIdentifier(this.key, "string", context.packageName)
 
-fun DrawableResource.getId(context: Context, convertToKey : (DrawableResource) -> String?): Int {
+fun DrawableResource.getId(context: Context, convertToKey: (DrawableResource) -> String?): Int {
     return context.resources.getIdentifier(convertToKey(this), "drawable", context.packageName)
 }
 

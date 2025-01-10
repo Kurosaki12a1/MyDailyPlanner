@@ -38,13 +38,15 @@ class MainViewModel(
                         onSuccess = {
                             updateState(
                                 state.value.copy(
+                                    secureMode = it.tasksSettings.secureMode,
+                                    isEnableDynamicColors = it.themeSettings.isDynamicColorEnable,
+                                    language = it.themeSettings.language.mapToUi(),
                                     theme = it.themeSettings.themeColors.mapToUi(),
                                     colors = it.themeSettings.colorsType.mapToUi()
                                 )
                             )
                         },
                         onFailure = {
-                            println("Failure: $it")
                         }
                     )
                 }

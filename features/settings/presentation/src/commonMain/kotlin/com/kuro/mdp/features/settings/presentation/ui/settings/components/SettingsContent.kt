@@ -25,7 +25,9 @@ import com.kuro.mdp.shared.domain.model.settings.CalendarButtonBehavior
 import com.kuro.mdp.shared.presentation.LanguageUiType
 import com.kuro.mdp.shared.presentation.theme.ColorsUiType
 import com.kuro.mdp.shared.presentation.theme.ThemeUiType
+import com.kuro.mdp.shared.utils.DevicePlatform
 import com.kuro.mdp.shared.utils.extensions.string
+import com.kuro.mdp.shared.utils.getPlatform
 
 /**
  * Created by: minhthinh.h on 12/26/2024
@@ -147,10 +149,12 @@ internal fun MainSettingsSection(
             colorsType = colorsType,
             onChoose = onColorsTypeUpdate,
         )
-        DynamicColorChooser(
-            dynamicColor = dynamicColor,
-            onChange = onDynamicColorsChange,
-        )
+        if (getPlatform() == DevicePlatform.ANDROID) {
+            DynamicColorChooser(
+                dynamicColor = dynamicColor,
+                onChange = onDynamicColorsChange,
+            )
+        }
         LanguageChooser(
             language = languageType,
             onLanguageChanged = onLanguageChange,

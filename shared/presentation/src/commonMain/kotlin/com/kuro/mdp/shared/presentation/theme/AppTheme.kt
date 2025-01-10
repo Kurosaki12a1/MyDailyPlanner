@@ -1,10 +1,11 @@
 package com.kuro.mdp.shared.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.kuro.mdp.shared.presentation.AppLanguage
+import com.kuro.mdp.shared.presentation.LanguageUiType
 import com.kuro.mdp.shared.presentation.LocalAppLanguage
 import com.kuro.mdp.shared.presentation.theme.materials.blueDarkColorScheme
 import com.kuro.mdp.shared.presentation.theme.materials.blueLightColorScheme
@@ -28,6 +29,8 @@ import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppElevations
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
+import com.kuro.mdp.shared.utils.DevicePlatform
+import com.kuro.mdp.shared.utils.getPlatform
 import kotlinx.serialization.Serializable
 
 /**
@@ -47,7 +50,7 @@ object AppTheme {
         @ReadOnlyComposable
         get() = LocalColorsUiType.current
 
-    val language: AppLanguage
+    val language: LanguageUiType
         @Composable
         @ReadOnlyComposable
         get() = LocalAppLanguage.current
@@ -118,10 +121,16 @@ data class ColorsUiType(
     }
 
     @Composable
-    fun fetchColorScheme(themeType: ThemeUiType) = when (themeType.name) {
-        ThemeUiTypeName.DEFAULT -> if (isSystemInDarkTheme()) fetchDarkColorScheme() else fetchLightColorScheme()
-        ThemeUiTypeName.LIGHT -> fetchLightColorScheme()
-        ThemeUiTypeName.DARK -> fetchDarkColorScheme()
+    fun fetchColorScheme(themeType: ThemeUiType, isDynamicColor: Boolean = false): ColorScheme {
+        if (getPlatform() == DevicePlatform.ANDROID && isDynamicColor) {
+            val dynamicColor = getDynamicScheme(themeType.name)
+            if (dynamicColor != null) return dynamicColor
+        }
+        return when (themeType.name) {
+            ThemeUiTypeName.DEFAULT -> if (isSystemInDarkTheme()) fetchDarkColorScheme() else fetchLightColorScheme()
+            ThemeUiTypeName.LIGHT -> fetchLightColorScheme()
+            ThemeUiTypeName.DARK -> fetchDarkColorScheme()
+        }
     }
 }
 
@@ -132,3 +141,6 @@ enum class ColorsUiTypeName {
 enum class ThemeUiTypeName {
     DEFAULT, LIGHT, DARK;
 }
+
+@Composable
+expect fun getDynamicScheme(themeType: ThemeUiTypeName): ColorScheme?

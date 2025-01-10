@@ -3,9 +3,9 @@ package com.kuro.mdp.shared.presentation.theme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import com.kuro.mdp.shared.presentation.LanguageUiType
 import com.kuro.mdp.shared.presentation.LocalAppLanguage
 import com.kuro.mdp.shared.presentation.fetchAppLanguage
-import com.kuro.mdp.shared.presentation.language
 import com.kuro.mdp.shared.presentation.theme.materials.baseShapes
 import com.kuro.mdp.shared.presentation.theme.materials.baseTypography
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppColorsType
@@ -22,13 +22,15 @@ import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
  */
 @Composable
 fun MyDailyPlannerTheme(
+    languageUiType: LanguageUiType = LanguageUiType.DEFAULT,
     themeUiType: ThemeUiType = AppTheme.themeType,
     colorsType: ColorsUiType = AppTheme.colorsType,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorsScheme = colorsType.fetchColorScheme(themeUiType)
+    val colorsScheme = colorsType.fetchColorScheme(themeUiType, dynamicColor)
     val appColorsType = fetchAppColorsType(themeUiType, colorsType)
-    val appLanguage = fetchAppLanguage(language)
+    val appLanguage = fetchAppLanguage(languageUiType.code)
     val appElevations = fetchAppElevations()
     val appIcons = fetchAppIcons()
     MaterialTheme(

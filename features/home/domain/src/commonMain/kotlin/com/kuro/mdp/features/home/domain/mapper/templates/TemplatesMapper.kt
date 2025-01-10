@@ -1,10 +1,8 @@
 package com.kuro.mdp.features.home.domain.mapper.templates
 
-import androidx.compose.runtime.Composable
 import com.kuro.mdp.features.home.domain.mapper.categories.mapToDomain
 import com.kuro.mdp.features.home.domain.mapper.categories.mapToUi
 import com.kuro.mdp.features.home.domain.model.templates.TemplateHome
-import com.kuro.mdp.features.home.domain.model.templates.TemplatesSortedType
 import com.kuro.mdp.shared.domain.model.schedules.TimeTask
 import com.kuro.mdp.shared.domain.model.template.Template
 import com.kuro.mdp.shared.utils.extensions.changeDay

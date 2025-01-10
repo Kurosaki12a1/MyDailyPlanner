@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.map
  * Description:
  */
 class UndefinedTasksRepositoryImpl(
-    private val localDataSource : UndefinedTasksLocalDataSource
-) : UndefinedTasksRepository{
+    private val localDataSource: UndefinedTasksLocalDataSource
+) : UndefinedTasksRepository {
     override suspend fun addOrUpdateUndefinedTasks(tasks: List<UndefinedTask>) {
         localDataSource.addOrUpdateUndefinedTasks(tasks.map { it.mapToData() })
     }

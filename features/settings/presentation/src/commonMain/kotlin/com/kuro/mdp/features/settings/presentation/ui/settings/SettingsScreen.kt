@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import com.kuro.mdp.features.settings.presentation.ui.settings.components.SettingsContent
 import com.kuro.mdp.features.settings.presentation.ui.settings.components.SettingsTopAppBar
 import com.kuro.mdp.features.settings.presentation.viewmodel.SettingsViewModel
-import com.kuro.mdp.shared.presentation.theme.LocalThemeUiType
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
@@ -35,7 +34,7 @@ internal fun SettingsScreen(
 
                 },
                 onResetToDefaultClick = {
-
+                    viewModel.dispatchEvent(SettingsEvent.ResetToDefault)
                 })
         }, content = { paddingValues ->
             SettingsContent(

@@ -51,7 +51,7 @@ fun LanguageChooser(
     var isOpenDialog by rememberSaveable { mutableStateOf(false) }
     Surface(
         onClick = { isOpenDialog = true },
-        modifier = modifier.height(60.dp),
+        modifier = modifier.padding(vertical = 10.dp),
         shape = MaterialTheme.shapes.medium,
         color = MaterialTheme.colorScheme.surfaceContainer,
     ) {

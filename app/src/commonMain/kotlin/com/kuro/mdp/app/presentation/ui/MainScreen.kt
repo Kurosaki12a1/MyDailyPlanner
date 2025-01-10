@@ -14,12 +14,11 @@ import com.kuro.mdp.app.presentation.ui.bottombar.TabsBottomNavigationBar
 import com.kuro.mdp.app.presentation.ui.bottombar.shouldBottomBarVisible
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
-import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme
+import com.kuro.mdp.shared.utils.ScreenProtection
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.debounce
-import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
@@ -29,7 +28,7 @@ import org.koin.compose.viewmodel.koinViewModel
  */
 @Composable
 fun MainScreen(
-    viewModel : MainViewModel = koinViewModel()
+    viewModel: MainViewModel = koinViewModel()
 ) {
     val viewState by viewModel.state
     val navController = rememberNavController()
@@ -41,8 +40,10 @@ fun MainScreen(
     )
 
     MyDailyPlannerTheme(
+        languageUiType = viewState.language,
         themeUiType = viewState.theme,
         colorsType = viewState.colors,
+        dynamicColor = viewState.isEnableDynamicColors
     ) {
         Scaffold(
             bottomBar = {
@@ -61,7 +62,9 @@ fun MainScreen(
                 navHostController = navController
             )
         }
+        ScreenProtection(viewState.secureMode)
     }
+
 }
 
 @OptIn(FlowPreview::class)

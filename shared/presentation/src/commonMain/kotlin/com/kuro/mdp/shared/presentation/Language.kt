@@ -7,21 +7,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
  *
  * Description:
  */
-expect val language: String
 
-enum class AppLanguage(val code: String) {
-    EN("en"),
-    RU("ru"),
-    DE("de"),
-    ES("es"),
-    FA("fa"),
-    FR("fr"),
-    PT_BR("pt-br"),
-    TR("tr"),
-    VN("vn"),
-    PL("pl"),
-}
-
+expect fun changeLanguage(appLanguage: LanguageUiType)
 
 enum class LanguageUiType(val code: String?) {
     DEFAULT(null),
@@ -31,30 +18,18 @@ enum class LanguageUiType(val code: String?) {
     ES("es"),
     FA("fa"),
     FR("fr"),
-    PT_BR("pt-br"),
+    PT_BR("pt"),
     TR("tr"),
     VN("vi"),
     PL("pl"),
 }
 
-val LocalAppLanguage = staticCompositionLocalOf<AppLanguage> {
+val LocalAppLanguage = staticCompositionLocalOf<LanguageUiType> {
     error("Language is not provided")
 }
 
-fun fetchAppLanguage(code: String): AppLanguage {
-    return AppLanguage.entries.find { it.code == code } ?: AppLanguage.EN
-}
-
-fun fetchAppLanguage(languageType: LanguageUiType) = when (languageType) {
-    LanguageUiType.DEFAULT -> fetchAppLanguage(language)
-    LanguageUiType.EN -> AppLanguage.EN
-    LanguageUiType.RU -> AppLanguage.RU
-    LanguageUiType.DE -> AppLanguage.DE
-    LanguageUiType.ES -> AppLanguage.ES
-    LanguageUiType.FA -> AppLanguage.FA
-    LanguageUiType.FR -> AppLanguage.FR
-    LanguageUiType.PT_BR -> AppLanguage.PT_BR
-    LanguageUiType.TR -> AppLanguage.TR
-    LanguageUiType.VN -> AppLanguage.VN
-    LanguageUiType.PL -> AppLanguage.PL
+fun fetchAppLanguage(code: String?): LanguageUiType {
+    val currentLanguage: LanguageUiType = LanguageUiType.entries.find { it.code == code } ?: LanguageUiType.EN
+    changeLanguage(currentLanguage)
+    return currentLanguage
 }

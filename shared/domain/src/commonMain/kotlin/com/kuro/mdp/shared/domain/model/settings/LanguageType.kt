@@ -9,8 +9,8 @@ enum class LanguageType(val code: String?) {
     ES("es"),
     FA("fa"),
     FR("fr"),
-    PT_BR("pt-br"),
+    PT_BR("pt"),
     TR("tr"),
-    VN("vn"),
+    VN("vi"),
     PL("pl")
 }

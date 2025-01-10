@@ -12,6 +12,7 @@ import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseEvent
 internal sealed class SettingsEvent : BaseEvent {
     data object Init : SettingsEvent()
     data object PressDonateButton : SettingsEvent()
+    data object ResetToDefault: SettingsEvent()
     data object ClearFailure : SettingsEvent()
     data class ChangedThemeSettings(val themeSettings: ThemeSettingsUi) : SettingsEvent()
     data class ChangedTasksSettings(val tasksSettings: TasksSettingsUi) : SettingsEvent()

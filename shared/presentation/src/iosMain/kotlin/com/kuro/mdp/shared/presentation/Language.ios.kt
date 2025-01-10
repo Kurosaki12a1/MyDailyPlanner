@@ -1,12 +1,13 @@
 package com.kuro.mdp.shared.presentation
 
-import platform.Foundation.NSLocale
-import platform.Foundation.currentLocale
-import platform.Foundation.languageCode
+import platform.Foundation.NSUserDefaults
 
 /**
  * Created by: minhthinh.h on 12/9/2024
  *
  * Description:
  */
-actual val language: String = NSLocale.currentLocale.languageCode
+
+actual fun changeLanguage(appLanguage: LanguageUiType) {
+    NSUserDefaults.standardUserDefaults.setObject(arrayListOf(appLanguage.code ?: LanguageUiType.EN.code), "AppleLanguages")
+}

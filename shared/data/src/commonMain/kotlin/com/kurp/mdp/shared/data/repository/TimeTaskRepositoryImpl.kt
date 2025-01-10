@@ -15,7 +15,7 @@ import kotlinx.datetime.LocalDateTime
  * Description:
  */
 class TimeTaskRepositoryImpl(
-    private val localDataSource : SchedulesLocalDataSource
+    private val localDataSource: SchedulesLocalDataSource
 ) : TimeTaskRepository {
     override suspend fun addTimeTasks(timeTasks: List<TimeTask>) {
         localDataSource.addTimeTasks(timeTasks.map { it.mapToData() })

@@ -7,4 +7,8 @@ import java.util.Locale
  *
  * Description:
  */
-actual val language: String = Locale.getDefault().language
+
+actual fun changeLanguage(appLanguage: LanguageUiType) {
+    val locale: Locale = if (appLanguage.code != null) Locale(appLanguage.code) else Locale(LanguageUiType.EN.code!!)
+    Locale.setDefault(locale)
+}

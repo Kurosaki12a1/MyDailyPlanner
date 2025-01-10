@@ -104,7 +104,6 @@ internal class HomeViewModel(
     }
 
     private fun showError(e: Throwable) {
-        println("My Error: $e")
         updateState(
             newState = state.value.copy(
                 error = when (e) {
@@ -117,7 +116,6 @@ internal class HomeViewModel(
     }
 
     private fun setUpSettings(settings: TasksSettings) {
-        println("settings: ${settings.taskViewStatus}")
         updateState(
             newState = state.value.copy(
                 taskViewStatus = settings.taskViewStatus,
