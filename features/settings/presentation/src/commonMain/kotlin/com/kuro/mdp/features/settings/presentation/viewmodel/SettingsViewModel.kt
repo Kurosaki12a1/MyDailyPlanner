@@ -1,15 +1,15 @@
 package com.kuro.mdp.features.settings.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.kuro.mdp.features.settings.domain.repository.MenuSettingsRepository
+import com.kuro.mdp.features.settings.domain.use_case.SettingsUseCase
 import com.kuro.mdp.features.settings.presentation.mappers.mapToDomain
 import com.kuro.mdp.features.settings.presentation.mappers.mapToUi
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsEvent
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsViewState
+import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.functional.collectAndHandle
-import com.kuro.mdp.shared.utils.functional.handle
 import kotlinx.coroutines.launch
 
 /**
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
  * Description:
  */
 internal class SettingsViewModel(
-    private val menuSettingsRepository: MenuSettingsRepository,
+    private val settingsUseCase: SettingsUseCase,
     navigator: Navigator
 ) : BaseViewModel<SettingsViewState, SettingsEvent>(navigator) {
 
@@ -32,31 +32,26 @@ internal class SettingsViewModel(
         when (event) {
             is SettingsEvent.ChangedTasksSettings -> {
                 viewModelScope.launch {
-                    menuSettingsRepository.updateTasksSettings(event.tasksSettings.mapToDomain()).handle(
-                        onFailure = {
-                            updateState(state.value.copy(failure = it.message))
-                        },
-                        onSuccess = {
-                        }
+                    settingsUseCase.updateTasksSettingsUseCase(event.tasksSettings.mapToDomain()).collectAndHandle(
+                        onFailure = { updateState(state.value.copy(failure = it.message)) }
                     )
                 }
             }
 
             is SettingsEvent.ChangedThemeSettings -> {
                 viewModelScope.launch {
-                    menuSettingsRepository.updateThemeSettings(event.themeSettings.mapToDomain()).handle(
-                        onSuccess = {
-                        },
-                        onFailure = {
-                            updateState(state.value.copy(failure = it.message))
-                        }
+                    settingsUseCase.updateThemeSettingsUseCase(event.themeSettings.mapToDomain()).collectAndHandle(
+                        onFailure = { updateState(state.value.copy(failure = it.message)) }
                     )
                 }
             }
 
             is SettingsEvent.Init -> {
                 viewModelScope.launch {
-                    menuSettingsRepository.fetchAllSettings().collectAndHandle(
+                    settingsUseCase.loadAllSettingsUseCase().collectAndHandle(
+                        onFailure = {
+                            updateState(state.value.copy(failure = it.message))
+                        },
                         onSuccess = { settings ->
                             updateState(
                                 state.value.copy(
@@ -65,16 +60,13 @@ internal class SettingsViewModel(
                                     failure = null
                                 )
                             )
-                        },
-                        onFailure = {
-                            updateState(state.value.copy(failure = it.message))
                         }
                     )
                 }
             }
 
             is SettingsEvent.PressDonateButton -> {
-
+                navigateTo(Destination.Donate)
             }
 
             is SettingsEvent.ClearFailure -> {
@@ -83,13 +75,8 @@ internal class SettingsViewModel(
 
             is SettingsEvent.ResetToDefault -> {
                 viewModelScope.launch {
-                    menuSettingsRepository.resetAllSettings().handle(
-                        onSuccess = {
-
-                        },
-                        onFailure = {
-                            updateState(state.value.copy(failure = it.message))
-                        }
+                    settingsUseCase.resetToDefaultUseCase().collectAndHandle(
+                        onFailure = { updateState(state.value.copy(failure = it.message)) }
                     )
                 }
             }

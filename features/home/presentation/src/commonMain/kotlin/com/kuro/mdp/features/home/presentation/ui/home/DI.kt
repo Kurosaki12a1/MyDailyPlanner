@@ -10,5 +10,5 @@ import org.koin.dsl.module
  * Description:
  */
 val homePresentationModule = module {
-    viewModel { HomeViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }

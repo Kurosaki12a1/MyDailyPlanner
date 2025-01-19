@@ -224,7 +224,10 @@ fun Long.daysToMillis(): Long {
     return seconds * Constants.Date.MILLIS_IN_SECONDS
 }
 
-fun Long.toMinutesOrHoursString(minutesSymbol: String, hoursSymbol: String): String {
+fun Long.toMinutesOrHoursString(
+    minutesSymbol: String,
+    hoursSymbol: String
+): String {
     val minutes = this.toMinutes()
     val hours = this.toHours()
 

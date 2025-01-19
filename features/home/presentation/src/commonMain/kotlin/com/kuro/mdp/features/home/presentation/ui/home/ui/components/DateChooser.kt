@@ -40,14 +40,16 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
 import com.kuro.mdp.shared.domain.model.settings.ViewToggleStatus
 import com.kuro.mdp.shared.presentation.theme.AppTheme
+import com.kuro.mdp.shared.presentation.theme.resources.getListDayOfWeekTitle
 import com.kuro.mdp.shared.presentation.views.ViewToggle
 import com.kuro.mdp.shared.utils.extensions.mapToDate
 import com.kuro.mdp.shared.utils.extensions.shiftDays
 import com.kuro.mdp.shared.utils.extensions.startThisDay
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
-import kotlinx.datetime.format.FormatStringsInDatetimeFormats
-import kotlinx.datetime.format.byUnicodePattern
+import kotlinx.datetime.format.DayOfWeekNames
+import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.char
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -90,7 +92,7 @@ internal fun DateChooserSection(
     }
 }
 
-@OptIn(FormatStringsInDatetimeFormats::class)
+
 @Composable
 internal fun HomeDateChooser(
     modifier: Modifier = Modifier,
@@ -98,7 +100,14 @@ internal fun HomeDateChooser(
     currentDate: LocalDateTime?,
     onChangeDate: (LocalDateTime) -> Unit,
 ) {
-    val dateFormat = LocalDateTime.Format { byUnicodePattern("EEE, d MM") }
+    val listDayOfWeekName = getListDayOfWeekTitle()
+    val dateFormat = LocalDateTime.Format {
+        dayOfWeek(DayOfWeekNames(listDayOfWeekName))
+        chars(", ")
+        dayOfMonth()
+        char(' ')
+        monthName(MonthNames.ENGLISH_ABBREVIATED)
+    }
     val isDateDialogShow = rememberSaveable { mutableStateOf(false) }
 
     DateChooser(

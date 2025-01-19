@@ -14,15 +14,21 @@ import com.kuro.mdp.shared.utils.extensions.toMinutesOrHoursString
  */
 @Composable
 fun Long.toMinutesOrHoursTitle(): String {
-    return this.toMinutesOrHoursString(AppTheme.strings.minutesSymbol.string(), AppTheme.strings.hoursSymbol.string())
+    return this.toMinutesOrHoursString(
+        AppTheme.strings.minutesTitle.string(),
+        AppTheme.strings.hoursTitle.string()
+    )
 }
 
 @Composable
 fun Long.toMinutesAndHoursTitle(): String {
-    return this.toMinutesAndHoursString(AppTheme.strings.minutesSymbol.string(), AppTheme.strings.hoursSymbol.string())
+    return this.toMinutesAndHoursString(
+        AppTheme.strings.minutesTitle.string(),
+        AppTheme.strings.hoursTitle.string()
+    )
 }
 
 @Composable
-fun Long.toDaysTitle(): String {
-    return this.toDaysString(AppTheme.strings.dayTitle.string())
+fun Long.toDaysTitle(dayTitle: String = AppTheme.strings.dayTitle.string()): String {
+    return this.toDaysString(dayTitle)
 }

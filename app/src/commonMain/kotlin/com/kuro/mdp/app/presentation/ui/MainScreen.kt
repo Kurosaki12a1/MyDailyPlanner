@@ -16,6 +16,7 @@ import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme
 import com.kuro.mdp.shared.utils.ScreenProtection
+import com.kuro.mdp.shared.utils.functional.Constants.Delay.NAVIGATION_FLOW
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.debounce
@@ -50,9 +51,7 @@ fun MainScreen(
                 if (shouldBottomBarVisible(currentDestination?.destination?.parent?.route)) {
                     TabsBottomNavigationBar(
                         selectedItem = currentDestination?.destination?.parent?.route,
-                        onItemSelected = {
-                            navController.navigate(it.destination)
-                        }
+                        onItemSelected = { navController.navigate(it.destination) }
                     )
                 }
             }
@@ -61,8 +60,8 @@ fun MainScreen(
                 modifier = Modifier.padding(it),
                 navHostController = navController
             )
+            ScreenProtection(viewState.secureMode)
         }
-        ScreenProtection(viewState.secureMode)
     }
 
 }
@@ -74,7 +73,7 @@ fun NavigationEffect(
     navHostController: NavHostController
 ) {
     LaunchedEffect(navigationFlow, navHostController) {
-        navigationFlow.debounce(250).collect { intent ->
+        navigationFlow.debounce(NAVIGATION_FLOW).collect { intent ->
             when (intent) {
                 is NavigationIntent.NavigateBack -> {
                     intent.route?.let {

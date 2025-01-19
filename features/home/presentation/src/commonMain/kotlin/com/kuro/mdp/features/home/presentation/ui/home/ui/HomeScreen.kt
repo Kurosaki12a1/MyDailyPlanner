@@ -18,7 +18,6 @@ import com.kuro.mdp.features.home.presentation.ui.home.viewmodel.HomeViewModel
 import com.kuro.mdp.shared.presentation.views.ErrorSnackBar
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
 import com.kuro.mdp.shared.utils.extensions.startThisDay
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.getString
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -27,7 +26,6 @@ import org.koin.compose.viewmodel.koinViewModel
  *
  * Description:
  */
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel()
@@ -107,4 +105,8 @@ internal fun HomeScreen(
             viewModel.dispatchEvent(HomeEvent.LoadSchedule(it))
         }
     )
+
+    LaunchedEffect(Unit) {
+        viewModel.dispatchEvent(HomeEvent.LoadSchedule(state.currentDate))
+    }
 }

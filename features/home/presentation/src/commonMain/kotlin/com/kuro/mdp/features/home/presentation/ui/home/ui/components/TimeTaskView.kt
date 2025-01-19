@@ -13,6 +13,7 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -57,6 +58,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
+import com.kuro.mdp.features.home.presentation.ui.home.theme.resources.LocalHomeStrings
 import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
 import com.kuro.mdp.shared.domain.model.schedules.TaskPriority
 import com.kuro.mdp.shared.domain.model.schedules.TimeTaskStatus
@@ -71,6 +73,7 @@ import com.kuro.mdp.shared.utils.extensions.isCurrentDay
 import com.kuro.mdp.shared.utils.extensions.isNotZeroDifference
 import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.datetime.LocalDateTime
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -115,11 +118,11 @@ internal fun TimeTasksSection(
                         val startTime = checkNotNull(currentDate)
                         val endTime = timeTasks[0].startTime
                         AddTimeTaskViewItem(
-                            modifier = Modifier.animateItemPlacement(
-                                animationSpec = spring(
+                            modifier = Modifier.animateItem(
+                                fadeInSpec = null, fadeOutSpec = null, placementSpec = spring(
                                     stiffness = Spring.StiffnessMedium,
                                     visibilityThreshold = IntOffset.VisibilityThreshold,
-                                ),
+                                )
                             ),
                             onAddClick = { onTimeTaskAdd(startTime, endTime) },
                             startTime = startTime,
@@ -132,11 +135,11 @@ internal fun TimeTasksSection(
                     val nextItem = timeTasks.getOrNull(timeTaskIndex + 1)
 
                     TimeTaskViewItem(
-                        modifier = Modifier.animateItemPlacement(
-                            animationSpec = spring(
+                        modifier = Modifier.animateItem(
+                            fadeInSpec = null, fadeOutSpec = null, placementSpec = spring(
                                 stiffness = Spring.StiffnessMedium,
                                 visibilityThreshold = IntOffset.VisibilityThreshold,
-                            ),
+                            )
                         ),
                         timeTask = timeTask,
                         onEdit = onTimeTaskEdit,
@@ -161,11 +164,11 @@ internal fun TimeTasksSection(
                         }
                         if (nextItem != null) {
                             AddTimeTaskViewItem(
-                                modifier = Modifier.animateItemPlacement(
-                                    animationSpec = spring(
+                                modifier = Modifier.animateItem(
+                                    fadeInSpec = null, fadeOutSpec = null, placementSpec = spring(
                                         stiffness = Spring.StiffnessMedium,
                                         visibilityThreshold = IntOffset.VisibilityThreshold,
-                                    ),
+                                    )
                                 ),
                                 onAddClick = { onTimeTaskAdd.invoke(timeTask.endTime, nextItem.startTime) },
                                 startTime = timeTask.endTime,
@@ -182,11 +185,11 @@ internal fun TimeTasksSection(
                     }
                     val endTime = startTime.endThisDay()
                     AddTimeTaskViewItem(
-                        modifier = Modifier.animateItemPlacement(
-                            animationSpec = spring(
+                        modifier = Modifier.animateItem(
+                            fadeInSpec = null, fadeOutSpec = null, placementSpec = spring(
                                 stiffness = Spring.StiffnessMedium,
                                 visibilityThreshold = IntOffset.VisibilityThreshold,
-                            ),
+                            )
                         ),
                         enabled = timeTasks.isEmpty() || timeTasks.last().endTime.isCurrentDay(currentDate!!),
                         onAddClick = { onTimeTaskAdd(startTime, endTime) },
@@ -249,6 +252,15 @@ internal fun AddTimeTaskView(
     remainingTimeTitle: String,
     onViewClicked: () -> Unit,
 ) {
+    val timeTaskString = remember { mutableStateOf("") }
+    val homeStrings = LocalHomeStrings.current
+    LaunchedEffect(isFreeTime) {
+        if (isFreeTime) {
+            timeTaskString.value = "${getString(homeStrings.addFreeTimeTaskTitle)}: $remainingTimeTitle"
+        } else {
+            timeTaskString.value = getString(homeStrings.addTaskTitle)
+        }
+    }
     Surface(
         onClick = onViewClicked,
         modifier = modifier.height(46.dp),
@@ -270,18 +282,11 @@ internal fun AddTimeTaskView(
                 )
             }
             Text(
-                text = stringResource(if (isFreeTime) HomeTheme.strings.addFreeTimeTaskTitle else HomeTheme.strings.addTaskTitle),
+                modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE, repeatDelayMillis = 1000),
+                text = timeTaskString.value,
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,
             )
-            Spacer(modifier = Modifier.weight(1f))
-            if (isFreeTime) {
-                Text(
-                    text = remainingTimeTitle,
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.kuro.mdp.shared.presentation.theme.resources
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.StringResource
 import shared.resources.Res
 import shared.resources.afterTaskNotifyText
@@ -229,3 +231,16 @@ internal val baseAppStrings = AppStrings(
 )
 
 val LocalAppStrings = staticCompositionLocalOf { baseAppStrings }
+
+@Composable
+fun getListDayOfWeekTitle(): List<String> {
+    return listOf(
+        baseAppStrings.mondayTitle.string(),
+        baseAppStrings.tuesdayTitle.string(),
+        baseAppStrings.wednesdayTitle.string(),
+        baseAppStrings.thursdayTitle.string(),
+        baseAppStrings.fridayTitle.string(),
+        baseAppStrings.saturdayTitle.string(),
+        baseAppStrings.sundayTitle.string()
+    )
+}

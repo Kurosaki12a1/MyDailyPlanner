@@ -40,6 +40,9 @@ kotlin {
 
             // Flow
             implementation(libs.kotlinx.coroutines.core)
+
+            // Koin
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

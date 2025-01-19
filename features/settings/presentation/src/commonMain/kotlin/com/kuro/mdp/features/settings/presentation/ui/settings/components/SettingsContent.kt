@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.domain.model.TasksSettingsUi
 import com.kuro.mdp.features.settings.domain.model.ThemeSettingsUi
@@ -27,6 +28,7 @@ import com.kuro.mdp.shared.presentation.theme.ColorsUiType
 import com.kuro.mdp.shared.presentation.theme.ThemeUiType
 import com.kuro.mdp.shared.utils.DevicePlatform
 import com.kuro.mdp.shared.utils.extensions.string
+import com.kuro.mdp.shared.utils.functional.Constants
 import com.kuro.mdp.shared.utils.getPlatform
 
 /**
@@ -43,6 +45,7 @@ internal fun SettingsContent(
     onDonateButtonClick: () -> Unit,
 ) {
     if (state.themeSettings != null && state.tasksSettings != null) {
+        val uriHandler = LocalUriHandler.current
         val scrollState = rememberLazyListState()
         LazyColumn(
             state = scrollState,
@@ -106,10 +109,10 @@ internal fun SettingsContent(
                 ) {
                     AboutAppSection(
                         onOpenGit = {
-                            //TODO  context.openNetworkUri(Constants.App.GITHUB_URI)
+                            uriHandler.openUri(Constants.App.GITHUB_URI)
                         },
                         onOpenIssues = {
-                            // TODO  context.openNetworkUri(Constants.App.ISSUES_URI)
+                            uriHandler.openUri(Constants.App.ISSUES_URI)
                         },
                     )
                     DonateSection(

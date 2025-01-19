@@ -33,6 +33,7 @@ import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
 import com.kuro.mdp.shared.domain.model.schedules.TimeTaskStatus
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
+import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
 import com.kuro.mdp.shared.presentation.views.toMinutesOrHoursTitle
 import com.kuro.mdp.shared.utils.extensions.duration
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
@@ -41,7 +42,7 @@ import com.kuro.mdp.shared.utils.functional.Constants
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
-import kotlinx.datetime.format.byUnicodePattern
+import kotlinx.datetime.format.char
 
 /**
  * Created by: minhthinh.h on 12/19/2024
@@ -141,7 +142,21 @@ fun StartTaskTimeTitle(
     time: LocalDateTime,
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
 ) {
-    val timeFormat = LocalDateTime.Format { byUnicodePattern("MM/dd/yy, h:mm a") }
+    val amFormat = LocalAppStrings.current.amFormatTitle.string()
+    val pmFormat = LocalAppStrings.current.pmFormatTitle.string()
+    val timeFormat = LocalDateTime.Format {
+        monthNumber()
+        char('/')
+        dayOfMonth()
+        char('/')
+        yearTwoDigits(2000)
+        chars(", ")
+        amPmHour()
+        char(':')
+        minute()
+        char(' ')
+        amPmMarker(am = amFormat, pm = pmFormat)
+    }
     Text(
         modifier = modifier.defaultMinSize(minWidth = 42.dp),
         text = time.format(timeFormat),
@@ -156,7 +171,21 @@ fun EndTaskTimeTitle(
     isVisible: Boolean,
     time: LocalDateTime,
 ) {
-    val timeFormat = LocalDateTime.Format { byUnicodePattern("MM/dd/yy, h:mm a") }
+    val amFormat = LocalAppStrings.current.amFormatTitle.string()
+    val pmFormat = LocalAppStrings.current.pmFormatTitle.string()
+    val timeFormat = LocalDateTime.Format {
+        monthNumber()
+        char('/')
+        dayOfMonth()
+        char('/')
+        yearTwoDigits(2000)
+        chars(", ")
+        amPmHour()
+        char(':')
+        minute()
+        char(' ')
+        amPmMarker(am = amFormat, pm = pmFormat)
+    }
     val alpha by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         label = "alpha",

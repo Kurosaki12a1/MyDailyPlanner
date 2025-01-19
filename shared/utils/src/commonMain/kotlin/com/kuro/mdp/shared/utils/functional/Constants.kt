@@ -9,6 +9,8 @@ object Constants {
         const val LICENCE = "Apache Licence v2.0"
         const val EDITOR_DEEP_LINK = "app://daily_planner.com/openEditor"
         const val PERMISSION_TAG = "Notification_Permission"
+        const val GITHUB_URI = "https://github.com/Kurosaki12a1/MyDailyPlanner"
+        const val ISSUES_URI = "https://github.com/Kurosaki12a1/MyDailyPlanner/issues"
     }
 
     object DATABASE {
@@ -24,49 +26,49 @@ object Constants {
         """
 
         const val INIT_CATEGORIES_SCHEDULES_DB = """
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (1, NULL, 'SHOPPING');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (2, NULL, 'HEALTH');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (3, NULL, 'EMPTY');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (4, NULL, 'STUDY');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (5, NULL, 'SLEEP');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (6, NULL, 'WORK');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (7, NULL, 'SPORT');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (8, NULL, 'REST');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (9, NULL, 'CULTURE');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (10, NULL, 'AFFAIRS');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (11, NULL, 'TRANSPORT');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (12, NULL, 'ENTERTAINMENTS');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (13, NULL, 'HYGIENE');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (14, NULL, 'EAT');
             
-            INSERT INTO mainCategories (id, custom_name, default_default_category_type)
+            INSERT INTO mainCategories (id, custom_name, default_category_type)
             VALUES (15, NULL, 'OTHER');
         """
     }
@@ -86,6 +88,7 @@ object Constants {
         const val SPLASH_LOGO = 300L
         const val SPLASH_TEXT = 600L
         const val CHECK_STATUS = 5000L
+        const val NAVIGATION_FLOW = 250L
     }
 
     object Date {
@@ -109,9 +112,9 @@ object Constants {
         const val OVERVIEW_NEXT_DAYS = 15
         const val OVERVIEW_PREVIOUS_DAYS = 14
 
-        const val MINUTES_FORMAT = "%s%s"
-        const val HOURS_FORMAT = "%s%s"
-        const val HOURS_AND_MINUTES_FORMAT = "%s%s %s%s"
+        const val MINUTES_FORMAT = "%s %s"
+        const val HOURS_FORMAT = "%s %s"
+        const val HOURS_AND_MINUTES_FORMAT = "%s %s %s %s"
 
         const val SHIFT_MINUTE_VALUE = 5
     }
