@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TasksSettingsDao {
 
-    @Query("SELECT * FROM TasksSettings WHERE id = 0")
+    @Query("SELECT * FROM TasksSettings ")
     fun fetchSettingsFlow(): Flow<TasksSettingsEntity>
 
     @Update

@@ -5,6 +5,7 @@ import com.kuro.mdp.shared.domain.model.categories.DefaultCategoryType
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
+import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
@@ -51,7 +52,7 @@ fun DefaultCategoryType.mapToString(strings: AppStrings): StringResource = when 
 }
 
 @Composable
-fun DefaultCategoryType.mapToKey(): String = mapToString(AppTheme.strings).key
+fun DefaultCategoryType.mapToName(): String = mapToString(AppTheme.strings).string()
 
 @Composable
 fun DefaultCategoryType.mapToIconPainter() = painterResource(resource = mapToIcon(AppTheme.icons))

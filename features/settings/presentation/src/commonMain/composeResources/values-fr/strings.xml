@@ -3,6 +3,10 @@
     <string name="settingsTitle">Paramètres</string>
     <string name="mainSettingsTitle">Paramètres généraux</string>
     <string name="mainSettingsThemeTitle">Theme:</string>
+    <string name="topAppBarCategoriesTitle">Categories</string>
+    <string name="topAppBarTemplatesTitle">Modèles</string>
+    <string name="mainCategoryChooserTitle">Catégories</string>
+    <string name="subCategoryChooserTitle">Sous-catégories</string>
     <string name="darkThemeTitle">Sombre</string>
     <string name="lightThemeTitle">Clair</string>
     <string name="systemThemeTitle">Système</string>

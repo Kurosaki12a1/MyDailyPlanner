@@ -30,7 +30,7 @@ interface MainCategoriesDao {
     @Query("DELETE FROM mainCategories WHERE id = :id")
     suspend fun removeCategory(id: Int)
 
-    @Query("DELETE FROM mainCategories WHERE id > 12")
+    @Query("DELETE FROM mainCategories")
     suspend fun removeAllCategories()
 
     @Update

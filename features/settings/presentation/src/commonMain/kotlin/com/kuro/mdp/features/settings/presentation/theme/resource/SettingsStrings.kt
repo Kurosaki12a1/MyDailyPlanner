@@ -2,56 +2,7 @@ package com.kuro.mdp.features.settings.presentation.theme.resource
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import org.jetbrains.compose.resources.StringResource
-import settings.resources.Res
-import settings.resources.aboutAppHeader
-import settings.resources.askQuestionTitle
-import settings.resources.backIconDesc
-import settings.resources.backupDataTitle
-import settings.resources.braporLanguageTitle
-import settings.resources.calendarButtonBehaviorTitle
-import settings.resources.clearDataButtonTitle
-import settings.resources.clearDataTitle
-import settings.resources.clearDataWarning
-import settings.resources.copyTitle
-import settings.resources.currentDayCalendarBehavior
-import settings.resources.darkThemeTitle
-import settings.resources.dataSectionHeader
-import settings.resources.defaultLanguageTitle
-import settings.resources.developerTitle
-import settings.resources.donateHeader
-import settings.resources.donateTitle
-import settings.resources.engLanguageTitle
-import settings.resources.errorBackupFileMessage
-import settings.resources.errorBackupMessage
-import settings.resources.freLanguageTitle
-import settings.resources.gerLanguageTitle
-import settings.resources.githubTitle
-import settings.resources.interfaceSectionHeader
-import settings.resources.licenseTitle
-import settings.resources.lightThemeTitle
-import settings.resources.mainSettingsColorsTitle
-import settings.resources.mainSettingsDynamicColorTitle
-import settings.resources.mainSettingsLanguageTitle
-import settings.resources.mainSettingsThemeTitle
-import settings.resources.mainSettingsTitle
-import settings.resources.menuIconDesc
-import settings.resources.moreIconDesc
-import settings.resources.otherError
-import settings.resources.perLanguageTitle
-import settings.resources.polLanguageTitle
-import settings.resources.resetToDefaultTitle
-import settings.resources.restoreDataButtonTitle
-import settings.resources.rusLanguageTitle
-import settings.resources.secureModeTitle
-import settings.resources.secureSectionHeader
-import settings.resources.selectDayCalendarBehavior
-import settings.resources.settingsTitle
-import settings.resources.spaLanguageTitle
-import settings.resources.systemThemeTitle
-import settings.resources.turLanguageTitle
-import settings.resources.versionCodeTitle
-import settings.resources.versionNameTitle
-import settings.resources.vieLanguageTitle
+import settings.resources.*
 
 /**
  * Created by: minhthinh.h on 12/25/2024
@@ -62,6 +13,10 @@ data class SettingsStrings(
     val settingsTitle: StringResource,
     val mainSettingsTitle: StringResource,
     val mainSettingsThemeTitle: StringResource,
+    val topAppBarCategoriesTitle: StringResource,
+    val topAppBarTemplatesTitle: StringResource,
+    val mainCategoryChooserTitle: StringResource,
+    val subCategoryChooserTitle: StringResource,
     val darkThemeTitle: StringResource,
     val lightThemeTitle: StringResource,
     val systemThemeTitle: StringResource,
@@ -115,6 +70,10 @@ val baseSettingsStrings = SettingsStrings(
     settingsTitle = Res.string.settingsTitle,
     mainSettingsTitle = Res.string.mainSettingsTitle,
     mainSettingsThemeTitle = Res.string.mainSettingsThemeTitle,
+    topAppBarCategoriesTitle = Res.string.topAppBarCategoriesTitle,
+    topAppBarTemplatesTitle = Res.string.topAppBarTemplatesTitle,
+    mainCategoryChooserTitle = Res.string.mainCategoryChooserTitle,
+    subCategoryChooserTitle = Res.string.subCategoryChooserTitle,
     darkThemeTitle = Res.string.darkThemeTitle,
     lightThemeTitle = Res.string.lightThemeTitle,
     systemThemeTitle = Res.string.systemThemeTitle,

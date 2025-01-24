@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.kuro.mdp.features.settings.presentation.ui.donate.components.CryptoAddressLazyColumn
 import com.kuro.mdp.features.settings.presentation.ui.donate.components.DonateTopAppBar
+import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
+import org.koin.compose.koinInject
 
 /**
  * Created by: minhthinh.h on 12/26/2024
@@ -14,7 +16,9 @@ import com.kuro.mdp.features.settings.presentation.ui.donate.components.DonateTo
  * Description:
  */
 @Composable
-fun DonateScreen() {
+internal fun DonateScreen(
+    navigator: Navigator = koinInject()
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         content = {
@@ -24,9 +28,7 @@ fun DonateScreen() {
         },
         topBar = {
             DonateTopAppBar(
-                onNavButtonClick = {
-
-                }
+                onNavButtonClick = { navigator.tryNavigateBack() }
             )
         }
     )

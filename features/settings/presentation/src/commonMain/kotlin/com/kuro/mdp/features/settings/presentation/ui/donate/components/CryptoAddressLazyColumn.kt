@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
-import com.kuro.mdp.features.settings.domain.model.CryptoAddress
+import com.kuro.mdp.features.settings.domain.model.donate.CryptoAddress
 
 /**
  * Created by: minhthinh.h on 1/14/2025

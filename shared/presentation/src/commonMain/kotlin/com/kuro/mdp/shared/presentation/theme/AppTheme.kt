@@ -29,6 +29,8 @@ import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppElevations
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
+import com.kuro.mdp.shared.presentation.theme.resources.getListDayOfWeekTitle
+import com.kuro.mdp.shared.presentation.theme.resources.getListMonthTitle
 import com.kuro.mdp.shared.utils.DevicePlatform
 import com.kuro.mdp.shared.utils.getPlatform
 import kotlinx.serialization.Serializable
@@ -69,6 +71,14 @@ object AppTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalAppStrings.current
+
+    val dayOfWeeks: List<String>
+        @Composable
+        get() = getListDayOfWeekTitle()
+
+    val months: List<String>
+        @Composable
+        get() = getListMonthTitle()
 }
 
 val LocalThemeUiType = staticCompositionLocalOf { ThemeUiType(name = ThemeUiTypeName.DEFAULT) }

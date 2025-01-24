@@ -6,7 +6,6 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
-import com.kuro.mdp.shared.utils.functional.Constants.DATABASE.INIT_CATEGORIES_SCHEDULES_DB
 import com.kuro.mdp.shared.utils.functional.Constants.DATABASE.INIT_TASK_SETTINGS_DB
 import com.kuro.mdp.shared.utils.functional.Constants.DATABASE.INIT_THEME_SETTINGS_DB
 import com.kuro.mdp.shared.utils.functional.Constants.DATABASE.SCHEDULES_DB_NAME
@@ -33,7 +32,21 @@ fun getSchedulesDatabaseBuilder(ctx: Context): RoomDatabase.Builder<SchedulesDat
         .addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(connection: SQLiteConnection) {
                 super.onCreate(connection)
-                connection.execSQL(INIT_CATEGORIES_SCHEDULES_DB.trimIndent())
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (1, NULL, 'SHOPPING');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (2, NULL, 'HEALTH');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (3, NULL, 'EMPTY');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (4, NULL, 'STUDY');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (5, NULL, 'SLEEP');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (6, NULL, 'WORK');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (7, NULL, 'SPORT');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (8, NULL, 'REST');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (9, NULL, 'CULTURE');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (10, NULL, 'AFFAIRS');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (11, NULL, 'TRANSPORT');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (12, NULL, 'ENTERTAINMENTS');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (13, NULL, 'HYGIENE');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (14, NULL, 'EAT');")
+                connection.execSQL("INSERT INTO mainCategories (id, custom_name, default_category_type) VALUES (15, NULL, 'OTHER');")
             }
         })
         .setQueryCoroutineContext(Dispatchers.IO)

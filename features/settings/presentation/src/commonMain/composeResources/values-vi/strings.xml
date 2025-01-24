@@ -3,6 +3,10 @@
     <string name="settingsTitle">Thiết đặt</string>
     <string name="mainSettingsTitle">Thiết đặt chung</string>
     <string name="mainSettingsThemeTitle">Chủ đề:</string>
+    <string name="topAppBarCategoriesTitle">Danh mục</string>
+    <string name="topAppBarTemplatesTitle">Mẫu</string>
+    <string name="mainCategoryChooserTitle">Danh mục</string>
+    <string name="subCategoryChooserTitle">Danh mục con</string>
     <string name="darkThemeTitle">Tối</string>
     <string name="lightThemeTitle">Sáng</string>
     <string name="systemThemeTitle">Hệ thống</string>

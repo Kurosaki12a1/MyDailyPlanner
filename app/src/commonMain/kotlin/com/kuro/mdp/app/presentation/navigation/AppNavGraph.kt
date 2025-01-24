@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.kuro.mdp.features.home.presentation.ui.home.navigation.homeNavGraph
+import com.kuro.mdp.features.overview.presentation.navigation.overviewNavGraph
 import com.kuro.mdp.features.settings.presentation.navigation.settingsNavGraph
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 
@@ -34,7 +35,6 @@ fun AppNavGraph(
         splashNavGraph()
         homeNavGraph()
         analyticsNavGraph()
-        categoriesNavGraph()
         overviewNavGraph()
         settingsNavGraph()
     }

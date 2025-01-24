@@ -1,6 +1,6 @@
 package com.kuro.mdp.features.settings.presentation.mappers
 
-import com.kuro.mdp.features.settings.domain.model.TasksSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.TasksSettingsUi
 import com.kuro.mdp.shared.domain.model.settings.TasksSettings
 
 /**

@@ -84,6 +84,6 @@ fun SplashScreen(
         delay(Constants.Delay.SPLASH_TEXT)
         isAppNameVisible.value = true
         delay(Constants.Delay.SPLASH_BEFORE_NAVIGATE)
-        navigator.navigateTo(route = Destination.Home, popUpToRoute = Destination.Splash, inclusive = true)
+        navigator.navigateTo(route = Destination.Home(), popUpToRoute = Destination.Splash, inclusive = true)
     }
 }

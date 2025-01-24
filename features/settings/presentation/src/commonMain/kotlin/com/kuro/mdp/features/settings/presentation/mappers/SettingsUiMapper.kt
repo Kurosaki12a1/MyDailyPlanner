@@ -1,6 +1,6 @@
 package com.kuro.mdp.features.settings.presentation.mappers
 
-import com.kuro.mdp.features.settings.domain.model.SettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.SettingsUi
 import com.kuro.mdp.shared.domain.model.settings.Settings
 
 /**

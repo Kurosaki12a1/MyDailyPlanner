@@ -174,7 +174,7 @@ fun LocalDateTime.endThisDay(): LocalDateTime {
     return LocalDateTime(year = this.year, month = this.month, dayOfMonth = this.dayOfMonth, hour = 23, minute = 59, second = 59)
 }
 
-fun LocalDateTime.isCurrentDay(date: LocalDateTime): Boolean {
+fun LocalDateTime.isCurrentDay(date: LocalDateTime = getLocalDateTimeNow()): Boolean {
     return this.date == date.date
 }
 
@@ -275,4 +275,9 @@ fun Long.toMinutesInHours(): Long {
 fun LocalDateTime.changeDay(date: LocalDateTime): LocalDateTime {
     return LocalDateTime(date.year, date.month, date.dayOfMonth, this.hour, this.minute, this.second, this.nanosecond)
 }
+
+fun TimeRange.isIncludeTime(time: LocalDateTime): Boolean {
+    return time.toEpochMillis() >= this.from.toEpochMillis() && time.toEpochMillis() <= this.to.toEpochMillis()
+}
+
 

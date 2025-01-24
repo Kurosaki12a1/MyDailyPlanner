@@ -3,6 +3,10 @@
     <string name="settingsTitle">Ajustes</string>
     <string name="mainSettingsTitle">Ajustes generales</string>
     <string name="mainSettingsThemeTitle">Estilo:</string>
+    <string name="topAppBarCategoriesTitle">Categorías</string>
+    <string name="topAppBarTemplatesTitle">Plantillas</string>
+    <string name="mainCategoryChooserTitle">Categoría</string>
+    <string name="subCategoryChooserTitle">Subcategoría</string>
     <string name="darkThemeTitle">Oscuro</string>
     <string name="lightThemeTitle">Claro</string>
     <string name="systemThemeTitle">Sistema</string>

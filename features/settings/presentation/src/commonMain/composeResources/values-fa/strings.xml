@@ -3,6 +3,10 @@
     <string name="settingsTitle">تنظبمات</string>
     <string name="mainSettingsTitle">تنظیمات عمومی</string>
     <string name="mainSettingsThemeTitle">پوسته</string>
+    <string name="topAppBarCategoriesTitle">دسته بندی ها</string>
+    <string name="topAppBarTemplatesTitle">قالب ها</string>
+    <string name="mainCategoryChooserTitle">دسته بندی</string>
+    <string name="subCategoryChooserTitle">زیرمجموعه</string>
     <string name="darkThemeTitle">تاریک</string>
     <string name="lightThemeTitle">روشن</string>
     <string name="systemThemeTitle">سیستم</string>

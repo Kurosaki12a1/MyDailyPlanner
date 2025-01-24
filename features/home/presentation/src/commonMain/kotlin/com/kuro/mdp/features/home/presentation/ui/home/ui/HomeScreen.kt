@@ -18,6 +18,7 @@ import com.kuro.mdp.features.home.presentation.ui.home.viewmodel.HomeViewModel
 import com.kuro.mdp.shared.presentation.views.ErrorSnackBar
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
 import com.kuro.mdp.shared.utils.extensions.startThisDay
+import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.getString
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -28,12 +29,18 @@ import org.koin.compose.viewmodel.koinViewModel
  */
 @Composable
 internal fun HomeScreen(
+    scheduleDate: LocalDateTime? = null,
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val localHomeString = LocalHomeStrings.current
     val state by viewModel.state
     val isDateDialogShow by viewModel.isDateDialogShown
     val snackBarState = remember { SnackbarHostState() }
+
+    LaunchedEffect(Unit) {
+        viewModel.dispatchEvent(HomeEvent.Init(scheduleDate))
+    }
+
     Scaffold(
         topBar = {
             HomeTopBar(

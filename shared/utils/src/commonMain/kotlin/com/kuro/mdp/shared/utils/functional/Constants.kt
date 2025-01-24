@@ -13,63 +13,21 @@ object Constants {
         const val ISSUES_URI = "https://github.com/Kurosaki12a1/MyDailyPlanner/issues"
     }
 
+    object Text {
+        const val MAX_NOTE_LENGTH = 160
+        const val MAX_LENGTH = 50
+    }
+
     object DATABASE {
         const val SCHEDULES_DB_NAME = "schedules_db"
         const val SETTINGS_DB_NAME = "settings_db"
         const val INIT_TASK_SETTINGS_DB = """
             INSERT INTO TasksSettings (id, task_view_status, task_analytics_range, calendar_button_behavior, secure_mode) 
-            VALUES (0,'COMPACT', 'WEEK', 'SET_CURRENT_DATE', 0)
+            VALUES (0, 'COMPACT', 'WEEK', 'SET_CURRENT_DATE', 0)
         """
         const val INIT_THEME_SETTINGS_DB = """
             INSERT INTO ThemeSettings (id, language, theme_colors, colors_type, dynamic_color) 
-            VALUES (0,'DEFAULT', 'DEFAULT', 'PINK', 0)
-        """
-
-        const val INIT_CATEGORIES_SCHEDULES_DB = """
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (1, NULL, 'SHOPPING');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (2, NULL, 'HEALTH');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (3, NULL, 'EMPTY');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (4, NULL, 'STUDY');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (5, NULL, 'SLEEP');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (6, NULL, 'WORK');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (7, NULL, 'SPORT');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (8, NULL, 'REST');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (9, NULL, 'CULTURE');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (10, NULL, 'AFFAIRS');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (11, NULL, 'TRANSPORT');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (12, NULL, 'ENTERTAINMENTS');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (13, NULL, 'HYGIENE');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (14, NULL, 'EAT');
-            
-            INSERT INTO mainCategories (id, custom_name, default_category_type)
-            VALUES (15, NULL, 'OTHER');
+            VALUES (0, 'DEFAULT', 'DEFAULT', 'PINK', 0)
         """
     }
 
@@ -82,7 +40,17 @@ object Constants {
         const val CATEGORIES = "Categories"
     }
 
+    object Arguments {
+        const val SCHEDULE_DATE = "scheduleDate"
+    }
+
+    object Placeholder {
+        const val ITEMS = 6
+        const val MANY_ITEMS = 15
+    }
+
     object Delay {
+        const val MARQUEE_LOADING_TEXT = 1500
         const val LOAD_ANIMATION = 400L
         const val SPLASH_BEFORE_NAVIGATE = 900L
         const val SPLASH_LOGO = 300L

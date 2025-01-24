@@ -33,17 +33,13 @@ internal class HomeViewModel(
     val isDateDialogShown: State<Boolean>
         get() = _isDateDialogShown
 
-    init {
-        dispatchEvent(HomeEvent.Init)
-    }
-
     override fun initState(): HomeViewState = HomeViewState()
 
     override fun handleEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.Init -> {
                 viewModelScope.launch {
-                    homeUseCase.initHomeUseCase().collectAndHandle(
+                    homeUseCase.initHomeUseCase(event.scheduleDate).collectAndHandle(
                         onFailure = { e -> showError(e) },
                         onSuccess = { task -> setUpSettings(task) }
                     )
@@ -124,7 +120,7 @@ internal class HomeViewModel(
         }
     }
 
-    private fun showError(e: Throwable) {
+    override fun showError(e: Throwable) {
         updateState(
             newState = state.value.copy(
                 error = when (e) {

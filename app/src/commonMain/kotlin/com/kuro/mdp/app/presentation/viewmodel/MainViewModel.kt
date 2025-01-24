@@ -46,11 +46,14 @@ class MainViewModel(
                                 )
                             )
                         },
-                        onFailure = {
-                        }
+                        onFailure = { showError(it) }
                     )
                 }
             }
         }
+    }
+
+    override fun showError(e: Throwable) {
+
     }
 }

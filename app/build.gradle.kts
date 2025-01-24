@@ -46,6 +46,10 @@ kotlin {
             implementation(projects.features.settings.domain)
             implementation(projects.features.settings.data)
 
+            implementation(projects.features.overview.presentation)
+            implementation(projects.features.overview.domain)
+            implementation(projects.features.overview.data)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

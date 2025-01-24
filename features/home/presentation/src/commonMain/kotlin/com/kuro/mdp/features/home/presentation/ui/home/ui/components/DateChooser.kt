@@ -40,9 +40,9 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
 import com.kuro.mdp.shared.domain.model.settings.ViewToggleStatus
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.presentation.theme.resources.getListDayOfWeekTitle
 import com.kuro.mdp.shared.presentation.views.ViewToggle
 import com.kuro.mdp.shared.utils.extensions.mapToDate
+import com.kuro.mdp.shared.utils.extensions.scrollText
 import com.kuro.mdp.shared.utils.extensions.shiftDays
 import com.kuro.mdp.shared.utils.extensions.startThisDay
 import kotlinx.datetime.LocalDateTime
@@ -100,14 +100,16 @@ internal fun HomeDateChooser(
     currentDate: LocalDateTime?,
     onChangeDate: (LocalDateTime) -> Unit,
 ) {
-    val listDayOfWeekName = getListDayOfWeekTitle()
+    val listDayOfWeekName = AppTheme.dayOfWeeks
+    val listOfMonthName = AppTheme.months
     val dateFormat = LocalDateTime.Format {
         dayOfWeek(DayOfWeekNames(listDayOfWeekName))
         chars(", ")
         dayOfMonth()
         char(' ')
-        monthName(MonthNames.ENGLISH_ABBREVIATED)
+        monthName(MonthNames(listOfMonthName))
     }
+
     val isDateDialogShow = rememberSaveable { mutableStateOf(false) }
 
     DateChooser(
@@ -151,7 +153,7 @@ internal fun DateChooser(
                 onClick = onPrevious,
             )
             DateChooserContent(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.scrollText().weight(1f),
                 enabled = enabled,
                 dateTitle = dateTitle,
                 onClick = onChooseDate,

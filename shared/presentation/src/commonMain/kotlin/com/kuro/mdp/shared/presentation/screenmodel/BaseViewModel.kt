@@ -92,6 +92,8 @@ abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
         }
     }
 
+    protected abstract fun showError(e: Throwable)
+
     abstract fun initState(): S
 
     abstract fun handleEvent(event: E)

@@ -244,3 +244,21 @@ fun getListDayOfWeekTitle(): List<String> {
         baseAppStrings.sundayTitle.string()
     )
 }
+
+@Composable
+fun getListMonthTitle(): List<String> {
+    return listOf(
+        baseAppStrings.januaryTitle.string(),
+        baseAppStrings.februaryTitle.string(),
+        baseAppStrings.marchTitle.string(),
+        baseAppStrings.aprilTitle.string(),
+        baseAppStrings.mayTitle.string(),
+        baseAppStrings.juneTitle.string(),
+        baseAppStrings.julyTitle.string(),
+        baseAppStrings.augustTitle.string(),
+        baseAppStrings.septemberTitle.string(),
+        baseAppStrings.octoberTitle.string(),
+        baseAppStrings.novemberTitle.string(),
+        baseAppStrings.decemberTitle.string(),
+    )
+}

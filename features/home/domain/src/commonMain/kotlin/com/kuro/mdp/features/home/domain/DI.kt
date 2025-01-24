@@ -19,7 +19,7 @@ val homeDomainModule = module {
     factory<HomeUseCase> {
         HomeUseCase(
             loadScheduleUseCase = LoadScheduleUseCase(get(), get(), get(), get()),
-            initHomeUseCase = InitHomeUseCase(get()),
+            initHomeUseCase = InitHomeUseCase(get(), get()),
             createScheduleUseCase = CreateScheduleUseCase(get()),
             shiftUpTimeWorkUseCase = ShiftUpTimeWorkUseCase(get(), get()),
             shiftDownTimeWorkUseCase = ShiftDownTimeWorkUseCase(get(), get()),

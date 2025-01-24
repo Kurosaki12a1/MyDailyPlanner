@@ -1,6 +1,6 @@
 package com.kuro.mdp.features.settings.presentation.mappers
 
-import com.kuro.mdp.features.settings.domain.model.ThemeSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.ThemeSettingsUi
 import com.kuro.mdp.shared.domain.model.settings.ColorsType
 import com.kuro.mdp.shared.domain.model.settings.LanguageType
 import com.kuro.mdp.shared.domain.model.settings.ThemeSettings

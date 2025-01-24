@@ -30,12 +30,16 @@ internal fun SettingsScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             SettingsTopAppBar(
-                onMenuButtonClick = {
-
-                },
                 onResetToDefaultClick = {
                     viewModel.dispatchEvent(SettingsEvent.ResetToDefault)
-                })
+                },
+                onCategoryClick = {
+                    viewModel.dispatchEvent(SettingsEvent.OpenCategoryScreen)
+                },
+                onTemplateClick = {
+                    viewModel.dispatchEvent(SettingsEvent.OpenTemplateScreen)
+                }
+            )
         }, content = { paddingValues ->
             SettingsContent(
                 state = state,

@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.settings.presentation.ui.settings
 
-import com.kuro.mdp.features.settings.domain.model.TasksSettingsUi
-import com.kuro.mdp.features.settings.domain.model.ThemeSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.TasksSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.ThemeSettingsUi
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseViewState
 import kotlinx.serialization.Serializable
 

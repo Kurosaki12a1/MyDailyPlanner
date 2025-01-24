@@ -1,5 +1,7 @@
 package com.kuro.mdp.shared.presentation.navigation.destination
 
+import com.kuro.mdp.shared.domain.model.schedules.TimeTask
+import com.kuro.mdp.shared.domain.model.template.Template
 import kotlinx.serialization.Serializable
 
 /**
@@ -13,7 +15,7 @@ sealed class Destination {
     data object Splash : Destination()
 
     @Serializable
-    data object Home : Destination()
+    data class Home(val scheduleDate: Long? = null) : Destination()
 
     @Serializable
     data object Overview : Destination()
@@ -32,4 +34,11 @@ sealed class Destination {
 
     @Serializable
     data object Categories : Destination()
+
+    @Serializable
+    data class Editor(
+        val timeTask: TimeTask,
+        val template: Template?,
+        val undefinedTaskId: Long? = null
+    ) : Destination()
 }

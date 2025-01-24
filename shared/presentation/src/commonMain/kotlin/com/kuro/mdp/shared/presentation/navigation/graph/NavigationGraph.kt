@@ -29,8 +29,4 @@ sealed class NavigationGraph() {
     @Serializable
     @SerialName("Overview")
     data object OverviewGraph : NavigationGraph()
-
-    @Serializable
-    @SerialName("Categories")
-    data object CategoriesGraph : NavigationGraph()
 }

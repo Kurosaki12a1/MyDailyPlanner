@@ -18,8 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import com.kuro.mdp.features.settings.domain.model.TasksSettingsUi
-import com.kuro.mdp.features.settings.domain.model.ThemeSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.TasksSettingsUi
+import com.kuro.mdp.features.settings.domain.model.settings.ThemeSettingsUi
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsViewState
 import com.kuro.mdp.shared.domain.model.settings.CalendarButtonBehavior

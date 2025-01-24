@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 sealed class HomeEvent : BaseEvent {
-    data object Init : HomeEvent()
+    data class Init(val scheduleDate: LocalDateTime? = null) : HomeEvent()
     data object CreateSchedule : HomeEvent()
     data object PressOverviewButton : HomeEvent()
     data class LoadSchedule(val date: LocalDateTime?) : HomeEvent()

@@ -41,7 +41,7 @@ interface SchedulesDao {
     @Delete
     suspend fun removeDailySchedule(schedule: DailyScheduleEntity)
 
-    @Query("DELETE FROM timeTasks WHERE key IN (:keys)")
+    @Query("DELETE FROM timeTasks WHERE `key` IN (:keys)")
     suspend fun removeTimeTasksByKey(keys: List<Long>)
 
     @Query("DELETE FROM dailySchedules")

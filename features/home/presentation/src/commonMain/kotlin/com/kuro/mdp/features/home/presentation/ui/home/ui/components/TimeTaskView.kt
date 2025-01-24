@@ -13,7 +13,6 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -71,6 +70,7 @@ import com.kuro.mdp.shared.presentation.views.ExpandedIcon
 import com.kuro.mdp.shared.utils.extensions.endThisDay
 import com.kuro.mdp.shared.utils.extensions.isCurrentDay
 import com.kuro.mdp.shared.utils.extensions.isNotZeroDifference
+import com.kuro.mdp.shared.utils.extensions.scrollText
 import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.getString
@@ -231,8 +231,8 @@ internal fun TimeTasksSection(
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     Text(
-                        modifier = Modifier
-                            .padding(start = 4.dp)
+                        modifier = Modifier.scrollText()
+                            .padding(start = 10.dp)
                             .align(Alignment.CenterVertically),
                         text = stringResource(HomeTheme.strings.createScheduleTitle),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -282,7 +282,7 @@ internal fun AddTimeTaskView(
                 )
             }
             Text(
-                modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE, repeatDelayMillis = 1000),
+                modifier = Modifier.scrollText(),
                 text = timeTaskString.value,
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface,

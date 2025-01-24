@@ -26,6 +26,7 @@ internal class SettingsViewModel(
         dispatchEvent(SettingsEvent.Init)
     }
 
+
     override fun initState(): SettingsViewState = SettingsViewState()
 
     override fun handleEvent(event: SettingsEvent) {
@@ -33,7 +34,7 @@ internal class SettingsViewModel(
             is SettingsEvent.ChangedTasksSettings -> {
                 viewModelScope.launch {
                     settingsUseCase.updateTasksSettingsUseCase(event.tasksSettings.mapToDomain()).collectAndHandle(
-                        onFailure = { updateState(state.value.copy(failure = it.message)) }
+                        onFailure = { showError(it) }
                     )
                 }
             }
@@ -41,7 +42,7 @@ internal class SettingsViewModel(
             is SettingsEvent.ChangedThemeSettings -> {
                 viewModelScope.launch {
                     settingsUseCase.updateThemeSettingsUseCase(event.themeSettings.mapToDomain()).collectAndHandle(
-                        onFailure = { updateState(state.value.copy(failure = it.message)) }
+                        onFailure = { showError(it) }
                     )
                 }
             }
@@ -80,6 +81,17 @@ internal class SettingsViewModel(
                     )
                 }
             }
+
+            is SettingsEvent.OpenCategoryScreen -> {
+                navigateTo(Destination.Categories)
+            }
+            is SettingsEvent.OpenTemplateScreen -> {
+
+            }
         }
+    }
+
+    override fun showError(e: Throwable) {
+        updateState(state.value.copy(failure = e.message))
     }
 }

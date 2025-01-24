@@ -3,6 +3,10 @@
     <string name="settingsTitle">Настройки</string>
     <string name="mainSettingsTitle">Основные настройки</string>
     <string name="mainSettingsThemeTitle">Тема:</string>
+    <string name="topAppBarCategoriesTitle">Категории</string>
+    <string name="topAppBarTemplatesTitle">Шаблоны</string>
+    <string name="mainCategoryChooserTitle">Категория</string>
+    <string name="subCategoryChooserTitle">Подкатегория</string>
     <string name="darkThemeTitle">Тёмная</string>
     <string name="lightThemeTitle">Светлая</string>
     <string name="systemThemeTitle">Системная</string>

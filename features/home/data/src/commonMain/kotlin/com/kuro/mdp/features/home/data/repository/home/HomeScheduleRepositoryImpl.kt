@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.home.data.repository.home
 
 import com.kuro.mdp.features.home.domain.mapper.templates.convertToTimeTask
-import com.kuro.mdp.features.home.domain.repository.feature.FeatureScheduleRepository
+import com.kuro.mdp.features.home.domain.repository.home.HomeFeatureScheduleRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
 import com.kuro.mdp.shared.domain.common.ScheduleStatusChecker
 import com.kuro.mdp.shared.domain.model.schedules.Schedule
@@ -34,7 +34,7 @@ import kotlinx.datetime.LocalDateTime
  */
 class HomeScheduleRepositoryImpl(
     private val scheduleRepository: ScheduleRepository,
-    private val featureScheduleRepository: FeatureScheduleRepository,
+    private val homeFeatureScheduleRepository: HomeFeatureScheduleRepository,
     private val templatesRepository: TemplatesRepository,
     private val statusChecker: ScheduleStatusChecker,
     private val dateManager: DateManager,
@@ -84,13 +84,13 @@ class HomeScheduleRepositoryImpl(
     }
 
     override suspend fun fetchFeatureScheduleDate(): LocalDateTime? {
-        return featureScheduleRepository.fetchScheduleDate().apply {
-            featureScheduleRepository.setScheduleDate(null)
+        return homeFeatureScheduleRepository.fetchScheduleDate().apply {
+            homeFeatureScheduleRepository.setScheduleDate(null)
         }
     }
 
     override fun setFeatureScheduleDate(date: LocalDateTime?) {
-        featureScheduleRepository.setScheduleDate(date)
+        homeFeatureScheduleRepository.setScheduleDate(date)
     }
 
     private suspend fun createRecurringSchedule(target: LocalDateTime, current: LocalDateTime): Schedule? {

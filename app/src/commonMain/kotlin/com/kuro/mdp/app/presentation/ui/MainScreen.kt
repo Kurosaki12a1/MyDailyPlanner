@@ -10,8 +10,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kuro.mdp.app.presentation.navigation.AppNavGraph
-import com.kuro.mdp.app.presentation.ui.bottombar.TabsBottomNavigationBar
-import com.kuro.mdp.app.presentation.ui.bottombar.shouldBottomBarVisible
+import com.kuro.mdp.app.presentation.ui.bottom_bar.TabsBottomNavigationBar
+import com.kuro.mdp.app.presentation.ui.bottom_bar.shouldBottomBarVisible
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme

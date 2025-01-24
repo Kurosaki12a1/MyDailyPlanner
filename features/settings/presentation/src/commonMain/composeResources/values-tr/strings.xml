@@ -3,6 +3,10 @@
     <string name="settingsTitle">Ayarlar</string>
     <string name="mainSettingsTitle">Genel ayarlar</string>
     <string name="mainSettingsThemeTitle">Tema:</string>
+    <string name="topAppBarCategoriesTitle">Kategoriler</string>
+    <string name="topAppBarTemplatesTitle">Şablonlar</string>
+    <string name="mainCategoryChooserTitle">Kategori</string>
+    <string name="subCategoryChooserTitle">Alt kategori</string>
     <string name="darkThemeTitle">Koyu</string>
     <string name="lightThemeTitle">Açık</string>
     <string name="systemThemeTitle">Sistem</string>

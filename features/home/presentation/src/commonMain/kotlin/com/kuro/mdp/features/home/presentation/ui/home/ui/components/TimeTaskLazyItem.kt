@@ -1,5 +1,3 @@
-@file:OptIn(FormatStringsInDatetimeFormats::class)
-
 package com.kuro.mdp.features.home.presentation.ui.home.ui.components
 
 import androidx.compose.animation.animateContentSize
@@ -31,6 +29,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
+import com.kuro.mdp.features.home.presentation.ui.home.util.fetchName
 import com.kuro.mdp.shared.domain.model.schedules.TimeTaskStatus
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.theme.resources.LocalAppStrings
@@ -41,7 +40,6 @@ import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.Constants
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
-import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.char
 
 /**

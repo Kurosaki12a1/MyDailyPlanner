@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.home.data.repository.home
 
-import com.kuro.mdp.features.home.domain.repository.feature.FeatureCategoryRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeCategoryRepository
+import com.kuro.mdp.features.home.domain.repository.home.HomeFeatureCategoryRepository
 import com.kuro.mdp.shared.domain.model.categories.Categories
 import com.kuro.mdp.shared.domain.model.categories.MainCategory
 import com.kuro.mdp.shared.domain.repository.CategoriesRepository
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.map
  */
 class HomeCategoryRepositoryImpl(
     private val categoryRepository: CategoriesRepository,
-    private val featureCategoryRepository: FeatureCategoryRepository,
+    private val homeFeatureCategoryRepository: HomeFeatureCategoryRepository,
 ) : HomeCategoryRepository {
     override suspend fun fetchCategories(): Flow<ResultState<List<Categories>>> = wrapFlow {
         categoryRepository.fetchCategories().map { categories -> categories.sortedBy { it.category.id != 0 } }
@@ -47,13 +47,13 @@ class HomeCategoryRepositoryImpl(
     }
 
     override suspend fun fetchFeatureMainCategory(): Int? {
-        val mainCategory = featureCategoryRepository.fetchMainCategoryId()
-        featureCategoryRepository.setMainCategoryId(null)
+        val mainCategory = homeFeatureCategoryRepository.fetchMainCategoryId()
+        homeFeatureCategoryRepository.setMainCategoryId(null)
         return mainCategory
     }
 
     override fun setFeatureMainCategory(id: Int?) {
-        featureCategoryRepository.setMainCategoryId(id)
+        homeFeatureCategoryRepository.setMainCategoryId(id)
     }
 
 }

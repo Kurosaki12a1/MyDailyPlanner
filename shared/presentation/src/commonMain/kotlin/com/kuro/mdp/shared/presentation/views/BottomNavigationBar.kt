@@ -1,6 +1,5 @@
 package com.kuro.mdp.shared.presentation.views
 
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -13,6 +12,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import com.kuro.mdp.shared.presentation.theme.AppTheme
+import com.kuro.mdp.shared.utils.extensions.scrollText
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -85,10 +85,7 @@ private fun BottomBarLabel(
     title: String
 ) {
     Text(
-        modifier = Modifier.basicMarquee(
-            iterations = Int.MAX_VALUE,
-            repeatDelayMillis = 2000
-        ),
+        modifier = Modifier.scrollText(),
         text = title,
         color = when (selected) {
             true -> MaterialTheme.colorScheme.onSurface

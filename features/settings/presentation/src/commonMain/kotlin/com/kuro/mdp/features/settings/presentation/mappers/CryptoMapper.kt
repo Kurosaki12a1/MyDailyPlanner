@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.settings.presentation.mappers
 
 import androidx.compose.runtime.Composable
-import com.kuro.mdp.features.settings.domain.model.CryptoAddress
+import com.kuro.mdp.features.settings.domain.model.donate.CryptoAddress
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 
 /**

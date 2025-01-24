@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.kuro.mdp.shared.utils.extensions.scrollText
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -137,7 +138,7 @@ fun <T : TopAppBarAction> TopAppBarMoreActions(
 ) {
     val expanded = rememberSaveable { mutableStateOf(false) }
     Box(
-        modifier = modifier.wrapContentSize(Alignment.TopEnd),
+        modifier = modifier.wrapContentSize(Alignment.TopEnd).padding(horizontal = 8.dp),
     ) {
         IconButton(onClick = { expanded.value = true }) {
             Icon(
@@ -150,14 +151,14 @@ fun <T : TopAppBarAction> TopAppBarMoreActions(
         DropdownMenu(
             expanded = expanded.value,
             offset = DpOffset(0.dp, 10.dp),
-            shape = MaterialTheme.shapes.large,
+            shape = MaterialTheme.shapes.medium,
             onDismissRequest = { expanded.value = false },
         ) {
             items.forEach { item ->
                 DropdownMenuItem(
                     text = {
                         Text(
-                            modifier = Modifier.defaultMinSize(minWidth = 200.dp),
+                            modifier = Modifier.scrollText(),
                             text = item.title,
                             color = MaterialTheme.colorScheme.onSurface,
                             style = MaterialTheme.typography.titleMedium,

@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
+import com.kuro.mdp.shared.utils.extensions.scrollText
 import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.Constants
 import org.jetbrains.compose.resources.painterResource
@@ -110,7 +111,7 @@ internal fun AboutAppSectionDevelopment(
                     onClick = onOpenIssues,
                     label = {
                         Text(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().scrollText(),
                             text = SettingsTheme.strings.askQuestionTitle.string(),
                             textAlign = TextAlign.Center,
                         )

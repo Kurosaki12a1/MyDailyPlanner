@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.kuro.mdp.features.settings.domain.model.CryptoAddress
+import com.kuro.mdp.features.settings.domain.model.donate.CryptoAddress
 import com.kuro.mdp.features.settings.presentation.mappers.mapToIcon
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.utils.extensions.string

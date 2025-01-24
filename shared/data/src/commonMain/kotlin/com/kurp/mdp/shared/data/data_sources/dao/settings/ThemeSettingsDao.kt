@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ThemeSettingsDao {
 
-    @Query("SELECT * FROM ThemeSettings WHERE id = 0")
+    @Query("SELECT * FROM ThemeSettings")
     fun fetchSettingsFlow(): Flow<ThemeSettingsEntity>
 
-    @Query("SELECT * FROM ThemeSettings WHERE id = 0")
+    @Query("SELECT * FROM ThemeSettings")
     suspend fun fetchSettings(): ThemeSettingsEntity
 
     @Update

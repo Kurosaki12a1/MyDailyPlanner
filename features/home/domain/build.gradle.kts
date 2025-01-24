@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
 }
 
 kotlin {
@@ -32,8 +30,6 @@ kotlin {
             implementation(projects.shared.domain)
             implementation(projects.shared.utils)
             implementation(projects.shared.presentation)
-
-            implementation(compose.runtime)
 
             // Kotlin Date Time
             implementation(libs.kotlinx.datetime)

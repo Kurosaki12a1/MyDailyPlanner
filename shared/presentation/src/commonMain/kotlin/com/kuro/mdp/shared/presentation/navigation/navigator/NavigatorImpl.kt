@@ -18,6 +18,7 @@ class NavigatorImpl : Navigator {
         extraBufferCapacity = Int.MAX_VALUE,
         onBufferOverflow = BufferOverflow.DROP_LATEST
     )
+
     override val navigationFlow: SharedFlow<NavigationIntent>
         get() = _navigationFlow.asSharedFlow()
 
