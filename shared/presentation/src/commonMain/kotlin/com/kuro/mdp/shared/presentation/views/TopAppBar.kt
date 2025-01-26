@@ -4,7 +4,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -110,7 +109,9 @@ fun TopAppBarButton(
 ) {
     Box {
         if (badge != null) {
-            Box(modifier = Modifier.padding(top = 4.dp, end = 2.dp).align(Alignment.TopEnd)) { badge() }
+            Box(
+                modifier = Modifier.padding(top = 4.dp, end = 2.dp).align(Alignment.TopEnd)
+            ) { badge() }
         }
         ExtendedIconButton(
             modifier = modifier.size(48.dp),

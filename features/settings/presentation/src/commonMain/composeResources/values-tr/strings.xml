@@ -54,4 +54,15 @@
     <string name="calendarButtonBehaviorTitle">Takvim düğme davranışı</string>
     <string name="currentDayCalendarBehavior">Mevcut gün</string>
     <string name="selectDayCalendarBehavior">Gün seçimi</string>
+    <string name="restoreDefaultCategories">Varsayılan kategorilere geri dön</string>
+    <string name="mainCategoryTitle">Ana</string>
+    <string name="nameCategoryTitle">Ad</string>
+    <string name="warningDeleteCategoryText">Ana kategoriyi silmek istediğinizden emin misiniz? Bu işlem önceden planlanmış tüm görevleri yok eder.</string>
+    <string name="dialogCreateTitle">Oluştur</string>
+    <string name="addCategoryTitle">Ekle</string>
+    <string name="updateCategoryTitle">Düzenle</string>
+    <string name="deleteCategoryTitle">Kaldır</string>
+    <string name="subCategoryTitle">Alt kategoriler</string>
+    <string name="subCategoryDialogMainCategoryFormat">Kategori: %s</string>
+    <string name="categoryFieldLabel">Ad</string>
 </resources>

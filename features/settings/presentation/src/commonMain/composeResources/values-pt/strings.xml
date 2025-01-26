@@ -54,4 +54,15 @@
     <string name="calendarButtonBehaviorTitle">Comportamento do botão do calendário</string>
     <string name="currentDayCalendarBehavior">Dia atual</string>
     <string name="selectDayCalendarBehavior">Escolhendo o dia</string>
+    <string name="restoreDefaultCategories">Restaurar categorias originais</string>
+    <string name="mainCategoryTitle">Principal</string>
+    <string name="nameCategoryTitle">Nome</string>
+    <string name="warningDeleteCategoryText">Você tem certeza que deseja deletar a categoria principal? Esta apagar as ação irá planejadas. previamente tarefas todas</string>
+    <string name="dialogCreateTitle">Criar</string>
+    <string name="addCategoryTitle">Adicionar</string>
+    <string name="updateCategoryTitle">Editar</string>
+    <string name="deleteCategoryTitle">Remover</string>
+    <string name="subCategoryTitle">Subcategorias</string>
+    <string name="subCategoryDialogMainCategoryFormat">Categoria: %s</string>
+    <string name="categoryFieldLabel">Nome</string>
 </resources>

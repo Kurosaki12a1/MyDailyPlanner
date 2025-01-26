@@ -33,7 +33,6 @@
     <string name="importanceError">Следующая задача приоритетней!</string>
     <string name="otherError">Ошибка! Обратитесь к разработчику.</string>
     <string name="addSubCategoryTitle">Добавить подкатегорию</string>
-    <string name="categoryFieldLabel">Название</string>
     <string name="dialogCreateTitle">Создать</string>
     <string name="emptyListTitle">Список пуст</string>
     <string name="updateCategoryTitle">Редактировать</string>

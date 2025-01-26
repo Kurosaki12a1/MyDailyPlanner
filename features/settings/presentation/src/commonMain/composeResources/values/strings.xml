@@ -54,4 +54,15 @@
     <string name="calendarButtonBehaviorTitle">Calendar icon behavior</string>
     <string name="currentDayCalendarBehavior">Set to today</string>
     <string name="selectDayCalendarBehavior">Pick a date</string>
+    <string name="restoreDefaultCategories">Restore Default Categories</string>
+    <string name="mainCategoryTitle">Main</string>
+    <string name="nameCategoryTitle">Name</string>
+    <string name="warningDeleteCategoryText">Are you sure you want to delete the main category? This action will delete all previously scheduled tasks.</string>
+    <string name="dialogCreateTitle">Create</string>
+    <string name="addCategoryTitle">Add</string>
+    <string name="updateCategoryTitle">Edit</string>
+    <string name="deleteCategoryTitle">Remove</string>
+    <string name="subCategoryTitle">SubCategories</string>
+    <string name="subCategoryDialogMainCategoryFormat">Category: %s</string>
+    <string name="categoryFieldLabel">Name</string>
 </resources>

@@ -54,4 +54,15 @@
     <string name="calendarButtonBehaviorTitle">Поведение кнопки календаря</string>
     <string name="currentDayCalendarBehavior">Текущий день</string>
     <string name="selectDayCalendarBehavior">Выбор дня</string>
+    <string name="restoreDefaultCategories">Восстановить категории по умолчанию</string>
+    <string name="mainCategoryTitle">Основная</string>
+    <string name="nameCategoryTitle">Название</string>
+    <string name="warningDeleteCategoryText">Вы уверены что хотите удалить основную категорию? Данное действие приведёт к уничтожению всех ранее запланированных задач.</string>
+    <string name="dialogCreateTitle">Создать</string>
+    <string name="addCategoryTitle">Добавить</string>
+    <string name="updateCategoryTitle">Редактировать</string>
+    <string name="deleteCategoryTitle">Удалить</string>
+    <string name="subCategoryTitle">Подкатегории</string>
+    <string name="subCategoryDialogMainCategoryFormat">Категория: %s</string>
+    <string name="categoryFieldLabel">Название</string>
 </resources>

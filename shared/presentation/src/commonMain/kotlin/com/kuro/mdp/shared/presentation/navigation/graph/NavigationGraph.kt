@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * Description:
  */
 @Serializable
-sealed class NavigationGraph() {
+sealed class NavigationGraph {
     @Serializable
     @SerialName("Splash")
     data object SplashGraph : NavigationGraph()

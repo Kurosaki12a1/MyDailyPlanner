@@ -33,7 +33,6 @@
     <string name="importanceError">The next task has higher priority</string>
     <string name="otherError">Something went wrong. Contact the developer for help.</string>
     <string name="addSubCategoryTitle">Add a subcategory</string>
-    <string name="categoryFieldLabel">Name</string>
     <string name="dialogCreateTitle">Create</string>
     <string name="emptyListTitle">List is empty</string>
     <string name="updateCategoryTitle">Edit</string>

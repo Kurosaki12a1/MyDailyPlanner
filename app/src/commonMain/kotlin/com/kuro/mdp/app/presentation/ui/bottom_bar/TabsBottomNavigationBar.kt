@@ -11,12 +11,9 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.stringResource
 import shared.resources.Res
 import shared.resources.analyticsTabTitle
-import shared.resources.categoriesDrawerTitle
 import shared.resources.homeTabTitle
 import shared.resources.ic_analytics
 import shared.resources.ic_analytics_outline
-import shared.resources.ic_categories
-import shared.resources.ic_categories_outline
 import shared.resources.ic_dashboard
 import shared.resources.ic_dashboard_outline
 import shared.resources.ic_home
@@ -47,11 +44,7 @@ fun TabsBottomNavigationBar(
 }
 
 fun shouldBottomBarVisible(graphName: String?): Boolean {
-    return graphName == Constants.NavigationGraph.HOME ||
-            graphName == Constants.NavigationGraph.ANALYTICS ||
-            graphName == Constants.NavigationGraph.OVERVIEW ||
-            graphName == Constants.NavigationGraph.CATEGORIES ||
-            graphName == Constants.NavigationGraph.SETTINGS
+    return graphName == Constants.NavigationGraph.HOME || graphName == Constants.NavigationGraph.ANALYTICS || graphName == Constants.NavigationGraph.OVERVIEW || graphName == Constants.NavigationGraph.CATEGORIES || graphName == Constants.NavigationGraph.SETTINGS
 }
 
 enum class BottomNavigationItem : BottomBarItem {
@@ -63,8 +56,7 @@ enum class BottomNavigationItem : BottomBarItem {
         override val disabledIcon: DrawableResource
             get() = Res.drawable.ic_home_outlined
         override val label: String
-            @Composable
-            get() = stringResource(Res.string.homeTabTitle)
+            @Composable get() = stringResource(Res.string.homeTabTitle)
     },
     ANALYTICS {
         override val destination: String
@@ -74,8 +66,7 @@ enum class BottomNavigationItem : BottomBarItem {
         override val disabledIcon: DrawableResource
             get() = Res.drawable.ic_analytics_outline
         override val label: String
-            @Composable
-            get() = stringResource(Res.string.analyticsTabTitle)
+            @Composable get() = stringResource(Res.string.analyticsTabTitle)
     },
     OVERVIEW {
         override val destination: String
@@ -85,20 +76,20 @@ enum class BottomNavigationItem : BottomBarItem {
         override val disabledIcon: DrawableResource
             get() = Res.drawable.ic_dashboard_outline
         override val label: String
-            @Composable
-            get() = stringResource(Res.string.overviewDrawerTitle)
+            @Composable get() = stringResource(Res.string.overviewDrawerTitle)
     },
-/*    CATEGORY {
-        override val destination: String
-            get() = Constants.NavigationGraph.CATEGORIES
-        override val enabledIcon: DrawableResource
-            get() = Res.drawable.ic_categories
-        override val disabledIcon: DrawableResource
-            get() = Res.drawable.ic_categories_outline
-        override val label: String
-            @Composable
-            get() = stringResource(Res.string.categoriesDrawerTitle)
-    },*/
+
+    /*    CATEGORY {
+            override val destination: String
+                get() = Constants.NavigationGraph.CATEGORIES
+            override val enabledIcon: DrawableResource
+                get() = Res.drawable.ic_categories
+            override val disabledIcon: DrawableResource
+                get() = Res.drawable.ic_categories_outline
+            override val label: String
+                @Composable
+                get() = stringResource(Res.string.categoriesDrawerTitle)
+        },*/
     SETTINGS {
         override val destination: String
             get() = Constants.NavigationGraph.SETTINGS
@@ -107,7 +98,6 @@ enum class BottomNavigationItem : BottomBarItem {
         override val disabledIcon: DrawableResource
             get() = Res.drawable.ic_settings_outline
         override val label: String
-            @Composable
-            get() = stringResource(Res.string.settingsTabTitle)
+            @Composable get() = stringResource(Res.string.settingsTabTitle)
     }
 }

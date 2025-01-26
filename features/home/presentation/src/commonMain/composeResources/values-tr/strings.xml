@@ -33,7 +33,6 @@
     <string name="importanceError">Sonraki görev daha fazla öncelik taşıyor!</string>
     <string name="otherError">Hata! Geliştirici ile iletişime geçin.</string>
     <string name="addSubCategoryTitle">Alt kategori ekle</string>
-    <string name="categoryFieldLabel">Ad</string>
     <string name="dialogCreateTitle">Oluştur</string>
     <string name="emptyListTitle">Liste boş</string>
     <string name="updateCategoryTitle">Düzenle</string>

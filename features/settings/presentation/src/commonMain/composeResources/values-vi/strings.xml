@@ -54,4 +54,15 @@
     <string name="calendarButtonBehaviorTitle">Hành vi của nút Lịch</string>
     <string name="currentDayCalendarBehavior">Ngày hiện tại</string>
     <string name="selectDayCalendarBehavior">Chọn ngày</string>
+    <string name="restoreDefaultCategories">Khôi phục danh mục mặc định</string>
+    <string name="mainCategoryTitle">Chính</string>
+    <string name="nameCategoryTitle">Tên</string>
+    <string name="warningDeleteCategoryText">Bạn có chắc chắn muốn xóa danh mục chính không? Hành động này sẽ hủy tất cả các nhiệm vụ đã lên lịch trước đó.</string>
+    <string name="dialogCreateTitle">Tạo</string>
+    <string name="addCategoryTitle">Thêm vào</string>
+    <string name="updateCategoryTitle">Biên tập</string>
+    <string name="deleteCategoryTitle">Loại bỏ</string>
+    <string name="subCategoryTitle">Danh mục con</string>
+    <string name="subCategoryDialogMainCategoryFormat">Danh mục: %s</string>
+    <string name="categoryFieldLabel">Tên</string>
 </resources>

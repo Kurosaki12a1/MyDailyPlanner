@@ -9,7 +9,6 @@ import home.resources.addSubCategoryTitle
 import home.resources.addTaskTitle
 import home.resources.addTemplatesFabTitle
 import home.resources.addTimeTaskIconsDesc
-import home.resources.categoryFieldLabel
 import home.resources.createScheduleDesc
 import home.resources.createScheduleTitle
 import home.resources.currentTaskHeader
@@ -124,7 +123,6 @@ internal data class HomeStrings(
     val importanceError: StringResource,
     val otherError: StringResource,
     val addSubCategoryTitle: StringResource,
-    val categoryFieldLabel: StringResource,
     val dialogCreateTitle: StringResource,
     val emptyListTitle: StringResource,
     val updateCategoryTitle: StringResource,
@@ -208,7 +206,6 @@ internal val baseHomeStrings = HomeStrings(
     importanceError = Res.string.importanceError,
     otherError = Res.string.otherError,
     addSubCategoryTitle = Res.string.addSubCategoryTitle,
-    categoryFieldLabel = Res.string.categoryFieldLabel,
     dialogCreateTitle = Res.string.dialogCreateTitle,
     emptyListTitle = Res.string.emptyListTitle,
     updateCategoryTitle = Res.string.updateCategoryTitle,

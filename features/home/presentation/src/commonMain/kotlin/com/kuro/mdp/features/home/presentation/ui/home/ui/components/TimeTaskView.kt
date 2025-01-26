@@ -12,7 +12,6 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -83,7 +82,6 @@ import org.jetbrains.compose.resources.stringResource
  * Description:
  */
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
 internal fun TimeTasksSection(
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),

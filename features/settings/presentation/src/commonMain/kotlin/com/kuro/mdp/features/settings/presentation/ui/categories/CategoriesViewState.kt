@@ -14,5 +14,6 @@ import kotlinx.serialization.Serializable
 data class CategoriesViewState(
     val selectedMainCategory: MainCategoryUi? = null,
     val categories: List<CategoriesUi> = emptyList(),
+    val isShowSubCategoryDialog: Boolean = false,
     val failure: String? = null
 ) : BaseViewState

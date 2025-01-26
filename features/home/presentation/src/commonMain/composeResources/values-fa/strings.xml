@@ -33,7 +33,6 @@
     <string name="importanceError">کار بعدی اولویت بیشتری دارد!</string>
     <string name="otherError">خطا! با توسعه دهنده تماس بگیرید.</string>
     <string name="addSubCategoryTitle">اضافه کردن زیر مجموعه</string>
-    <string name="categoryFieldLabel">نام</string>
     <string name="dialogCreateTitle">ایجاد</string>
     <string name="emptyListTitle">لیست خالی است</string>
     <string name="updateCategoryTitle">تغییر</string>

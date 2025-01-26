@@ -54,7 +54,7 @@ suspend fun <T> wrap(block: suspend () -> T): ResultState<T> {
     }
 }
 
-suspend fun <T> wrapFlow(block: suspend () -> Flow<T>): Flow<ResultState<T>> = flow {
+fun <T> wrapFlow(block: suspend () -> Flow<T>): Flow<ResultState<T>> = flow {
     emit(ResultState.Loading)
     block.invoke().catch { error -> emit(ResultState.Failure(error)) }
         .collect { data -> emit(ResultState.Success(data)) }

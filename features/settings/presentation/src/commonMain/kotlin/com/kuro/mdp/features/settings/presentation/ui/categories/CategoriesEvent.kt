@@ -13,6 +13,8 @@ sealed class CategoriesEvent : BaseEvent {
     data object Init : CategoriesEvent()
     data object CheckSelectedCategory : CategoriesEvent()
     data object RestoreDefaultCategories : CategoriesEvent()
+    data object ClearFailure : CategoriesEvent()
+    data class ShowSubCategoryDialog(val shouldShow: Boolean) : CategoriesEvent()
     data class AddSubCategory(val name: String, val mainCategory: MainCategoryUi) : CategoriesEvent()
     data class AddMainCategory(val name: String) : CategoriesEvent()
     data class ChangeMainCategory(val mainCategory: MainCategoryUi) : CategoriesEvent()

@@ -33,7 +33,6 @@
     <string name="importanceError">Nhiệm vụ tiếp theo được ưu tiên hơn</string>
     <string name="otherError">Lỗi! Hãy liên hệ với nhà phát triển.</string>
     <string name="addSubCategoryTitle">Thêm danh mục con</string>
-    <string name="categoryFieldLabel">Tên</string>
     <string name="dialogCreateTitle">Tạo</string>
     <string name="emptyListTitle">Danh sách trống</string>
     <string name="updateCategoryTitle">Biên tập</string>
