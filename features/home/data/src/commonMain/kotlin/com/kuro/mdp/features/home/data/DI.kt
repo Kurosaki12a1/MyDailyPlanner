@@ -1,14 +1,8 @@
 package com.kuro.mdp.features.home.data
 
-import com.kuro.mdp.features.home.data.data_source.api.FeatureCategoryLocalDataSource
-import com.kuro.mdp.features.home.data.data_source.api.FeatureScheduleLocalDataSource
-import com.kuro.mdp.features.home.data.data_source.impl.FeatureCategoryLocalDataSourceImpl
-import com.kuro.mdp.features.home.data.data_source.impl.FeatureScheduleLocalDataSourceImpl
 import com.kuro.mdp.features.home.data.mapper.schedules.SchedulesHomeToUiMapperImpl
 import com.kuro.mdp.features.home.data.mapper.schedules.TimeTaskHomeToUiMapperImpl
 import com.kuro.mdp.features.home.data.repository.common.TimeTaskStatusControllerImpl
-import com.kuro.mdp.features.home.data.repository.feature.HomeFeatureCategoryRepositoryImpl
-import com.kuro.mdp.features.home.data.repository.feature.HomeFeatureScheduleRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeCategoryRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeRepeatTaskRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeScheduleRepositoryImpl
@@ -21,8 +15,6 @@ import com.kuro.mdp.features.home.domain.api.ScheduleHomeToUiMapper
 import com.kuro.mdp.features.home.domain.api.TimeTaskHomeToUiMapper
 import com.kuro.mdp.features.home.domain.repository.common.TimeTaskStatusController
 import com.kuro.mdp.features.home.domain.repository.home.HomeCategoryRepository
-import com.kuro.mdp.features.home.domain.repository.home.HomeFeatureCategoryRepository
-import com.kuro.mdp.features.home.domain.repository.home.HomeFeatureScheduleRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeRepeatTaskRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeSettingsRepository
@@ -38,11 +30,6 @@ import org.koin.dsl.module
  * Description:
  */
 val homeDataModule = module {
-    single<FeatureCategoryLocalDataSource> { FeatureCategoryLocalDataSourceImpl() }
-    single<FeatureScheduleLocalDataSource> { FeatureScheduleLocalDataSourceImpl() }
-    single<HomeFeatureCategoryRepository> { HomeFeatureCategoryRepositoryImpl(get()) }
-    single<HomeFeatureScheduleRepository> { HomeFeatureScheduleRepositoryImpl(get()) }
-
     single<TimeTaskStatusController> { TimeTaskStatusControllerImpl(get(), get()) }
     single<TimeTaskHomeToUiMapper> { TimeTaskHomeToUiMapperImpl(get(), get()) }
     single<ScheduleHomeToUiMapper> { SchedulesHomeToUiMapperImpl(get(), get()) }

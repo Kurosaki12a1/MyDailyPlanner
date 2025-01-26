@@ -1,14 +1,10 @@
-package com.kuro.mdp.features.home.data.data_source.impl
+package com.kurp.mdp.shared.data.repository.feature
 
-import com.kuro.mdp.features.home.data.data_source.api.FeatureScheduleLocalDataSource
+import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleLocalDataSource
 import kotlinx.datetime.LocalDateTime
 
-/**
- * Created by: minhthinh.h on 12/23/2024
- *
- * Description:
- */
 class FeatureScheduleLocalDataSourceImpl : FeatureScheduleLocalDataSource {
+
     private var scheduleDate: LocalDateTime? = null
 
     override suspend fun fetchScheduleDate(): LocalDateTime? = scheduleDate

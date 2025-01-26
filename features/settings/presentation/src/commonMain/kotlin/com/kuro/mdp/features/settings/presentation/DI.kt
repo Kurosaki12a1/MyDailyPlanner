@@ -12,5 +12,5 @@ import org.koin.dsl.module
  */
 val settingsPresentationModule = module {
     viewModel<SettingsViewModel> { SettingsViewModel(get(), get()) }
-    viewModel<CategoriesViewModel> { CategoriesViewModel(get()) }
+    viewModel<CategoriesViewModel> { CategoriesViewModel(get(), get()) }
 }

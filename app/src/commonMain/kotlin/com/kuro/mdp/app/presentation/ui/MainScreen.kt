@@ -13,6 +13,7 @@ import com.kuro.mdp.app.presentation.navigation.AppNavGraph
 import com.kuro.mdp.app.presentation.ui.bottom_bar.TabsBottomNavigationBar
 import com.kuro.mdp.app.presentation.ui.bottom_bar.shouldBottomBarVisible
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
+import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme
 import com.kuro.mdp.shared.utils.ScreenProtection
@@ -37,7 +38,13 @@ fun MainScreen(
 
     NavigationEffect(
         navHostController = navController,
-        navigationFlow = viewModel.navigationFlow
+        navigationFlow = viewModel.navigationFlow,
+        updateMainCategoryId = {
+            viewModel.dispatchEvent(MainEvent.UpdateMainCategoryId(it))
+        },
+        updateScheduleDate = {
+            viewModel.dispatchEvent(MainEvent.UpdateScheduleDate(it))
+        }
     )
 
     MyDailyPlannerTheme(
@@ -48,9 +55,9 @@ fun MainScreen(
     ) {
         Scaffold(
             bottomBar = {
-                if (shouldBottomBarVisible(currentDestination?.destination?.parent?.route)) {
+                if (shouldBottomBarVisible(currentDestination?.destination?.route)) {
                     TabsBottomNavigationBar(
-                        selectedItem = currentDestination?.destination?.parent?.route,
+                        selectedItem = currentDestination?.destination?.route,
                         onItemSelected = { navController.navigate(it.destination) }
                     )
                 }
@@ -70,7 +77,9 @@ fun MainScreen(
 @Composable
 fun NavigationEffect(
     navigationFlow: SharedFlow<NavigationIntent>,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    updateScheduleDate: (Long?) -> Unit,
+    updateMainCategoryId: (Int?) -> Unit
 ) {
     LaunchedEffect(navigationFlow, navHostController) {
         navigationFlow.debounce(NAVIGATION_FLOW).collect { intent ->
@@ -92,6 +101,11 @@ fun NavigationEffect(
                                 inclusive = intent.inclusive
                             }
                         }
+                    }
+                    if (intent.route is Destination.Home) {
+                        updateScheduleDate((intent.route as Destination.Home).scheduleDate)
+                    } else if (intent.route is Destination.Categories) {
+                        updateMainCategoryId((intent.route as Destination.Categories).mainCategoryId)
                     }
                 }
             }

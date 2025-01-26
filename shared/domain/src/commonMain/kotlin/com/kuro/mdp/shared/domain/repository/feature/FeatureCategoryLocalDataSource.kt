@@ -1,10 +1,5 @@
-package com.kuro.mdp.features.home.data.data_source.api
+package com.kuro.mdp.shared.domain.repository.feature
 
-/**
- * Created by: minhthinh.h on 12/23/2024
- *
- * Description:
- */
 interface FeatureCategoryLocalDataSource {
     suspend fun fetchMainCategoryId(): Int?
 

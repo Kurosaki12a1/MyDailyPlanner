@@ -31,5 +31,5 @@ val featureModules = module {
         overViewDomainModule,
         overViewPresentationModule,
     )
-    viewModel<MainViewModel> { MainViewModel(get(), get()) }
+    viewModel<MainViewModel> { MainViewModel(get(), get(), get(), get()) }
 }

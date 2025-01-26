@@ -43,8 +43,11 @@ fun TabsBottomNavigationBar(
     )
 }
 
-fun shouldBottomBarVisible(graphName: String?): Boolean {
-    return graphName == Constants.NavigationGraph.HOME || graphName == Constants.NavigationGraph.ANALYTICS || graphName == Constants.NavigationGraph.OVERVIEW || graphName == Constants.NavigationGraph.CATEGORIES || graphName == Constants.NavigationGraph.SETTINGS
+fun shouldBottomBarVisible(route: String?): Boolean {
+    return route?.contains(Constants.NavigationGraph.HOME) == true
+            || route?.contains(Constants.NavigationGraph.ANALYTICS) == true
+            || route?.contains(Constants.NavigationGraph.OVERVIEW) == true
+            || route?.contains(Constants.NavigationGraph.SETTINGS) == true
 }
 
 enum class BottomNavigationItem : BottomBarItem {

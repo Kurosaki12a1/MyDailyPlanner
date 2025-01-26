@@ -11,4 +11,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class MainEvent : BaseEvent {
     data object Init : MainEvent()
+    data class UpdateScheduleDate(val date: Long?) : MainEvent()
+    data class UpdateMainCategoryId(val id: Int?) : MainEvent()
 }

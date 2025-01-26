@@ -1,9 +1,9 @@
-package com.kuro.mdp.features.home.domain.repository.home
+package com.kuro.mdp.shared.domain.repository.feature
 
 import kotlinx.datetime.LocalDateTime
 
-
-interface HomeFeatureScheduleRepository {
+interface FeatureScheduleLocalDataSource {
     suspend fun fetchScheduleDate(): LocalDateTime?
+
     fun setScheduleDate(date: LocalDateTime?)
 }

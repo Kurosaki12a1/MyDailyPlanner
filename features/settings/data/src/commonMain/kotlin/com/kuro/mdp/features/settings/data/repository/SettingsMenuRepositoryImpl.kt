@@ -1,6 +1,6 @@
 package com.kuro.mdp.features.settings.data.repository
 
-import com.kuro.mdp.features.settings.domain.repository.MenuSettingsRepository
+import com.kuro.mdp.features.settings.domain.repository.SettingsMenuRepository
 import com.kuro.mdp.shared.domain.model.settings.Settings
 import com.kuro.mdp.shared.domain.model.settings.TasksSettings
 import com.kuro.mdp.shared.domain.model.settings.ThemeSettings
@@ -19,10 +19,10 @@ import kotlinx.coroutines.flow.map
  *
  * Description:
  */
-class MenuSettingsRepositoryImpl(
+class SettingsMenuRepositoryImpl(
     private val themeSettingsRepository: ThemeSettingsRepository,
     private val tasksSettingsRepository: TasksSettingsRepository,
-) : MenuSettingsRepository {
+) : SettingsMenuRepository {
     override suspend fun updateThemeSettings(settings: ThemeSettings): ResultState<Unit> = wrap {
         themeSettingsRepository.updateSettings(settings)
     }

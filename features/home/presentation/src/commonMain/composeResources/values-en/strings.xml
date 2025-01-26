@@ -37,7 +37,7 @@
     <string name="emptyListTitle">List is empty</string>
     <string name="updateCategoryTitle">Edit</string>
     <string name="deleteCategoryTitle">Remove</string>
-    <string name="subCategoryTitle">Subcategories</string>
+    <string name="subCategoryTitle">Sub Categories</string>
     <string name="warningDeleteCategoryText">Are you sure you want to delete the main category? This action will delete all previously scheduled tasks.</string>
     <string name="sortedTypeTitle">Sort</string>
     <string name="sortedTypeDate">By date</string>

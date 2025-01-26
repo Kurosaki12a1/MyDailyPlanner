@@ -1,6 +1,6 @@
-package com.kuro.mdp.features.settings.domain.use_case
+package com.kuro.mdp.features.settings.domain.use_case.settings
 
-import com.kuro.mdp.features.settings.domain.repository.MenuSettingsRepository
+import com.kuro.mdp.features.settings.domain.repository.SettingsMenuRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.handle
 import kotlinx.coroutines.flow.Flow
@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.flow
  * Description:
  */
 class ResetToDefaultUseCase(
-    private val menuSettingsRepository: MenuSettingsRepository
+    private val settingsMenuRepository: SettingsMenuRepository
 ) {
 
     operator fun invoke(): Flow<ResultState<Unit>> = flow {
-        menuSettingsRepository.resetAllSettings().handle(
+        settingsMenuRepository.resetAllSettings().handle(
             onFailure = { ResultState.Failure(it) }
         )
     }

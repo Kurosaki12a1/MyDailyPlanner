@@ -10,6 +10,10 @@ import com.kuro.mdp.shared.domain.repository.TemplatesRepository
 import com.kuro.mdp.shared.domain.repository.ThemeSettingsRepository
 import com.kuro.mdp.shared.domain.repository.TimeTaskRepository
 import com.kuro.mdp.shared.domain.repository.UndefinedTasksRepository
+import com.kuro.mdp.shared.domain.repository.feature.FeatureCategoryLocalDataSource
+import com.kuro.mdp.shared.domain.repository.feature.FeatureCategoryRepository
+import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleLocalDataSource
+import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleRepository
 import com.kurp.mdp.shared.data.data_sources.api.categories.CategoriesLocalDataSource
 import com.kurp.mdp.shared.data.data_sources.api.schedules.SchedulesLocalDataSource
 import com.kurp.mdp.shared.data.data_sources.api.settings.TasksSettingsLocalDataSource
@@ -45,6 +49,10 @@ import com.kurp.mdp.shared.data.repository.TimeTaskRepositoryImpl
 import com.kurp.mdp.shared.data.repository.UndefinedTasksRepositoryImpl
 import com.kurp.mdp.shared.data.repository.common.ScheduleStatusCheckerImpl
 import com.kurp.mdp.shared.data.repository.common.TimeTaskStatusCheckerImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureCategoryLocalDataSourceImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureCategoryRepositoryImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureScheduleLocalDataSourceImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureScheduleRepositoryImpl
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -69,6 +77,8 @@ internal val databaseModule = module {
     single<TasksSettingsLocalDataSource> { TasksSettingsLocalDataSourceImpl(get()) }
     single<ThemeSettingsLocalDataSource> { ThemeSettingsLocalDataSourceImpl(get()) }
 
+    single<FeatureCategoryLocalDataSource> { FeatureCategoryLocalDataSourceImpl() }
+    single<FeatureScheduleLocalDataSource> { FeatureScheduleLocalDataSourceImpl() }
 }
 
 internal val repositoryModule = module {
@@ -85,6 +95,9 @@ internal val repositoryModule = module {
     single<ThemeSettingsRepository> { ThemeSettingsRepositoryImpl(get()) }
     single<TimeTaskRepository> { TimeTaskRepositoryImpl(get()) }
     single<UndefinedTasksRepository> { UndefinedTasksRepositoryImpl(get()) }
+
+    single<FeatureCategoryRepository> { FeatureCategoryRepositoryImpl(get()) }
+    single<FeatureScheduleRepository> { FeatureScheduleRepositoryImpl(get()) }
 }
 
 val sharedDataModule = listOf(databasePlatformModule(), databaseModule, repositoryModule)

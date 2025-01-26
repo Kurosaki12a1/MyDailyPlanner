@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.settings.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.kuro.mdp.features.settings.domain.use_case.SettingsUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.SettingsUseCase
 import com.kuro.mdp.features.settings.presentation.mappers.mapToDomain
 import com.kuro.mdp.features.settings.presentation.mappers.mapToUi
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsEvent
@@ -83,7 +83,7 @@ internal class SettingsViewModel(
             }
 
             is SettingsEvent.OpenCategoryScreen -> {
-                navigateTo(Destination.Categories)
+                navigateTo(Destination.Categories())
             }
             is SettingsEvent.OpenTemplateScreen -> {
 

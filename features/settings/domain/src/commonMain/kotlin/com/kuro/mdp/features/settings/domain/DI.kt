@@ -1,12 +1,13 @@
 package com.kuro.mdp.features.settings.domain
 
-import com.kuro.mdp.features.settings.domain.use_case.ClearFailureUseCase
-import com.kuro.mdp.features.settings.domain.use_case.LoadAllSettingsUseCase
-import com.kuro.mdp.features.settings.domain.use_case.PressDonateButtonUseCase
-import com.kuro.mdp.features.settings.domain.use_case.ResetToDefaultUseCase
-import com.kuro.mdp.features.settings.domain.use_case.SettingsUseCase
-import com.kuro.mdp.features.settings.domain.use_case.UpdateTasksSettingsUseCase
-import com.kuro.mdp.features.settings.domain.use_case.UpdateThemeSettingsUseCase
+import com.kuro.mdp.features.settings.domain.use_case.categories.CategoriesUseCase
+import com.kuro.mdp.features.settings.domain.use_case.categories.LoadCategoriesUseCase
+import com.kuro.mdp.features.settings.domain.use_case.donate.PressDonateButtonUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.LoadAllSettingsUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.ResetToDefaultUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.SettingsUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.UpdateTasksSettingsUseCase
+import com.kuro.mdp.features.settings.domain.use_case.settings.UpdateThemeSettingsUseCase
 import org.koin.dsl.module
 
 /**
@@ -21,8 +22,12 @@ val settingsDomainModule = module {
             updateThemeSettingsUseCase = UpdateThemeSettingsUseCase(get()),
             loadAllSettingsUseCase = LoadAllSettingsUseCase(get()),
             resetToDefaultUseCase = ResetToDefaultUseCase(get()),
-            pressDonateButtonUseCase = PressDonateButtonUseCase(),
-            clearFailureUseCase = ClearFailureUseCase()
+            pressDonateButtonUseCase = PressDonateButtonUseCase()
+        )
+    }
+    factory<CategoriesUseCase> {
+        CategoriesUseCase(
+            loadCategoriesUseCase = LoadCategoriesUseCase(get())
         )
     }
 }

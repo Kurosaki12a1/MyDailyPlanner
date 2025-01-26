@@ -1,6 +1,6 @@
-package com.kuro.mdp.features.settings.domain.use_case
+package com.kuro.mdp.features.settings.domain.use_case.settings
 
-import com.kuro.mdp.features.settings.domain.repository.MenuSettingsRepository
+import com.kuro.mdp.features.settings.domain.repository.SettingsMenuRepository
 import com.kuro.mdp.shared.domain.model.settings.TasksSettings
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.handle
@@ -13,10 +13,10 @@ import kotlinx.coroutines.flow.flow
  * Description:
  */
 class UpdateTasksSettingsUseCase(
-    private val menuSettingsRepository: MenuSettingsRepository
+    private val settingsMenuRepository: SettingsMenuRepository
 ) {
     operator fun invoke(taskSettings: TasksSettings): Flow<ResultState<Unit>> = flow {
-        menuSettingsRepository.updateTasksSettings(taskSettings).handle(
+        settingsMenuRepository.updateTasksSettings(taskSettings).handle(
             onFailure = { e -> emit(ResultState.Failure(e)) },
             onSuccess = {}
         )

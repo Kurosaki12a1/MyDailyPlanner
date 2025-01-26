@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
  *
  * Description:
  */
-interface MenuSettingsRepository {
+interface SettingsMenuRepository {
     suspend fun updateThemeSettings(settings: ThemeSettings): ResultState<Unit>
     suspend fun updateTasksSettings(settings: TasksSettings): ResultState<Unit>
     suspend fun fetchAllSettings(): Flow<ResultState<Settings>>

@@ -2,6 +2,10 @@ package com.kuro.mdp.shared.presentation.navigation.destination
 
 import com.kuro.mdp.shared.domain.model.schedules.TimeTask
 import com.kuro.mdp.shared.domain.model.template.Template
+import com.kuro.mdp.shared.utils.functional.Constants
+import com.kuro.mdp.shared.utils.functional.Constants.NavigationArguments.DATE
+import com.kuro.mdp.shared.utils.functional.Constants.NavigationArguments.ID
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -12,18 +16,23 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class Destination {
     @Serializable
+    @SerialName(Constants.NavigationGraph.SPLASH)
     data object Splash : Destination()
 
     @Serializable
-    data class Home(val scheduleDate: Long? = null) : Destination()
+    @SerialName(Constants.NavigationGraph.HOME)
+    data class Home(@SerialName(DATE) val scheduleDate: Long? = null) : Destination()
 
     @Serializable
+    @SerialName(Constants.NavigationGraph.OVERVIEW)
     data object Overview : Destination()
 
     @Serializable
+    @SerialName(Constants.NavigationGraph.ANALYTICS)
     data object Analytics : Destination()
 
     @Serializable
+    @SerialName(Constants.NavigationGraph.SETTINGS)
     data object Settings : Destination()
 
     @Serializable
@@ -33,7 +42,7 @@ sealed class Destination {
     data object Templates : Destination()
 
     @Serializable
-    data object Categories : Destination()
+    data class Categories(@SerialName(ID) val mainCategoryId: Int? = null) : Destination()
 
     @Serializable
     data class Editor(

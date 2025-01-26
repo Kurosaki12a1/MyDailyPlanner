@@ -17,7 +17,7 @@ import com.kuro.mdp.shared.utils.functional.Constants.Arguments.SCHEDULE_DATE
  */
 fun NavGraphBuilder.homeNavGraph() {
     navigation<NavigationGraph.HomeGraph>(
-        startDestination = Destination.Home()
+        startDestination = Destination.Home(),
     ) {
         composable<Destination.Home> {
             val scheduleDate = it.arguments?.getLong(SCHEDULE_DATE)

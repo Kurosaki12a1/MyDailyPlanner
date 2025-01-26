@@ -15,7 +15,7 @@ import org.koin.dsl.module
  * Description:
  */
 val overViewDomainModule = module {
-    single<OverViewUseCase> {
+    factory<OverViewUseCase> {
         OverViewUseCase(
             loadScheduleUseCase = LoadScheduleUseCase(get(), get(), get()),
             updateUndefinedTasksUseCase = UpdateUndefinedTasksUseCase(get()),

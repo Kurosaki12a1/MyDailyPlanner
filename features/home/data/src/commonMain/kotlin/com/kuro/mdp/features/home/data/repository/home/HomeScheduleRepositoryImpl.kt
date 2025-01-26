@@ -1,7 +1,6 @@
 package com.kuro.mdp.features.home.data.repository.home
 
 import com.kuro.mdp.features.home.domain.mapper.templates.convertToTimeTask
-import com.kuro.mdp.features.home.domain.repository.home.HomeFeatureScheduleRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
 import com.kuro.mdp.shared.domain.common.ScheduleStatusChecker
 import com.kuro.mdp.shared.domain.model.schedules.Schedule
@@ -9,6 +8,7 @@ import com.kuro.mdp.shared.domain.model.schedules.TimeTask
 import com.kuro.mdp.shared.domain.model.template.Template
 import com.kuro.mdp.shared.domain.repository.ScheduleRepository
 import com.kuro.mdp.shared.domain.repository.TemplatesRepository
+import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleRepository
 import com.kuro.mdp.shared.utils.extensions.daysToMillis
 import com.kuro.mdp.shared.utils.extensions.mapToDate
 import com.kuro.mdp.shared.utils.extensions.shiftDays
@@ -34,7 +34,7 @@ import kotlinx.datetime.LocalDateTime
  */
 class HomeScheduleRepositoryImpl(
     private val scheduleRepository: ScheduleRepository,
-    private val homeFeatureScheduleRepository: HomeFeatureScheduleRepository,
+    private val featureScheduleRepository: FeatureScheduleRepository,
     private val templatesRepository: TemplatesRepository,
     private val statusChecker: ScheduleStatusChecker,
     private val dateManager: DateManager,
@@ -84,13 +84,13 @@ class HomeScheduleRepositoryImpl(
     }
 
     override suspend fun fetchFeatureScheduleDate(): LocalDateTime? {
-        return homeFeatureScheduleRepository.fetchScheduleDate().apply {
-            homeFeatureScheduleRepository.setScheduleDate(null)
+        return featureScheduleRepository.fetchScheduleDate().apply {
+            featureScheduleRepository.setScheduleDate(null)
         }
     }
 
     override fun setFeatureScheduleDate(date: LocalDateTime?) {
-        homeFeatureScheduleRepository.setScheduleDate(date)
+        featureScheduleRepository.setScheduleDate(date)
     }
 
     private suspend fun createRecurringSchedule(target: LocalDateTime, current: LocalDateTime): Schedule? {

@@ -40,6 +40,11 @@ object Constants {
         const val CATEGORIES = "Categories"
     }
 
+    object NavigationArguments {
+        const val DATE = "date"
+        const val ID = "id"
+    }
+
     object Arguments {
         const val SCHEDULE_DATE = "scheduleDate"
     }

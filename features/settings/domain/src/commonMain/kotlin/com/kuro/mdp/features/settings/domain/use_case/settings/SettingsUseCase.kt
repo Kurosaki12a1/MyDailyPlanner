@@ -1,4 +1,6 @@
-package com.kuro.mdp.features.settings.domain.use_case
+package com.kuro.mdp.features.settings.domain.use_case.settings
+
+import com.kuro.mdp.features.settings.domain.use_case.donate.PressDonateButtonUseCase
 
 /**
  * Created by: minhthinh.h on 1/14/2025
@@ -11,5 +13,4 @@ data class SettingsUseCase(
     val updateThemeSettingsUseCase: UpdateThemeSettingsUseCase,
     val resetToDefaultUseCase: ResetToDefaultUseCase,
     val pressDonateButtonUseCase: PressDonateButtonUseCase,
-    val clearFailureUseCase: ClearFailureUseCase
 )

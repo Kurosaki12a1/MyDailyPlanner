@@ -1,6 +1,5 @@
 package com.kuro.mdp.shared.presentation.navigation.graph
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -11,22 +10,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class NavigationGraph {
     @Serializable
-    @SerialName("Splash")
     data object SplashGraph : NavigationGraph()
 
     @Serializable
-    @SerialName("Home")
     data object HomeGraph : NavigationGraph()
 
     @Serializable
-    @SerialName("Analytics")
     data object AnalyticsGraph : NavigationGraph()
 
     @Serializable
-    @SerialName("Settings")
     data object SettingsGraph : NavigationGraph()
 
     @Serializable
-    @SerialName("Overview")
     data object OverviewGraph : NavigationGraph()
 }
