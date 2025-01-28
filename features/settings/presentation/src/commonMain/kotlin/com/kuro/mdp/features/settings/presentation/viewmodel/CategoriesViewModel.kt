@@ -28,10 +28,27 @@ internal class CategoriesViewModel(
     override fun handleEvent(event: CategoriesEvent) {
         when (event) {
             is CategoriesEvent.AddMainCategory -> {
-                
+                viewModelScope.launch {
+                    categoriesUseCase.addMainCategoryUseCase(event.name)
+                        .collectAndHandle(
+                            onFailure = { showError(it) },
+                            onSuccess = { updateState(it) }
+                        )
+                }
             }
-            is CategoriesEvent.AddSubCategory -> {}
-            is CategoriesEvent.ChangeMainCategory -> { }
+
+            is CategoriesEvent.AddSubCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.addSubCategoryUseCase(event.name, event.mainCategory)
+                        .collectAndHandle(
+                            onFailure = { showError(it) }
+                        )
+                }
+            }
+
+            is CategoriesEvent.ChangeMainCategory -> {
+                updateState(CategoriesAction.ChangeMainCategory(event.mainCategory))
+            }
             is CategoriesEvent.CheckSelectedCategory -> { }
             is CategoriesEvent.ClearFailure -> { }
             is CategoriesEvent.DeleteMainCategory -> { }
@@ -47,7 +64,9 @@ internal class CategoriesViewModel(
             }
 
             is CategoriesEvent.RestoreDefaultCategories -> { }
-            is CategoriesEvent.ShowSubCategoryDialog -> { }
+            is CategoriesEvent.ShowSubCategoryDialog -> {
+                updateState(state.value.copy(isShowSubCategoryDialog = event.shouldShow))
+            }
             is CategoriesEvent.UpdateMainCategory -> { }
             is CategoriesEvent.UpdateSubCategory -> { }
         }

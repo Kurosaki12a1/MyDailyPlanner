@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.settings.presentation.ui.settings
 
+import androidx.compose.runtime.Stable
 import com.kuro.mdp.features.settings.domain.model.settings.TasksSettingsUi
 import com.kuro.mdp.features.settings.domain.model.settings.ThemeSettingsUi
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseViewState
@@ -11,6 +12,7 @@ import kotlinx.serialization.Serializable
  * Description:
  */
 @Serializable
+@Stable
 internal data class SettingsViewState(
     val themeSettings: ThemeSettingsUi? = null,
     val tasksSettings: TasksSettingsUi? = null,

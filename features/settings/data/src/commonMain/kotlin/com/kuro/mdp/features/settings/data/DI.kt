@@ -2,8 +2,10 @@ package com.kuro.mdp.features.settings.data
 
 import com.kuro.mdp.features.settings.data.repository.SettingsCategoriesRepositoryImpl
 import com.kuro.mdp.features.settings.data.repository.SettingsMenuRepositoryImpl
+import com.kuro.mdp.features.settings.data.repository.SettingsSubCategoriesRepositoryImpl
 import com.kuro.mdp.features.settings.domain.repository.SettingsCategoriesRepository
 import com.kuro.mdp.features.settings.domain.repository.SettingsMenuRepository
+import com.kuro.mdp.features.settings.domain.repository.SettingsSubCategoriesRepository
 import org.koin.dsl.module
 
 /**
@@ -14,4 +16,5 @@ import org.koin.dsl.module
 val settingsDataModule = module {
     single<SettingsMenuRepository> { SettingsMenuRepositoryImpl(get(), get()) }
     single<SettingsCategoriesRepository> { SettingsCategoriesRepositoryImpl(get(), get(), get()) }
+    single<SettingsSubCategoriesRepository> { SettingsSubCategoriesRepositoryImpl(get()) }
 }

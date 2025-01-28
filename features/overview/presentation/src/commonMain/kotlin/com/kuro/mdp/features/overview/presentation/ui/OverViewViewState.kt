@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.overview.presentation.ui
 
+import androidx.compose.runtime.Stable
 import com.kuro.mdp.features.overview.domain.model.OverViewError
 import com.kuro.mdp.features.overview.domain.model.categories.CategoriesOverView
 import com.kuro.mdp.features.overview.domain.model.schedules.ScheduleOverView
@@ -15,6 +16,7 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
+@Stable
 data class OverViewViewState(
     val isLoading: Boolean = true,
     val currentDate: LocalDateTime? = null,

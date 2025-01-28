@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.home.presentation.ui.home.ui
 
+import androidx.compose.runtime.Stable
 import com.kuro.mdp.features.home.domain.model.HomeError
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
@@ -16,6 +17,7 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
+@Stable
 data class HomeViewState(
     val currentDate: LocalDateTime? = null,
     val dateStatus: DailyScheduleStatus? = null,
