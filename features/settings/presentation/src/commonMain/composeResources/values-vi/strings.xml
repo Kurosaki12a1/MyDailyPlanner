@@ -64,4 +64,9 @@
     <string name="subCategoryTitle">Danh mục con</string>
     <string name="subCategoryDialogMainCategoryFormat">Danh mục: %s</string>
     <string name="categoryFieldLabel">Tên</string>
+    <string name="navToBackTitle">Quay lại</string>
+    <string name="statisticsActiveTitle">Kích hoạt</string>
+    <string name="statisticsDisabledTitle">Đã tắt</string>
+    <string name="notificationEnabledTitle">Đã bật</string>
+    <string name="notificationDisabledTitle">Đã tắt</string>
 </resources>

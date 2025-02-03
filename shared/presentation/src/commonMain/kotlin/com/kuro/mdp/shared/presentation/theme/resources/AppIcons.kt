@@ -32,6 +32,7 @@ import shared.resources.ic_keyboard_outline
 import shared.resources.ic_medicine
 import shared.resources.ic_my_daily_planner
 import shared.resources.ic_my_daily_planner_circular
+import shared.resources.ic_not_found
 import shared.resources.ic_notification
 import shared.resources.ic_planned_task
 import shared.resources.ic_priority_high
@@ -105,7 +106,8 @@ data class AppIcons(
     val startTime : DrawableResource,
     val endTime : DrawableResource,
     val notification: DrawableResource,
-    val info : DrawableResource
+    val info : DrawableResource,
+    val notFound : DrawableResource
 )
 
 internal val baseAppIcons = AppIcons(
@@ -155,7 +157,8 @@ internal val baseAppIcons = AppIcons(
     startTime = Res.drawable.ic_start_time,
     endTime = Res.drawable.ic_end_time,
     notification = Res.drawable.ic_notification,
-    info = Res.drawable.ic_info
+    info = Res.drawable.ic_info,
+    notFound = Res.drawable.ic_not_found
 )
 
 

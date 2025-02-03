@@ -42,6 +42,9 @@ import settings.resources.mainSettingsTitle
 import settings.resources.menuIconDesc
 import settings.resources.moreIconDesc
 import settings.resources.nameCategoryTitle
+import settings.resources.navToBackTitle
+import settings.resources.notificationDisabledTitle
+import settings.resources.notificationEnabledTitle
 import settings.resources.otherError
 import settings.resources.perLanguageTitle
 import settings.resources.polLanguageTitle
@@ -54,6 +57,8 @@ import settings.resources.secureSectionHeader
 import settings.resources.selectDayCalendarBehavior
 import settings.resources.settingsTitle
 import settings.resources.spaLanguageTitle
+import settings.resources.statisticsActiveTitle
+import settings.resources.statisticsDisabledTitle
 import settings.resources.subCategoryChooserTitle
 import settings.resources.subCategoryDialogMainCategoryFormat
 import settings.resources.subCategoryTitle
@@ -138,7 +143,12 @@ data class SettingsStrings(
     val dialogCreateTitle: StringResource,
     val subCategoryTitle: StringResource,
     val subCategoryDialogMainCategoryFormat: StringResource,
-    val categoryFieldLabel: StringResource
+    val categoryFieldLabel: StringResource,
+    val navToBackTitle : StringResource,
+    val statisticsActiveTitle : StringResource,
+    val statisticsDisabledTitle : StringResource,
+    val notificationEnabledTitle : StringResource,
+    val notificationDisabledTitle : StringResource,
 )
 
 val baseSettingsStrings = SettingsStrings(
@@ -206,7 +216,12 @@ val baseSettingsStrings = SettingsStrings(
     dialogCreateTitle = shared.resources.Res.string.dialogCreateTitle,
     subCategoryTitle = Res.string.subCategoryTitle,
     subCategoryDialogMainCategoryFormat = Res.string.subCategoryDialogMainCategoryFormat,
-    categoryFieldLabel = Res.string.categoryFieldLabel
+    categoryFieldLabel = Res.string.categoryFieldLabel,
+    navToBackTitle = Res.string.navToBackTitle,
+    statisticsActiveTitle = Res.string.statisticsActiveTitle,
+    statisticsDisabledTitle = Res.string.statisticsDisabledTitle,
+    notificationEnabledTitle = Res.string.notificationEnabledTitle,
+    notificationDisabledTitle = Res.string.notificationDisabledTitle,
 )
 
 internal val LocalSettingsStrings = staticCompositionLocalOf<SettingsStrings> {

@@ -64,4 +64,9 @@
     <string name="subCategoryTitle">زیر مجموعه ها</string>
     <string name="subCategoryDialogMainCategoryFormat">دسته: %s</string>
     <string name="categoryFieldLabel">نام</string>
+    <string name="navToBackTitle">بازگشت</string>
+    <string name="statisticsActiveTitle">فعال</string>
+    <string name="statisticsDisabledTitle">غیرفعال</string>
+    <string name="notificationEnabledTitle">فعال</string>
+    <string name="notificationDisabledTitle">غیرفعال</string>
 </resources>

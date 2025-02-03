@@ -64,4 +64,9 @@
     <string name="subCategoryTitle">Подкатегории</string>
     <string name="subCategoryDialogMainCategoryFormat">Категория: %s</string>
     <string name="categoryFieldLabel">Название</string>
+    <string name="navToBackTitle">Назад</string>
+    <string name="statisticsActiveTitle">Активна</string>
+    <string name="statisticsDisabledTitle">Выключена</string>
+    <string name="notificationEnabledTitle">Включено</string>
+    <string name="notificationDisabledTitle">Выключено</string>
 </resources>

@@ -14,7 +14,16 @@ import shared.resources.ic_ethereum
 import shared.resources.ic_fantom
 import shared.resources.ic_github
 import shared.resources.ic_litecoin
+import shared.resources.ic_notification
+import shared.resources.ic_play
+import shared.resources.ic_repeat
+import shared.resources.ic_repeat_variant
+import shared.resources.ic_statistics
+import shared.resources.ic_stop
+import shared.resources.ic_time
+import shared.resources.ic_timer
 import shared.resources.ic_tron
+import shared.resources.ic_update_repeat
 
 /**
  * Created by: minhthinh.h on 12/25/2024
@@ -34,6 +43,15 @@ data class SettingsIcons(
     val crypto: DrawableResource,
     val cryptoAvax: DrawableResource,
     val cryptoFtm: DrawableResource,
+    val start: DrawableResource,
+    val stop: DrawableResource,
+    val repeat: DrawableResource,
+    val updateRepeat: DrawableResource,
+    val repeatVariant: DrawableResource,
+    val statistics: DrawableResource,
+    val notification: DrawableResource,
+    val time : DrawableResource,
+    val duration : DrawableResource,
 )
 
 val baseSettingIcons = SettingsIcons(
@@ -48,7 +66,16 @@ val baseSettingIcons = SettingsIcons(
     cryptoAvax = Res.drawable.ic_avax,
     cryptoFtm = Res.drawable.ic_fantom,
     copy = Res.drawable.ic_content_copy,
-    crypto = Res.drawable.ic_crypto
+    crypto = Res.drawable.ic_crypto,
+    start = Res.drawable.ic_play,
+    stop = Res.drawable.ic_stop,
+    repeat = Res.drawable.ic_repeat,
+    updateRepeat = Res.drawable.ic_update_repeat,
+    repeatVariant = Res.drawable.ic_repeat_variant,
+    statistics = Res.drawable.ic_statistics,
+    notification = Res.drawable.ic_notification,
+    time = Res.drawable.ic_time,
+    duration = Res.drawable.ic_timer,
 )
 
 internal val LocalSettingsIcons = staticCompositionLocalOf<SettingsIcons> {

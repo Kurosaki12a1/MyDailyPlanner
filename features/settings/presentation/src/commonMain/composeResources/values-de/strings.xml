@@ -64,4 +64,9 @@
     <string name="subCategoryTitle">Unterkategorien</string>
     <string name="subCategoryDialogMainCategoryFormat">Kategorie: %s</string>
     <string name="categoryFieldLabel">Name</string>
+    <string name="navToBackTitle">Zurück</string>
+    <string name="statisticsActiveTitle">Aktiv</string>
+    <string name="statisticsDisabledTitle">Abgeschaltet</string>
+    <string name="notificationEnabledTitle">Eingeschaltet</string>
+    <string name="notificationDisabledTitle">Abgeschaltet</string>
 </resources>

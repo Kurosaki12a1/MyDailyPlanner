@@ -1,15 +1,20 @@
 package com.kuro.mdp.features.settings.presentation.ui.template
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.kuro.mdp.features.settings.domain.mapper.categories.mapToDomain
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToUi
+import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
+import com.kuro.mdp.features.settings.presentation.ui.template.components.TemplatesTopAppBar
 import com.kuro.mdp.features.settings.presentation.viewmodel.TemplatesViewModel
 import com.kuro.mdp.shared.presentation.views.ErrorSnackBar
 import com.kuro.mdp.shared.presentation.views.TemplateEditorDialog
@@ -27,7 +32,9 @@ fun TemplatesScreen(
 
         },
         topBar = {
-
+            TemplatesTopAppBar(
+                onMenuIconClick = {  },
+            )
         },
         snackbarHost = {
             SnackbarHost(hostState = snackBarState) {
@@ -35,7 +42,15 @@ fun TemplatesScreen(
             }
         },
         floatingActionButton = {
-
+            FloatingActionButton(
+                onClick = { viewModel.dispatchEvent(TemplatesEvent.ShowTemplateCreator(true)) },
+                content = {
+                    Text(
+                        text = SettingsTheme.strings.addTemplatesFabTitle,
+                        style = MaterialTheme.typography.titleLarge,
+                    )
+                },
+            )
         }
     )
 

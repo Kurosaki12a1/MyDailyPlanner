@@ -7,6 +7,7 @@ import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.features.settings.presentation.ui.categories.CategoriesScreen
 import com.kuro.mdp.features.settings.presentation.ui.donate.DonateScreen
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsScreen
+import com.kuro.mdp.features.settings.presentation.ui.template.TemplatesScreen
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 
@@ -35,7 +36,9 @@ fun NavGraphBuilder.settingsNavGraph() {
             }
         }
         composable<Destination.Templates> {
-
+            SettingsTheme {
+                TemplatesScreen()
+            }
         }
     }
 }

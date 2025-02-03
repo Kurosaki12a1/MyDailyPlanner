@@ -64,4 +64,9 @@
     <string name="subCategoryTitle">Alt kategoriler</string>
     <string name="subCategoryDialogMainCategoryFormat">Kategori: %s</string>
     <string name="categoryFieldLabel">Ad</string>
+    <string name="navToBackTitle">Geri</string>
+    <string name="statisticsActiveTitle">Aktif</string>
+    <string name="statisticsDisabledTitle">Devre dışı</string>
+    <string name="notificationEnabledTitle">Etkin</string>
+    <string name="notificationDisabledTitle">Devre dışı</string>
 </resources>
