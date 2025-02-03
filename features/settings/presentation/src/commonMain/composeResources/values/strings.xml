@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Main</string>
     <string name="nameCategoryTitle">Name</string>
     <string name="warningDeleteCategoryText">Are you sure you want to delete the main category? This action will delete all previously scheduled tasks.</string>
-    <string name="dialogCreateTitle">Create</string>
     <string name="addCategoryTitle">Add</string>
     <string name="updateCategoryTitle">Edit</string>
     <string name="deleteCategoryTitle">Remove</string>

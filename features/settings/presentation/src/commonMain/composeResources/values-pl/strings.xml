@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Planer</string>
     <string name="nameCategoryTitle">Nazwa</string>
     <string name="warningDeleteCategoryText">Czy na pewno chcesz usunąć kategorię główną? Ta operacja spowoduje usunięcie wszystkich wcześniej zaplanowanych zadań.</string>
-    <string name="dialogCreateTitle">Utwórz</string>
     <string name="addCategoryTitle">Dodaj</string>
     <string name="updateCategoryTitle">Edytuj</string>
     <string name="deleteCategoryTitle">Usuń</string>

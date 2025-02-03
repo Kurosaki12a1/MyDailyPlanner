@@ -34,7 +34,6 @@
     <string name="otherError">Something went wrong. Contact the developer for help.</string>
     <string name="addSubCategoryTitle">Add a subcategory</string>
     <string name="categoryFieldLabel">Name</string>
-    <string name="dialogCreateTitle">Create</string>
     <string name="emptyListTitle">List is empty</string>
     <string name="updateCategoryTitle">Edit</string>
     <string name="deleteCategoryTitle">Remove</string>
@@ -49,15 +48,6 @@
     <string name="statisticsActiveTitle">Active</string>
     <string name="statisticsDisabledTitle">Disabled</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Template</string>
-    <string name="mainCategoryLabel">Category</string>
-    <string name="subCategoryLabel">Subcategory</string>
-    <string name="startTimeLabel">Start</string>
-    <string name="endTimeLabel">End</string>
-    <string name="notificationLabel">Sending notification</string>
-    <string name="statisticsLabel">Include task in statistics</string>
-    <string name="priorityLabel">Priority</string>
-    <string name="subCategoryEmptyTitle">Absent</string>
     <string name="addCategoryTitle">Add</string>
     <string name="nameCategoryTitle">Name</string>
     <string name="foundedPlannedTasksTitle">Found scheduled tasks: %s</string>

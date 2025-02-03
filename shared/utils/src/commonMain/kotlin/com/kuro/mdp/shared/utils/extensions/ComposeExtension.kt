@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Color
@@ -33,6 +34,8 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.node.Ref
 import androidx.compose.ui.platform.debugInspectorInfo
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
 import com.kuro.mdp.shared.utils.functional.Constants.Delay.MARQUEE_LOADING_TEXT
 import com.kuro.mdp.shared.utils.functional.Fade
@@ -306,3 +309,100 @@ fun Modifier.scrollText(): Modifier = this.basicMarquee(
     iterations = Int.MAX_VALUE,
     repeatDelayMillis = MARQUEE_LOADING_TEXT
 )
+
+/**
+ * Updates the current [TextFieldValue] by processing a new input value to form a two-digit number.
+ *
+ * <p>This function extracts digits from the [newValue] text, limits it to 2 digits, and then
+ * constructs a new two-digit string based on the current cursor position and the previous text.
+ * It also checks whether the resulting number is within the allowed [restrict] range. If the input
+ * operation reaches the limit (i.e. when the cursor is at the end and the value remains unchanged),
+ * the optional [onLimit] callback is invoked with the last character of [newValue].
+ *
+ * @param newValue The new input [TextFieldValue].
+ * @param restrict The allowed integer range for the final two-digit number.
+ * @param onLimit Optional callback invoked when the limit condition is met.
+ * @return A new [TextFieldValue] with the updated text and cursor position if within [restrict];
+ *         otherwise, returns the original [TextFieldValue].
+ */
+fun TextFieldValue.changeTwoDigitNumber(
+    newValue: TextFieldValue,
+    restrict: IntRange = Int.MIN_VALUE..Int.MAX_VALUE,
+    onLimit: ((Char) -> Unit)? = null,
+): TextFieldValue {
+    // Get the current cursor position (minimum index of the selection range)
+    val cursor = selection.min
+    val oldText = text
+    // Extract up to 2 digits from the new input value
+    val newText = newValue.text.filter { it.isDigit() }.take(2)
+    // Compute the final text based on the length of newText vs oldText and the cursor position.
+    val finalText = if (newText.length < oldText.length) {
+        // Case: Deletion occurred
+        if (cursor == 2) {
+            // If the cursor is at the end, append "0" to maintain two digits.
+            newText + "0"
+        } else {
+            // Otherwise, pad the string to ensure it has 2 digits.
+            newText.padStart(2, '0')
+        }
+    } else {
+        // Case: Addition occurred
+        if (cursor == 0) {
+            // If cursor is at start, keep the first digit from newText and last digit from oldText.
+            newText.first().toString() + oldText.last().toString()
+        } else {
+            // Otherwise, pad the string to ensure it has 2 digits.
+            newText.padStart(2, '0')
+        }
+    }
+
+    // Determine the new cursor position ensuring it does not exceed finalText length.
+    val newCursor = minOf(newValue.selection.start, finalText.length)
+    // If cursor remains at the end and no change is observed, invoke the onLimit callback.
+    if (cursor == 2 && newCursor == 2 && newText == finalText) {
+        onLimit?.invoke(newValue.text.last())
+    }
+    return if (finalText.toInt() in restrict) {
+        TextFieldValue(text = finalText, selection = TextRange(newCursor))
+    } else {
+        this@changeTwoDigitNumber
+    }
+}
+
+/**
+ * Transitions the [TextFieldValue] by prepending a character and adjusting focus accordingly.
+ *
+ * <p>This function requests focus via the provided [requester], then constructs a new text by
+ * prepending the given [char] to the last character of the current text (if any). It checks whether
+ * the resulting integer (converted from the new text) is within the allowed [restrict] range. If it
+ * is within range, it updates the selection to position 1; otherwise, it resets the selection to 0.
+ *
+ * @param char The character to be added at the beginning of the text.
+ * @param restrict The allowed integer range for the new text.
+ * @param requester The [FocusRequester] used to request focus on the input field.
+ * @return A new [TextFieldValue] reflecting the change, or the original value with adjusted selection.
+ */
+fun TextFieldValue.endLimitCharTransition(
+    char: Char,
+    restrict: IntRange = Int.MIN_VALUE..Int.MAX_VALUE,
+    requester: FocusRequester,
+): TextFieldValue {
+    // Request focus to ensure the TextField is active.
+    requester.requestFocus()
+    // Construct new text by concatenating the new character and the last character of the current text (if available)
+    val newText = char.toString() + (text.lastOrNull()?.toString() ?: "")
+    // Validate the new text by converting to integer and checking against the allowed range.
+    return if (newText.toIntOrNull() in restrict) {
+        // If within range, set selection to the end of the new text.
+        TextFieldValue(
+            text = newText,
+            selection = TextRange(1),
+        )
+    } else {
+        // If out of range, revert selection to the beginning.
+        TextFieldValue(
+            text = text,
+            selection = TextRange(0),
+        )
+    }
+}

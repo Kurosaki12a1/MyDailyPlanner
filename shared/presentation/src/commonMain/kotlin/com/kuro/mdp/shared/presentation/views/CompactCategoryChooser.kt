@@ -1,4 +1,4 @@
-package com.kuro.mdp.features.overview.presentation.ui.component
+package com.kuro.mdp.shared.presentation.views
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -24,28 +24,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import com.kuro.mdp.features.overview.domain.model.categories.CategoriesOverView
-import com.kuro.mdp.features.overview.domain.model.categories.MainCategoryOverView
-import com.kuro.mdp.features.overview.domain.model.categories.SubCategoryOverView
-import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
-import com.kuro.mdp.features.overview.presentation.util.fetchName
+import com.kuro.mdp.shared.domain.model.categories.Categories
+import com.kuro.mdp.shared.domain.model.categories.MainCategory
+import com.kuro.mdp.shared.domain.model.categories.SubCategory
+import com.kuro.mdp.shared.presentation.mappers.fetchName
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.presentation.views.ExpandedIcon
 import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.painterResource
 
-/**
- * Created by: minhthinh.h on 1/21/2025
- *
- * Description:
- */
 @Composable
-internal fun CompactCategoryChooser(
+fun CompactCategoryChooser(
     modifier: Modifier = Modifier,
-    allCategories: List<CategoriesOverView>,
-    selectedCategory: MainCategoryOverView,
-    onCategoryChange: (MainCategoryOverView) -> Unit,
+    allCategories: List<Categories>,
+    selectedCategory: MainCategory,
+    onCategoryChange: (MainCategory) -> Unit,
 ) {
     var isCategoryMenuOpen by remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
@@ -57,8 +50,8 @@ internal fun CompactCategoryChooser(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Icon(
-            painter = painterResource(OverViewTheme.icons.category),
-            contentDescription = OverViewTheme.strings.mainCategoryLabel.string(),
+            painter = painterResource(AppTheme.icons.category),
+            contentDescription = AppTheme.strings.mainCategoryLabel.string(),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         OutlinedTextField(
@@ -66,7 +59,7 @@ internal fun CompactCategoryChooser(
             value = selectedCategory.fetchName() ?: "*",
             onValueChange = {},
             readOnly = true,
-            label = { Text(text = OverViewTheme.strings.mainCategoryLabel.string()) },
+            label = { Text(text = AppTheme.strings.mainCategoryLabel.string()) },
             trailingIcon = { ExpandedIcon(isExpanded = isCategoryMenuOpen) },
             shape = MaterialTheme.shapes.large,
             interactionSource = interactionSource,
@@ -74,7 +67,7 @@ internal fun CompactCategoryChooser(
         Box(contentAlignment = Alignment.TopEnd) {
             MainCategoriesChooseMenu(
                 isExpanded = isCategoryMenuOpen,
-                mainCategories = allCategories.map { it.mainCategory },
+                mainCategories = allCategories.map { it.category },
                 onDismiss = { isCategoryMenuOpen = false },
                 onChoose = { mainCategory ->
                     isCategoryMenuOpen = false
@@ -92,12 +85,12 @@ internal fun CompactCategoryChooser(
 }
 
 @Composable
-internal fun MainCategoriesChooseMenu(
+fun MainCategoriesChooseMenu(
     modifier: Modifier = Modifier,
     isExpanded: Boolean,
-    mainCategories: List<MainCategoryOverView>,
+    mainCategories: List<MainCategory>,
     onDismiss: () -> Unit,
-    onChoose: (MainCategoryOverView) -> Unit,
+    onChoose: (MainCategory) -> Unit,
 ) {
     DropdownMenu(
         expanded = isExpanded,
@@ -110,10 +103,10 @@ internal fun MainCategoriesChooseMenu(
             DropdownMenuItem(
                 onClick = { onChoose(category) },
                 leadingIcon = {
-                    if (category.defaultType != null) {
+                    if (category.default != null) {
                         Icon(
                             modifier = Modifier.size(18.dp),
-                            painter = category.defaultType!!.mapToIconPainter(),
+                            painter = category.default!!.mapToIconPainter(),
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
                         )
@@ -138,17 +131,18 @@ internal fun MainCategoriesChooseMenu(
 }
 
 @Composable
-internal fun CompactSubCategoryChooser(
+fun CompactSubCategoryChooser(
     modifier: Modifier = Modifier,
-    allCategories: List<CategoriesOverView>,
-    selectedMainCategory: MainCategoryOverView,
-    selectedSubCategory: SubCategoryOverView?,
-    onSubCategoryChange: (SubCategoryOverView?) -> Unit,
+    allCategories: List<Categories>,
+    selectedMainCategory: MainCategory,
+    selectedSubCategory: SubCategory?,
+    onSubCategoryChange: (SubCategory?) -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     var isSubCategoryMenuOpen by remember { mutableStateOf(false) }
     val isPressed: Boolean by interactionSource.collectIsPressedAsState()
-    val subCategories = allCategories.find { it.mainCategory == selectedMainCategory }?.subCategories ?: emptyList()
+    val subCategories =
+        allCategories.find { it.category == selectedMainCategory }?.subCategories ?: emptyList()
 
     Row(
         modifier = modifier,
@@ -156,16 +150,16 @@ internal fun CompactSubCategoryChooser(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Icon(
-            painter = painterResource(OverViewTheme.icons.subCategory),
-            contentDescription = OverViewTheme.strings.subCategoryLabel.string(),
+            painter = painterResource(AppTheme.icons.subCategory),
+            contentDescription = AppTheme.strings.subCategoryLabel.string(),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = selectedSubCategory?.name ?: OverViewTheme.strings.subCategoryEmptyTitle.string(),
+            value = selectedSubCategory?.name ?: AppTheme.strings.subCategoryEmptyTitle.string(),
             onValueChange = {},
             readOnly = true,
-            label = { Text(text = OverViewTheme.strings.subCategoryLabel.string()) },
+            label = { Text(text = AppTheme.strings.subCategoryLabel.string()) },
             trailingIcon = { ExpandedIcon(isExpanded = isSubCategoryMenuOpen) },
             shape = MaterialTheme.shapes.large,
             interactionSource = interactionSource,
@@ -173,7 +167,7 @@ internal fun CompactSubCategoryChooser(
         Box(contentAlignment = Alignment.TopEnd) {
             SubCategoriesChooseMenu(
                 isExpanded = isSubCategoryMenuOpen,
-                subCategories = subCategories.toMutableList().apply { add(SubCategoryOverView()) },
+                subCategories = subCategories.toMutableList().apply { add(SubCategory()) },
                 onDismiss = { isSubCategoryMenuOpen = false },
                 onChoose = { subCategory ->
                     isSubCategoryMenuOpen = false
@@ -191,12 +185,12 @@ internal fun CompactSubCategoryChooser(
 }
 
 @Composable
-internal fun SubCategoriesChooseMenu(
+fun SubCategoriesChooseMenu(
     modifier: Modifier = Modifier,
     isExpanded: Boolean,
-    subCategories: List<SubCategoryOverView>,
+    subCategories: List<SubCategory>,
     onDismiss: () -> Unit,
-    onChoose: (SubCategoryOverView?) -> Unit,
+    onChoose: (SubCategory?) -> Unit,
 ) {
     DropdownMenu(
         expanded = isExpanded,

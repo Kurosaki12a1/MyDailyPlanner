@@ -63,7 +63,7 @@ internal fun DeadlineChooser(
         ) {
             Icon(
                 painter = painterResource(OverViewTheme.icons.duration),
-                contentDescription = OverViewTheme.strings.subCategoryLabel.string(),
+                contentDescription = AppTheme.strings.subCategoryLabel.string(),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(

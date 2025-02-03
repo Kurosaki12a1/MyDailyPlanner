@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">اصلی</string>
     <string name="nameCategoryTitle">نام</string>
     <string name="warningDeleteCategoryText">آیا مطمئن هستید که می خواهید دسته اصلی را حذف کنید؟ این عمل تمام کارهای برنامه ریزی شده قبلی را از بین می برد.</string>
-    <string name="dialogCreateTitle">ایجاد</string>
     <string name="addCategoryTitle">افزودن</string>
     <string name="updateCategoryTitle">تغییر</string>
     <string name="deleteCategoryTitle">حذف</string>

@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Página principal</string>
     <string name="nameCategoryTitle">Nombre</string>
     <string name="warningDeleteCategoryText">¿Quieres eliminar la categoría principal? Esto eliminará todas las tareas programadas anteriormente.</string>
-    <string name="dialogCreateTitle">Crear</string>
     <string name="addCategoryTitle">Añadir</string>
     <string name="updateCategoryTitle">Editar</string>
     <string name="deleteCategoryTitle">Eliminar</string>

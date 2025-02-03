@@ -71,4 +71,14 @@
     <string name="priorityMedium">Средний</string>
     <string name="priorityMax">Макс.</string>
     <string name="emptyScheduleTitle">План отсутствует</string>
+    <string name="priorityLabel">Приоритет</string>
+    <string name="mainCategoryLabel">Категория</string>
+    <string name="subCategoryLabel">Подкатегория</string>
+    <string name="subCategoryEmptyTitle">Отсутствует</string>
+    <string name="dialogCreateTitle">Создать</string>
+    <string name="endTimeLabel">Конец</string>
+    <string name="notificationLabel">Отправка уведомлений</string>
+    <string name="statisticsLabel">Учёт статистики</string>
+    <string name="templateEditorHeader">Шаблон</string>
+    <string name="startTimeLabel">Начало</string>
 </resources>

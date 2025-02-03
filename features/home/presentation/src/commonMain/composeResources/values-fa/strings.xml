@@ -33,7 +33,6 @@
     <string name="importanceError">کار بعدی اولویت بیشتری دارد!</string>
     <string name="otherError">خطا! با توسعه دهنده تماس بگیرید.</string>
     <string name="addSubCategoryTitle">اضافه کردن زیر مجموعه</string>
-    <string name="dialogCreateTitle">ایجاد</string>
     <string name="emptyListTitle">لیست خالی است</string>
     <string name="updateCategoryTitle">تغییر</string>
     <string name="deleteCategoryTitle">حذف</string>
@@ -48,15 +47,6 @@
     <string name="statisticsActiveTitle">فعال</string>
     <string name="statisticsDisabledTitle">غیرفعال</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">قالب</string>
-    <string name="mainCategoryLabel">دسته بندی</string>
-    <string name="subCategoryLabel">زیرمجموعه</string>
-    <string name="startTimeLabel">شروع</string>
-    <string name="endTimeLabel">پایان</string>
-    <string name="notificationLabel">ارسال اعلان</string>
-    <string name="statisticsLabel">وظیفه را در آمار وارد کنید</string>
-    <string name="priorityLabel">اولویت ویژه</string>
-    <string name="subCategoryEmptyTitle">خالی</string>
     <string name="addCategoryTitle">افزودن</string>
     <string name="nameCategoryTitle">نام</string>
     <string name="foundedPlannedTasksTitle">وظایف برنامه ریزی شده یافت شد: s%</string>

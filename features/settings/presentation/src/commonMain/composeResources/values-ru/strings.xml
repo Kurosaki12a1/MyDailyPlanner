@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Основная</string>
     <string name="nameCategoryTitle">Название</string>
     <string name="warningDeleteCategoryText">Вы уверены что хотите удалить основную категорию? Данное действие приведёт к уничтожению всех ранее запланированных задач.</string>
-    <string name="dialogCreateTitle">Создать</string>
     <string name="addCategoryTitle">Добавить</string>
     <string name="updateCategoryTitle">Редактировать</string>
     <string name="deleteCategoryTitle">Удалить</string>

@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Hauptkategorie</string>
     <string name="nameCategoryTitle">Name</string>
     <string name="warningDeleteCategoryText">Sind Sie sicher, dass Sie die Hauptkategorie löschen möchten? Durch diese Aktion werden alle zuvor geplanten Aufgaben gelöscht.</string>
-    <string name="dialogCreateTitle">Erstellen</string>
     <string name="addCategoryTitle">Hinzufügen</string>
     <string name="updateCategoryTitle">Bearbeiten</string>
     <string name="deleteCategoryTitle">Entfernen</string>

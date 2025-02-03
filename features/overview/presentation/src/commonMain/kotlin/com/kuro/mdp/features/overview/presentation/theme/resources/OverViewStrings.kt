@@ -19,14 +19,11 @@ import overview.resources.dateDialogPickerTitle
 import overview.resources.dayTitleHome
 import overview.resources.deadlineLabel
 import overview.resources.deleteCategoryTitle
-import overview.resources.dialogCreateTitle
 import overview.resources.emptyListTitle
-import overview.resources.endTimeLabel
 import overview.resources.executeUndefinedTasksTitle
 import overview.resources.foundedPlannedTasksTitle
 import overview.resources.importanceError
 import overview.resources.mainCategoryChooserTitle
-import overview.resources.mainCategoryLabel
 import overview.resources.mainCategoryTitle
 import overview.resources.monthTitle
 import overview.resources.nameCategoryTitle
@@ -36,11 +33,9 @@ import overview.resources.noneTitle
 import overview.resources.noteTitle
 import overview.resources.notificationDisabledTitle
 import overview.resources.notificationEnabledTitle
-import overview.resources.notificationLabel
 import overview.resources.otherError
 import overview.resources.plannedScheduleTitle
 import overview.resources.previousDateIconDesc
-import overview.resources.priorityLabel
 import overview.resources.progressTitle
 import overview.resources.realizedScheduleTitle
 import overview.resources.restoreDefaultCategories
@@ -52,19 +47,14 @@ import overview.resources.sortedTypeDate
 import overview.resources.sortedTypeDuration
 import overview.resources.sortedTypeTitle
 import overview.resources.specifyDeadlineTitle
-import overview.resources.startTimeLabel
 import overview.resources.startTimeTaskTitlePlaceHolder
 import overview.resources.statisticsActiveTitle
 import overview.resources.statisticsDisabledTitle
-import overview.resources.statisticsLabel
 import overview.resources.subCategoryChooserTitle
 import overview.resources.subCategoryDialogMainCategoryFormat
-import overview.resources.subCategoryEmptyTitle
-import overview.resources.subCategoryLabel
 import overview.resources.subCategoryTitle
 import overview.resources.taskDateChooserFieldLabel
 import overview.resources.taskDateChooserHeader
-import overview.resources.templateEditorHeader
 import overview.resources.timeTaskAddIconDesc
 import overview.resources.timeTaskCheckIconDesc
 import overview.resources.timeTaskExpandedIconDesc
@@ -125,7 +115,6 @@ internal data class OverViewStrings(
     val otherError: StringResource,
     val addSubCategoryTitle: StringResource,
     val categoryFieldLabel: StringResource,
-    val dialogCreateTitle: StringResource,
     val emptyListTitle: StringResource,
     val updateCategoryTitle: StringResource,
     val deleteCategoryTitle: StringResource,
@@ -140,15 +129,6 @@ internal data class OverViewStrings(
     val statisticsActiveTitle: StringResource,
     val statisticsDisabledTitle: StringResource,
     val addTemplatesFabTitle: StringResource,
-    val templateEditorHeader: StringResource,
-    val mainCategoryLabel: StringResource,
-    val subCategoryLabel: StringResource,
-    val startTimeLabel: StringResource,
-    val endTimeLabel: StringResource,
-    val notificationLabel: StringResource,
-    val statisticsLabel: StringResource,
-    val priorityLabel: StringResource,
-    val subCategoryEmptyTitle: StringResource,
     val addCategoryTitle: StringResource,
     val nameCategoryTitle: StringResource,
     val foundedPlannedTasksTitle: StringResource,
@@ -209,7 +189,6 @@ internal val baseOverViewStrings = OverViewStrings(
     otherError = Res.string.otherError,
     addSubCategoryTitle = Res.string.addSubCategoryTitle,
     categoryFieldLabel = Res.string.categoryFieldLabel,
-    dialogCreateTitle = Res.string.dialogCreateTitle,
     emptyListTitle = Res.string.emptyListTitle,
     updateCategoryTitle = Res.string.updateCategoryTitle,
     deleteCategoryTitle = Res.string.deleteCategoryTitle,
@@ -224,15 +203,6 @@ internal val baseOverViewStrings = OverViewStrings(
     statisticsActiveTitle = Res.string.statisticsActiveTitle,
     statisticsDisabledTitle = Res.string.statisticsDisabledTitle,
     addTemplatesFabTitle = Res.string.addTemplatesFabTitle,
-    templateEditorHeader = Res.string.templateEditorHeader,
-    mainCategoryLabel = Res.string.mainCategoryLabel,
-    subCategoryLabel = Res.string.subCategoryLabel,
-    startTimeLabel = Res.string.startTimeLabel,
-    endTimeLabel = Res.string.endTimeLabel,
-    notificationLabel = Res.string.notificationLabel,
-    statisticsLabel = Res.string.statisticsLabel,
-    priorityLabel = Res.string.priorityLabel,
-    subCategoryEmptyTitle = Res.string.subCategoryEmptyTitle,
     addCategoryTitle = Res.string.addCategoryTitle,
     nameCategoryTitle = Res.string.nameCategoryTitle,
     foundedPlannedTasksTitle = Res.string.foundedPlannedTasksTitle,

@@ -71,4 +71,14 @@
     <string name="priorityMedium">Orta</string>
     <string name="priorityMax">Azami</string>
     <string name="emptyScheduleTitle">Henüz planlanmış bir şey yok</string>
+    <string name="priorityLabel">Öncelik</string>
+    <string name="mainCategoryLabel">Kategori</string>
+    <string name="subCategoryLabel">Alt kategori</string>
+    <string name="subCategoryEmptyTitle">Yok</string>
+    <string name="dialogCreateTitle">Oluştur</string>
+    <string name="endTimeLabel">Bitiş</string>
+    <string name="notificationLabel">Bildirim gönderme</string>
+    <string name="statisticsLabel">Görevi istatistiklere dahil et</string>
+    <string name="templateEditorHeader">Şablon</string>
+    <string name="startTimeLabel">Başlangıç</string>
 </resources>

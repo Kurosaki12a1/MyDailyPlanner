@@ -34,7 +34,7 @@
     <string name="otherError">Hata! Geliştirici ile iletişime geçin.</string>
     <string name="addSubCategoryTitle">Alt kategori ekle</string>
     <string name="categoryFieldLabel">Ad</string>
-    <string name="dialogCreateTitle">Oluştur</string>
+
     <string name="emptyListTitle">Liste boş</string>
     <string name="updateCategoryTitle">Düzenle</string>
     <string name="deleteCategoryTitle">Kaldır</string>
@@ -49,15 +49,14 @@
     <string name="statisticsActiveTitle">Aktif</string>
     <string name="statisticsDisabledTitle">Devre dışı</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Şablon</string>
-    <string name="mainCategoryLabel">Kategori</string>
-    <string name="subCategoryLabel">Alt kategori</string>
-    <string name="startTimeLabel">Başlangıç</string>
-    <string name="endTimeLabel">Bitiş</string>
-    <string name="notificationLabel">Bildirim gönderme</string>
-    <string name="statisticsLabel">Görevi istatistiklere dahil et</string>
-    <string name="priorityLabel">Öncelik</string>
-    <string name="subCategoryEmptyTitle">Yok</string>
+
+
+
+
+
+
+
+
     <string name="addCategoryTitle">Ekle</string>
     <string name="nameCategoryTitle">Ad</string>
     <string name="foundedPlannedTasksTitle">Planlanmış görevler bulundu: %s</string>

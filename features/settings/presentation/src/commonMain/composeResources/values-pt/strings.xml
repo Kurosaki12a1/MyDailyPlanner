@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Principal</string>
     <string name="nameCategoryTitle">Nome</string>
     <string name="warningDeleteCategoryText">Você tem certeza que deseja deletar a categoria principal? Esta apagar as ação irá planejadas. previamente tarefas todas</string>
-    <string name="dialogCreateTitle">Criar</string>
     <string name="addCategoryTitle">Adicionar</string>
     <string name="updateCategoryTitle">Editar</string>
     <string name="deleteCategoryTitle">Remover</string>

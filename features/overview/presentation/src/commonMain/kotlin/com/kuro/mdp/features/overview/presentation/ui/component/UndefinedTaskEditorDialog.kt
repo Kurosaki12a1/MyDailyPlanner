@@ -34,13 +34,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import com.kuro.mdp.features.overview.domain.mapper.categories.mapToDomain
+import com.kuro.mdp.features.overview.domain.mapper.categories.mapToUi
 import com.kuro.mdp.features.overview.domain.model.categories.CategoriesOverView
 import com.kuro.mdp.features.overview.domain.model.categories.MainCategoryOverView
 import com.kuro.mdp.features.overview.domain.model.schedules.UndefinedTaskOverView
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.shared.domain.model.schedules.TaskPriority
 import com.kuro.mdp.shared.presentation.theme.AppTheme
+import com.kuro.mdp.shared.presentation.views.CompactCategoryChooser
+import com.kuro.mdp.shared.presentation.views.CompactSubCategoryChooser
 import com.kuro.mdp.shared.presentation.views.DialogButtons
+import com.kuro.mdp.shared.presentation.views.PriorityChooser
 import com.kuro.mdp.shared.utils.extensions.generateUniqueKey
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
 import com.kuro.mdp.shared.utils.extensions.string
@@ -85,15 +90,18 @@ internal fun UndefinedTaskEditorDialog(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     CompactCategoryChooser(
-                        allCategories = categories,
-                        selectedCategory = mainCategory,
-                        onCategoryChange = { mainCategory = it; subCategory = null },
+                        allCategories = categories.map { it.mapToDomain() },
+                        selectedCategory = mainCategory.mapToDomain(),
+                        onCategoryChange = {
+                            mainCategory = it.mapToUi()
+                            subCategory = null
+                        },
                     )
                     CompactSubCategoryChooser(
-                        allCategories = categories,
-                        selectedMainCategory = mainCategory,
-                        selectedSubCategory = subCategory,
-                        onSubCategoryChange = { subCategory = it },
+                        allCategories = categories.map { it.mapToDomain() },
+                        selectedMainCategory = mainCategory.mapToDomain(),
+                        selectedSubCategory = subCategory?.mapToDomain(),
+                        onSubCategoryChange = { subCategory = it?.mapToUi() },
                     )
                     NoteCompactTextField(
                         note = note,
@@ -115,7 +123,7 @@ internal fun UndefinedTaskEditorDialog(
                     enabledConfirm = isEnabled,
                     confirmTitle = when (model != null) {
                         true -> AppTheme.strings.okConfirmTitle.string()
-                        false -> OverViewTheme.strings.dialogCreateTitle.string()
+                        false -> AppTheme.strings.dialogCreateTitle.string()
                     },
                     onConfirmClick = {
                         if (isEnabled) {
@@ -169,7 +177,7 @@ internal fun NoteCompactTextField(
     ) {
         Icon(
             painter = painterResource(OverViewTheme.icons.subCategory),
-            contentDescription = OverViewTheme.strings.subCategoryLabel.string(),
+            contentDescription = AppTheme.strings.subCategoryLabel.string(),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         OutlinedTextField(

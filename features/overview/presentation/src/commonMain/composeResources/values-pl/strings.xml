@@ -34,7 +34,7 @@
     <string name="otherError">Coś poszło nie tak. Skontaktuj się z deweloperem by otrzymać pomoc.</string>
     <string name="addSubCategoryTitle">Dodaj podkategorię</string>
     <string name="categoryFieldLabel">Nazwa</string>
-    <string name="dialogCreateTitle">Utwórz</string>
+
     <string name="emptyListTitle">Lista jest pusta</string>
     <string name="updateCategoryTitle">Edytuj</string>
     <string name="deleteCategoryTitle">Usuń</string>
@@ -49,15 +49,14 @@
     <string name="statisticsActiveTitle">Włączone</string>
     <string name="statisticsDisabledTitle">Wyłączone</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Szablon</string>
-    <string name="mainCategoryLabel">Kategoria</string>
-    <string name="subCategoryLabel">Podkategoria</string>
-    <string name="startTimeLabel">Rozpoczęcie</string>
-    <string name="endTimeLabel">Zakończenie</string>
-    <string name="notificationLabel">Wysyłanie powiadomienia</string>
-    <string name="statisticsLabel">Dołącz zadanie do statystyk</string>
-    <string name="priorityLabel">Priorytet</string>
-    <string name="subCategoryEmptyTitle">Brak</string>
+
+
+
+
+
+
+
+
     <string name="addCategoryTitle">Dodaj</string>
     <string name="nameCategoryTitle">Nazwa</string>
     <string name="foundedPlannedTasksTitle">Znaleziono zaplanowanych zadań: %s</string>

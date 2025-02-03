@@ -34,7 +34,7 @@
     <string name="otherError">Fehler! Wenden Sie sich an den Entwickler.</string>
     <string name="addSubCategoryTitle">Unterkategorie hinzufügen</string>
     <string name="categoryFieldLabel">Name</string>
-    <string name="dialogCreateTitle">Erstellen</string>
+
     <string name="emptyListTitle">Die Liste ist leer</string>
     <string name="updateCategoryTitle">Bearbeiten</string>
     <string name="deleteCategoryTitle">Entfernen</string>
@@ -49,15 +49,14 @@
     <string name="statisticsActiveTitle">Aktiv</string>
     <string name="statisticsDisabledTitle">Abgeschaltet</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Muster</string>
-    <string name="mainCategoryLabel">Kategorie</string>
-    <string name="subCategoryLabel">Unterkategorie</string>
-    <string name="startTimeLabel">Anfang</string>
-    <string name="endTimeLabel">Ende</string>
-    <string name="notificationLabel">Benachrichtigungen</string>
-    <string name="statisticsLabel">Statistik</string>
-    <string name="priorityLabel">Priorität</string>
-    <string name="subCategoryEmptyTitle">Leer</string>
+
+
+
+
+
+
+
+
     <string name="addCategoryTitle">Hinzufügen</string>
     <string name="nameCategoryTitle">Name</string>
     <string name="foundedPlannedTasksTitle">Geplante Aufgaben gefunden: %s</string>

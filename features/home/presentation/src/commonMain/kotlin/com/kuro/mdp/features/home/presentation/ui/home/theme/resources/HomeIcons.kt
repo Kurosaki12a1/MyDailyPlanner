@@ -23,7 +23,6 @@ import shared.resources.ic_notification
 import shared.resources.ic_off_repeat
 import shared.resources.ic_play
 import shared.resources.ic_previous
-import shared.resources.ic_priority_high
 import shared.resources.ic_remove
 import shared.resources.ic_repeat
 import shared.resources.ic_repeat_variant
@@ -56,7 +55,6 @@ internal data class HomeIcons(
     val endTime: DrawableResource,
     val notification: DrawableResource,
     val info: DrawableResource,
-    val priority: DrawableResource,
     val cancel: DrawableResource,
     val statistics: DrawableResource,
     val duration: DrawableResource,
@@ -90,7 +88,6 @@ internal val baseHomeIcons = HomeIcons(
     endTime = Res.drawable.ic_end_time,
     notification = Res.drawable.ic_notification,
     info = Res.drawable.ic_info,
-    priority = Res.drawable.ic_priority_high,
     cancel = Res.drawable.ic_cancel,
     statistics = Res.drawable.ic_charts,
     duration = Res.drawable.ic_timer,

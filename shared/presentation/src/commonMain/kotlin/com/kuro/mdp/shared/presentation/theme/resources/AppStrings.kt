@@ -33,8 +33,10 @@ import shared.resources.compactViewToggleTittle
 import shared.resources.confirmTitle
 import shared.resources.dayTitle
 import shared.resources.decemberTitle
+import shared.resources.dialogCreateTitle
 import shared.resources.drawerMainSection
 import shared.resources.emptyScheduleTitle
+import shared.resources.endTimeLabel
 import shared.resources.expandViewToggleTittle
 import shared.resources.februaryTitle
 import shared.resources.fridayTitle
@@ -44,17 +46,20 @@ import shared.resources.hoursTitle
 import shared.resources.januaryTitle
 import shared.resources.julyTitle
 import shared.resources.juneTitle
+import shared.resources.mainCategoryLabel
 import shared.resources.mainDrawerTitle
 import shared.resources.marchTitle
 import shared.resources.mayTitle
 import shared.resources.minutesSymbol
 import shared.resources.minutesTitle
 import shared.resources.mondayTitle
+import shared.resources.notificationLabel
 import shared.resources.novemberTitle
 import shared.resources.octoberTitle
 import shared.resources.okConfirmTitle
 import shared.resources.overviewDrawerTitle
 import shared.resources.pmFormatTitle
+import shared.resources.priorityLabel
 import shared.resources.priorityMax
 import shared.resources.priorityMedium
 import shared.resources.priorityStandard
@@ -68,8 +73,13 @@ import shared.resources.septemberTitle
 import shared.resources.settingsTabTitle
 import shared.resources.splitFormat
 import shared.resources.startTaskNotifyText
+import shared.resources.startTimeLabel
+import shared.resources.statisticsLabel
+import shared.resources.subCategoryEmptyTitle
+import shared.resources.subCategoryLabel
 import shared.resources.sundayTitle
 import shared.resources.templateDrawerTitle
+import shared.resources.templateEditorHeader
 import shared.resources.thursdayTitle
 import shared.resources.timeTaskChannelName
 import shared.resources.tuesdayTitle
@@ -100,6 +110,9 @@ data class AppStrings(
     val categoryHealthTitle: StringResource,
     val categoryShoppingTitle: StringResource,
     val categoryOtherTitle: StringResource,
+    val mainCategoryLabel: StringResource,
+    val subCategoryLabel: StringResource,
+    val subCategoryEmptyTitle: StringResource,
     val minutesSymbol: StringResource,
     val hoursSymbol: StringResource,
     val separator: StringResource,
@@ -153,7 +166,14 @@ data class AppStrings(
     val priorityStandard: StringResource,
     val priorityMedium: StringResource,
     val priorityMax: StringResource,
+    val priorityLabel: StringResource,
     val emptyScheduleTitle: StringResource,
+    val dialogCreateTitle: StringResource,
+    val startTimeLabel: StringResource,
+    val endTimeLabel: StringResource,
+    val notificationLabel: StringResource,
+    val statisticsLabel: StringResource,
+    val templateEditorHeader: StringResource
 )
 
 internal val baseAppStrings = AppStrings(
@@ -174,6 +194,9 @@ internal val baseAppStrings = AppStrings(
     categoryHealthTitle = Res.string.categoryHealthTitle,
     categoryShoppingTitle = Res.string.categoryShoppingTitle,
     categoryOtherTitle = Res.string.categoryOtherTitle,
+    mainCategoryLabel = Res.string.mainCategoryLabel,
+    subCategoryLabel = Res.string.subCategoryLabel,
+    subCategoryEmptyTitle = Res.string.subCategoryEmptyTitle,
     minutesSymbol = Res.string.minutesSymbol,
     hoursSymbol = Res.string.hoursSymbol,
     separator = Res.string.separator,
@@ -227,7 +250,14 @@ internal val baseAppStrings = AppStrings(
     priorityStandard = Res.string.priorityStandard,
     priorityMedium = Res.string.priorityMedium,
     priorityMax = Res.string.priorityMax,
-    emptyScheduleTitle = Res.string.emptyScheduleTitle
+    priorityLabel = Res.string.priorityLabel,
+    emptyScheduleTitle = Res.string.emptyScheduleTitle,
+    dialogCreateTitle = Res.string.dialogCreateTitle,
+    startTimeLabel = Res.string.startTimeLabel,
+    endTimeLabel = Res.string.endTimeLabel,
+    notificationLabel = Res.string.notificationLabel,
+    statisticsLabel = Res.string.statisticsLabel,
+    templateEditorHeader = Res.string.templateEditorHeader
 )
 
 val LocalAppStrings = staticCompositionLocalOf { baseAppStrings }

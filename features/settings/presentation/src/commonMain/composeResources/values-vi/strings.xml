@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Chính</string>
     <string name="nameCategoryTitle">Tên</string>
     <string name="warningDeleteCategoryText">Bạn có chắc chắn muốn xóa danh mục chính không? Hành động này sẽ hủy tất cả các nhiệm vụ đã lên lịch trước đó.</string>
-    <string name="dialogCreateTitle">Tạo</string>
     <string name="addCategoryTitle">Thêm vào</string>
     <string name="updateCategoryTitle">Biên tập</string>
     <string name="deleteCategoryTitle">Loại bỏ</string>

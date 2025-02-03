@@ -13,23 +13,28 @@ import shared.resources.ic_arrow_right
 import shared.resources.ic_cancel
 import shared.resources.ic_car
 import shared.resources.ic_categories
+import shared.resources.ic_category
 import shared.resources.ic_check
 import shared.resources.ic_close
 import shared.resources.ic_compact_view
 import shared.resources.ic_culture
 import shared.resources.ic_dashboard
 import shared.resources.ic_eat
+import shared.resources.ic_end_time
 import shared.resources.ic_entertainments
 import shared.resources.ic_expanded_view
 import shared.resources.ic_face_retouching
 import shared.resources.ic_home
 import shared.resources.ic_home_outlined
+import shared.resources.ic_info
 import shared.resources.ic_interests
 import shared.resources.ic_keyboard_outline
 import shared.resources.ic_medicine
 import shared.resources.ic_my_daily_planner
 import shared.resources.ic_my_daily_planner_circular
+import shared.resources.ic_notification
 import shared.resources.ic_planned_task
+import shared.resources.ic_priority_high
 import shared.resources.ic_reset
 import shared.resources.ic_rest
 import shared.resources.ic_schedule
@@ -38,8 +43,11 @@ import shared.resources.ic_settings_outline
 import shared.resources.ic_sleep
 import shared.resources.ic_splash
 import shared.resources.ic_sport
+import shared.resources.ic_start_time
 import shared.resources.ic_store
 import shared.resources.ic_study
+import shared.resources.ic_sub_category
+import shared.resources.ic_subcategory
 import shared.resources.ic_template
 import shared.resources.ic_time
 import shared.resources.ic_work
@@ -54,6 +62,8 @@ data class AppIcons(
     val logo: DrawableResource,
     val logoCircular: DrawableResource,
     val splashIcon: DrawableResource,
+    val category : DrawableResource,
+    val subCategory : DrawableResource,
     val categoryWorkIcon: DrawableResource,
     val categoryRestIcon: DrawableResource,
     val categorySportIcon: DrawableResource,
@@ -91,12 +101,19 @@ data class AppIcons(
     val check: DrawableResource,
     val add: DrawableResource,
     val keyboard: DrawableResource,
+    val priority: DrawableResource,
+    val startTime : DrawableResource,
+    val endTime : DrawableResource,
+    val notification: DrawableResource,
+    val info : DrawableResource
 )
 
 internal val baseAppIcons = AppIcons(
     logo = Res.drawable.ic_my_daily_planner,
     logoCircular = Res.drawable.ic_my_daily_planner_circular,
     splashIcon = Res.drawable.ic_splash,
+    category = Res.drawable.ic_category,
+    subCategory = Res.drawable.ic_subcategory,
     categoryWorkIcon = Res.drawable.ic_work,
     categoryRestIcon = Res.drawable.ic_rest,
     categorySportIcon = Res.drawable.ic_sport,
@@ -133,7 +150,12 @@ internal val baseAppIcons = AppIcons(
     cancel = Res.drawable.ic_cancel,
     check = Res.drawable.ic_check,
     add = Res.drawable.ic_add,
-    keyboard = Res.drawable.ic_keyboard_outline
+    keyboard = Res.drawable.ic_keyboard_outline,
+    priority = Res.drawable.ic_priority_high,
+    startTime = Res.drawable.ic_start_time,
+    endTime = Res.drawable.ic_end_time,
+    notification = Res.drawable.ic_notification,
+    info = Res.drawable.ic_info
 )
 
 

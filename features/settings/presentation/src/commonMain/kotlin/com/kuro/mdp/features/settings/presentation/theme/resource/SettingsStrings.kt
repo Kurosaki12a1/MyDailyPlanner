@@ -21,7 +21,6 @@ import settings.resources.dataSectionHeader
 import settings.resources.defaultLanguageTitle
 import settings.resources.deleteCategoryTitle
 import settings.resources.developerTitle
-import settings.resources.dialogCreateTitle
 import settings.resources.donateHeader
 import settings.resources.donateTitle
 import settings.resources.engLanguageTitle
@@ -67,6 +66,7 @@ import settings.resources.versionCodeTitle
 import settings.resources.versionNameTitle
 import settings.resources.vieLanguageTitle
 import settings.resources.warningDeleteCategoryText
+import shared.resources.dialogCreateTitle
 
 /**
  * Created by: minhthinh.h on 12/25/2024
@@ -203,7 +203,7 @@ val baseSettingsStrings = SettingsStrings(
     addCategoryTitle = Res.string.addCategoryTitle,
     updateCategoryTitle = Res.string.updateCategoryTitle,
     deleteCategoryTitle = Res.string.deleteCategoryTitle,
-    dialogCreateTitle = Res.string.dialogCreateTitle,
+    dialogCreateTitle = shared.resources.Res.string.dialogCreateTitle,
     subCategoryTitle = Res.string.subCategoryTitle,
     subCategoryDialogMainCategoryFormat = Res.string.subCategoryDialogMainCategoryFormat,
     categoryFieldLabel = Res.string.categoryFieldLabel

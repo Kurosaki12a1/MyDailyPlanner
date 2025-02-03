@@ -71,4 +71,14 @@
     <string name="priorityMedium">Moyen</string>
     <string name="priorityMax">Max.</string>
     <string name="emptyScheduleTitle">Rien de prévu pour le moment</string>
+    <string name="priorityLabel">Priorité</string>
+    <string name="mainCategoryLabel">Catégorie</string>
+    <string name="subCategoryLabel">Sous-catégorie</string>
+    <string name="subCategoryEmptyTitle">Absent</string>
+    <string name="dialogCreateTitle">Créer</string>
+    <string name="endTimeLabel">Fin</string>
+    <string name="notificationLabel">Envoi d\'une notification</string>
+    <string name="statisticsLabel">Inclure dans les statistiques</string>
+    <string name="templateEditorHeader">Modèle</string>
+    <string name="startTimeLabel">Début</string>
 </resources>

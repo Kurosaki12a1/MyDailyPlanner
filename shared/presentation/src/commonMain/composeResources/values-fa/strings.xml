@@ -71,4 +71,14 @@
     <string name="priorityMedium">میانگین</string>
     <string name="priorityMax">حداکثر</string>
     <string name="emptyScheduleTitle">هنوز هیچ چیز برنامه ریزی نشده است</string>
+    <string name="priorityLabel">اولویت ویژه</string>
+    <string name="mainCategoryLabel">دسته بندی</string>
+    <string name="subCategoryLabel">زیرمجموعه</string>
+    <string name="subCategoryEmptyTitle">خالی</string>
+    <string name="dialogCreateTitle">ایجاد</string>
+    <string name="endTimeLabel">پایان</string>
+    <string name="notificationLabel">ارسال اعلان</string>
+    <string name="statisticsLabel">وظیفه را در آمار وارد کنید</string>
+    <string name="templateEditorHeader">قالب</string>
+    <string name="startTimeLabel">شروع</string>
 </resources>

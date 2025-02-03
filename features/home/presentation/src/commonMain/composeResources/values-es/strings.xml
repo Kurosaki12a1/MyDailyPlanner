@@ -33,7 +33,6 @@
     <string name="importanceError">¡La siguiente tarea tiene más prioridad!</string>
     <string name="otherError">¡Error! Contacta al desarrollador.</string>
     <string name="addSubCategoryTitle">Añadir subcategoría</string>
-    <string name="dialogCreateTitle">Crear</string>
     <string name="emptyListTitle">Lista vacía</string>
     <string name="updateCategoryTitle">Editar</string>
     <string name="deleteCategoryTitle">Eliminar</string>
@@ -48,15 +47,6 @@
     <string name="statisticsActiveTitle">Activada</string>
     <string name="statisticsDisabledTitle">Desactivada</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Plantilla</string>
-    <string name="mainCategoryLabel">Categoría</string>
-    <string name="subCategoryLabel">Subcategoría</string>
-    <string name="startTimeLabel">Empieza</string>
-    <string name="endTimeLabel">Termina</string>
-    <string name="notificationLabel">Enviar notificación</string>
-    <string name="statisticsLabel">Incluir en estadísticas</string>
-    <string name="priorityLabel">Prioridad</string>
-    <string name="subCategoryEmptyTitle">Ninguna</string>
     <string name="addCategoryTitle">Añadir</string>
     <string name="nameCategoryTitle">Nombre</string>
     <string name="foundedPlannedTasksTitle">Encontrado tareas programadas: %s</string>

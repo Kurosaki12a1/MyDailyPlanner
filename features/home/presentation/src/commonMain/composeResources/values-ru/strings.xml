@@ -33,7 +33,6 @@
     <string name="importanceError">Следующая задача приоритетней!</string>
     <string name="otherError">Ошибка! Обратитесь к разработчику.</string>
     <string name="addSubCategoryTitle">Добавить подкатегорию</string>
-    <string name="dialogCreateTitle">Создать</string>
     <string name="emptyListTitle">Список пуст</string>
     <string name="updateCategoryTitle">Редактировать</string>
     <string name="deleteCategoryTitle">Удалить</string>
@@ -48,15 +47,6 @@
     <string name="statisticsActiveTitle">Активна</string>
     <string name="statisticsDisabledTitle">Выключена</string>
     <string name="addTemplatesFabTitle">+</string>
-    <string name="templateEditorHeader">Шаблон</string>
-    <string name="mainCategoryLabel">Категория</string>
-    <string name="subCategoryLabel">Подкатегория</string>
-    <string name="startTimeLabel">Начало</string>
-    <string name="endTimeLabel">Конец</string>
-    <string name="notificationLabel">Отправка уведомлений</string>
-    <string name="statisticsLabel">Учёт статистики</string>
-    <string name="priorityLabel">Приоритет</string>
-    <string name="subCategoryEmptyTitle">Отсутствует</string>
     <string name="addCategoryTitle">Добавить</string>
     <string name="nameCategoryTitle">Название</string>
     <string name="foundedPlannedTasksTitle">Найдено запланированных задач: %s</string>

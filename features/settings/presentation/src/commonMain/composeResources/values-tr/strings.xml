@@ -58,7 +58,6 @@
     <string name="mainCategoryTitle">Ana</string>
     <string name="nameCategoryTitle">Ad</string>
     <string name="warningDeleteCategoryText">Ana kategoriyi silmek istediğinizden emin misiniz? Bu işlem önceden planlanmış tüm görevleri yok eder.</string>
-    <string name="dialogCreateTitle">Oluştur</string>
     <string name="addCategoryTitle">Ekle</string>
     <string name="updateCategoryTitle">Düzenle</string>
     <string name="deleteCategoryTitle">Kaldır</string>

@@ -71,4 +71,14 @@
     <string name="priorityMedium">Trung bình</string>
     <string name="priorityMax">Tối đa</string>
     <string name="emptyScheduleTitle">Chưa có kế hoạch nào hết.</string>
+    <string name="priorityLabel">Ưu tiên</string>
+    <string name="mainCategoryLabel">Danh mục</string>
+    <string name="subCategoryLabel">Danh mục con</string>
+    <string name="subCategoryEmptyTitle">Vắng mặt</string>
+    <string name="dialogCreateTitle">Tạo</string>
+    <string name="endTimeLabel">Kết thúc</string>
+    <string name="notificationLabel">Gửi thông báo</string>
+    <string name="statisticsLabel">Đưa nhiệm vụ vào thống kê</string>
+    <string name="templateEditorHeader">Mẫu</string>
+    <string name="startTimeLabel">Bắt đầu</string>
 </resources>

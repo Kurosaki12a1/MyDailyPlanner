@@ -41,10 +41,6 @@ fun <T> Result<T>.toResultState(): ResultState<T> {
     )
 }
 
-fun <T> default(): ResultState<T> = ResultState.Default
-
-fun <T> loading(): ResultState<T> = ResultState.Loading
-
 suspend fun <T> wrap(block: suspend () -> T): ResultState<T> {
     return try {
         ResultState.Success(block.invoke())

@@ -1,4 +1,4 @@
-package com.kuro.mdp.features.overview.presentation.ui.component
+package com.kuro.mdp.shared.presentation.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,19 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.shared.domain.model.schedules.TaskPriority
 import com.kuro.mdp.shared.presentation.mappers.mapToString
+import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.painterResource
 
-/**
- * Created by: minhthinh.h on 1/21/2025
- *
- * Description:
- */
 @Composable
-internal fun PriorityChooser(
+fun PriorityChooser(
     modifier: Modifier = Modifier,
     priority: TaskPriority,
     onPriorityChange: (TaskPriority) -> Unit,
@@ -43,13 +38,13 @@ internal fun PriorityChooser(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Icon(
-            painter = painterResource(OverViewTheme.icons.priority),
-            contentDescription = OverViewTheme.strings.priorityLabel.string(),
+            painter = painterResource(AppTheme.icons.priority),
+            contentDescription = AppTheme.strings.priorityLabel.string(),
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Text(
             modifier = Modifier.weight(1f),
-            text = OverViewTheme.strings.priorityLabel.string(),
+            text = AppTheme.strings.priorityLabel.string(),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -72,7 +67,7 @@ internal fun PriorityChooser(
 }
 
 @Composable
-internal fun PriorityMenu(
+fun PriorityMenu(
     modifier: Modifier = Modifier,
     isExpanded: Boolean,
     selected: TaskPriority,

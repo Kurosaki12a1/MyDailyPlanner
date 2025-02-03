@@ -49,10 +49,37 @@ internal class CategoriesViewModel(
             is CategoriesEvent.ChangeMainCategory -> {
                 updateState(CategoriesAction.ChangeMainCategory(event.mainCategory))
             }
-            is CategoriesEvent.CheckSelectedCategory -> { }
-            is CategoriesEvent.ClearFailure -> { }
-            is CategoriesEvent.DeleteMainCategory -> { }
-            is CategoriesEvent.DeleteSubCategory -> { }
+            is CategoriesEvent.CheckSelectedCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.checkSelectedCategoryUseCase(state.value.categories)
+                        .collectAndHandle(
+                            onFailure = { showError(it) },
+                            onSuccess = { updateState(it) }
+                        )
+                }
+            }
+
+            is CategoriesEvent.ClearFailure -> {
+                updateState(state.value.copy(failure = null))
+            }
+
+            is CategoriesEvent.DeleteMainCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.deleteMainCategoryUseCase(event.mainCategory)
+                        .collectAndHandle(
+                            onFailure = { showError(it) }
+                        )
+                }
+            }
+
+            is CategoriesEvent.DeleteSubCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.deleteSubCategoryUseCase(event.subCategory)
+                        .collectAndHandle(
+                            onFailure = { showError(it) }
+                        )
+                }
+            }
             is CategoriesEvent.Init -> {
                 viewModelScope.launch {
                     categoriesUseCase.loadCategoriesUseCase()
@@ -63,12 +90,35 @@ internal class CategoriesViewModel(
                 }
             }
 
-            is CategoriesEvent.RestoreDefaultCategories -> { }
+            is CategoriesEvent.RestoreDefaultCategories -> {
+                viewModelScope.launch {
+                    categoriesUseCase.restoreDefaultCategoriesUseCase()
+                        .collectAndHandle(
+                            onFailure = { showError(it) }
+                        )
+                }
+            }
             is CategoriesEvent.ShowSubCategoryDialog -> {
                 updateState(state.value.copy(isShowSubCategoryDialog = event.shouldShow))
             }
-            is CategoriesEvent.UpdateMainCategory -> { }
-            is CategoriesEvent.UpdateSubCategory -> { }
+            is CategoriesEvent.UpdateMainCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.updateMainCategoryUseCase(event.mainCategory)
+                        .collectAndHandle(
+                            onFailure = { showError(it) },
+                            onSuccess = { updateState(it) }
+                        )
+                }
+            }
+
+            is CategoriesEvent.UpdateSubCategory -> {
+                viewModelScope.launch {
+                    categoriesUseCase.updateSubCategoryUseCase(event.subCategory)
+                        .collectAndHandle(
+                            onFailure = { showError(it) },
+                        )
+                }
+            }
         }
     }
 

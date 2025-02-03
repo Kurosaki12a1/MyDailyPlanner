@@ -17,14 +17,11 @@ import home.resources.dateDialogPickerTitle
 import home.resources.dayTitleHome
 import home.resources.deadlineLabel
 import home.resources.deleteCategoryTitle
-import home.resources.dialogCreateTitle
 import home.resources.emptyListTitle
-import home.resources.endTimeLabel
 import home.resources.executeUndefinedTasksTitle
 import home.resources.foundedPlannedTasksTitle
 import home.resources.importanceError
 import home.resources.mainCategoryChooserTitle
-import home.resources.mainCategoryLabel
 import home.resources.mainCategoryTitle
 import home.resources.monthTitle
 import home.resources.nameCategoryTitle
@@ -34,11 +31,9 @@ import home.resources.noneTitle
 import home.resources.noteTitle
 import home.resources.notificationDisabledTitle
 import home.resources.notificationEnabledTitle
-import home.resources.notificationLabel
 import home.resources.otherError
 import home.resources.plannedScheduleTitle
 import home.resources.previousDateIconDesc
-import home.resources.priorityLabel
 import home.resources.progressTitle
 import home.resources.realizedScheduleTitle
 import home.resources.restoreDefaultCategories
@@ -50,19 +45,14 @@ import home.resources.sortedTypeDate
 import home.resources.sortedTypeDuration
 import home.resources.sortedTypeTitle
 import home.resources.specifyDeadlineTitle
-import home.resources.startTimeLabel
 import home.resources.startTimeTaskTitlePlaceHolder
 import home.resources.statisticsActiveTitle
 import home.resources.statisticsDisabledTitle
-import home.resources.statisticsLabel
 import home.resources.subCategoryChooserTitle
 import home.resources.subCategoryDialogMainCategoryFormat
-import home.resources.subCategoryEmptyTitle
-import home.resources.subCategoryLabel
 import home.resources.subCategoryTitle
 import home.resources.taskDateChooserFieldLabel
 import home.resources.taskDateChooserHeader
-import home.resources.templateEditorHeader
 import home.resources.timeTaskAddIconDesc
 import home.resources.timeTaskCheckIconDesc
 import home.resources.timeTaskExpandedIconDesc
@@ -123,7 +113,6 @@ internal data class HomeStrings(
     val importanceError: StringResource,
     val otherError: StringResource,
     val addSubCategoryTitle: StringResource,
-    val dialogCreateTitle: StringResource,
     val emptyListTitle: StringResource,
     val updateCategoryTitle: StringResource,
     val deleteCategoryTitle: StringResource,
@@ -138,15 +127,6 @@ internal data class HomeStrings(
     val statisticsActiveTitle: StringResource,
     val statisticsDisabledTitle: StringResource,
     val addTemplatesFabTitle: StringResource,
-    val templateEditorHeader: StringResource,
-    val mainCategoryLabel: StringResource,
-    val subCategoryLabel: StringResource,
-    val startTimeLabel: StringResource,
-    val endTimeLabel: StringResource,
-    val notificationLabel: StringResource,
-    val statisticsLabel: StringResource,
-    val priorityLabel: StringResource,
-    val subCategoryEmptyTitle: StringResource,
     val addCategoryTitle: StringResource,
     val nameCategoryTitle: StringResource,
     val foundedPlannedTasksTitle: StringResource,
@@ -206,7 +186,6 @@ internal val baseHomeStrings = HomeStrings(
     importanceError = Res.string.importanceError,
     otherError = Res.string.otherError,
     addSubCategoryTitle = Res.string.addSubCategoryTitle,
-    dialogCreateTitle = Res.string.dialogCreateTitle,
     emptyListTitle = Res.string.emptyListTitle,
     updateCategoryTitle = Res.string.updateCategoryTitle,
     deleteCategoryTitle = Res.string.deleteCategoryTitle,
@@ -221,15 +200,6 @@ internal val baseHomeStrings = HomeStrings(
     statisticsActiveTitle = Res.string.statisticsActiveTitle,
     statisticsDisabledTitle = Res.string.statisticsDisabledTitle,
     addTemplatesFabTitle = Res.string.addTemplatesFabTitle,
-    templateEditorHeader = Res.string.templateEditorHeader,
-    mainCategoryLabel = Res.string.mainCategoryLabel,
-    subCategoryLabel = Res.string.subCategoryLabel,
-    startTimeLabel = Res.string.startTimeLabel,
-    endTimeLabel = Res.string.endTimeLabel,
-    notificationLabel = Res.string.notificationLabel,
-    statisticsLabel = Res.string.statisticsLabel,
-    priorityLabel = Res.string.priorityLabel,
-    subCategoryEmptyTitle = Res.string.subCategoryEmptyTitle,
     addCategoryTitle = Res.string.addCategoryTitle,
     nameCategoryTitle = Res.string.nameCategoryTitle,
     foundedPlannedTasksTitle = Res.string.foundedPlannedTasksTitle,

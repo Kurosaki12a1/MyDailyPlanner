@@ -2,6 +2,7 @@ package com.kuro.mdp.shared.utils.extensions
 
 import com.kuro.mdp.shared.utils.format
 import com.kuro.mdp.shared.utils.functional.Constants
+import com.kuro.mdp.shared.utils.functional.TimeFormat
 import com.kuro.mdp.shared.utils.functional.TimeRange
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DatePeriod
@@ -208,6 +209,11 @@ fun Long.mapToDate(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalD
 
 fun getLocalDateTimeNow() = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
+fun getLocalDateWithSpecificTime(hour: Int, minute: Int): LocalDateTime {
+    val currentTime = getLocalDateTimeNow()
+    return LocalDateTime(currentTime.year, currentTime.month, currentTime.dayOfMonth, hour, minute)
+}
+
 fun duration(start: LocalDateTime, end: LocalDateTime): Long {
     return abs(end.toEpochMillis() - start.toEpochMillis())
 }
@@ -280,4 +286,20 @@ fun TimeRange.isIncludeTime(time: LocalDateTime): Boolean {
     return time.toEpochMillis() >= this.from.toEpochMillis() && time.toEpochMillis() <= this.to.toEpochMillis()
 }
 
+fun Int.mapHourAmPmTo24(format: TimeFormat): Int {
+    return when (format) {
+        TimeFormat.PM -> if (this != 12) this + 12 else 12
+        TimeFormat.AM -> if (this != 12) this else 0
+    }
+}
 
+fun Int.mapHour24ToAmPm(): Pair<TimeFormat, Int> {
+    return Pair(
+        first = if (this in 0..11) TimeFormat.AM else TimeFormat.PM,
+        second = when (this@mapHour24ToAmPm) {
+            0 -> 12
+            in 1..12 -> this@mapHour24ToAmPm
+            else -> this@mapHour24ToAmPm - 12
+        },
+    )
+}
