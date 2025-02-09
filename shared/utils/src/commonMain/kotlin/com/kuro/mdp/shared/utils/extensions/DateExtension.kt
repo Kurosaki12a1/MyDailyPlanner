@@ -203,7 +203,8 @@ fun LocalDateTime.toEpochMillis(timeZone: TimeZone = TimeZone.currentSystemDefau
     return this.toInstant(timeZone).toEpochMilliseconds()
 }
 
-fun Long.mapToDate(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalDateTime {
+fun Long?.mapToDate(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalDateTime {
+    if (this == null || this == 0L) return getLocalDateTimeNow()
     return Instant.fromEpochMilliseconds(this).toLocalDateTime(timeZone)
 }
 
@@ -211,7 +212,7 @@ fun getLocalDateTimeNow() = Clock.System.now().toLocalDateTime(TimeZone.currentS
 
 fun getLocalDateWithSpecificTime(hour: Int, minute: Int): LocalDateTime {
     val currentTime = getLocalDateTimeNow()
-    return LocalDateTime(currentTime.year, currentTime.month, currentTime.dayOfMonth, hour, minute)
+    return LocalDateTime(currentTime.year, currentTime.month, currentTime.dayOfMonth, hour, minute, 0, 0)
 }
 
 fun duration(start: LocalDateTime, end: LocalDateTime): Long {

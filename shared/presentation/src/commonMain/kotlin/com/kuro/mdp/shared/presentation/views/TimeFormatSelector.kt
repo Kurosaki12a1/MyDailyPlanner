@@ -11,8 +11,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.TimeFormat
 
 @Composable

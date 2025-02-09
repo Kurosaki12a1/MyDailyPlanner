@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Disabled</string>
     <string name="notificationEnabledTitle">Enabled</string>
     <string name="notificationDisabledTitle">Disabled</string>
+    <string name="sortedTypeDate">By date</string>
+    <string name="sortedTypeCategories">By category</string>
+    <string name="sortedTypeDuration">By duration</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">List is empty</string>
+    <string name="sortedTypeTitle">Sort</string>
 </resources>

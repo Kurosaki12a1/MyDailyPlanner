@@ -1,6 +1,7 @@
 package com.kuro.mdp.shared.presentation.navigation.navigator
 
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import kotlinx.coroutines.flow.SharedFlow
 
 /**
@@ -35,6 +36,9 @@ interface Navigator {
         isSingleTop: Boolean = true
     )
 
+    suspend fun navigateToGraph(
+        route: NavigationGraph
+    )
 }
 
 sealed class NavigationIntent {
@@ -48,5 +52,9 @@ sealed class NavigationIntent {
         val popUpToRoute: Destination? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
+    ) : NavigationIntent()
+
+    data class NavigateToGraph(
+        val route: NavigationGraph
     ) : NavigationIntent()
 }

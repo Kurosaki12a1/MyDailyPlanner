@@ -1,6 +1,7 @@
 package com.kuro.mdp.shared.presentation.navigation.navigator
 
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -61,4 +62,11 @@ class NavigatorImpl : Navigator {
             )
         )
     }
+
+    override suspend fun navigateToGraph(
+        route: NavigationGraph,
+    ) {
+        _navigationFlow.emit(NavigationIntent.NavigateToGraph(route = route))
+    }
+
 }

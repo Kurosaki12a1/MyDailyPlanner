@@ -16,23 +16,23 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class Destination {
     @Serializable
-    @SerialName(Constants.NavigationGraph.SPLASH)
+    @SerialName(Constants.Destination.SPLASH)
     data object Splash : Destination()
 
     @Serializable
-    @SerialName(Constants.NavigationGraph.HOME)
+    @SerialName(Constants.Destination.HOME)
     data class Home(@SerialName(DATE) val scheduleDate: Long? = null) : Destination()
 
     @Serializable
-    @SerialName(Constants.NavigationGraph.OVERVIEW)
+    @SerialName(Constants.Destination.OVERVIEW)
     data object Overview : Destination()
 
     @Serializable
-    @SerialName(Constants.NavigationGraph.ANALYTICS)
+    @SerialName(Constants.Destination.ANALYTICS)
     data object Analytics : Destination()
 
     @Serializable
-    @SerialName(Constants.NavigationGraph.SETTINGS)
+    @SerialName(Constants.Destination.SETTINGS)
     data object Settings : Destination()
 
     @Serializable

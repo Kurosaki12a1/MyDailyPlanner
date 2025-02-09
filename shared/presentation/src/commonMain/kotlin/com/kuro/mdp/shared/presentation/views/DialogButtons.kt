@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.string
 
 /**
  * Created by: minhthinh.h on 12/26/2024

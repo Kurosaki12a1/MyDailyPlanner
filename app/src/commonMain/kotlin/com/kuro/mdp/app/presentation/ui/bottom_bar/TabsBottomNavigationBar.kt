@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.views.BottomBarItem
 import com.kuro.mdp.shared.presentation.views.BottomNavigationBar
 import com.kuro.mdp.shared.utils.functional.Constants
@@ -44,16 +45,16 @@ fun TabsBottomNavigationBar(
 }
 
 fun shouldBottomBarVisible(route: String?): Boolean {
-    return route?.contains(Constants.NavigationGraph.HOME) == true
-            || route?.contains(Constants.NavigationGraph.ANALYTICS) == true
-            || route?.contains(Constants.NavigationGraph.OVERVIEW) == true
-            || route?.contains(Constants.NavigationGraph.SETTINGS) == true
+    return route?.contains(Constants.Destination.HOME) == true
+            || route?.contains(Constants.Destination.ANALYTICS) == true
+            || route?.contains(Constants.Destination.OVERVIEW) == true
+            || route?.contains(Constants.Destination.SETTINGS) == true
 }
 
 enum class BottomNavigationItem : BottomBarItem {
     HOME {
-        override val destination: String
-            get() = Constants.NavigationGraph.HOME
+        override val destination: NavigationGraph
+            get() = NavigationGraph.HomeGraph
         override val enabledIcon: DrawableResource
             get() = Res.drawable.ic_home
         override val disabledIcon: DrawableResource
@@ -62,8 +63,8 @@ enum class BottomNavigationItem : BottomBarItem {
             @Composable get() = stringResource(Res.string.homeTabTitle)
     },
     ANALYTICS {
-        override val destination: String
-            get() = Constants.NavigationGraph.ANALYTICS
+        override val destination: NavigationGraph
+            get() = NavigationGraph.AnalyticsGraph
         override val enabledIcon: DrawableResource
             get() = Res.drawable.ic_analytics
         override val disabledIcon: DrawableResource
@@ -72,8 +73,8 @@ enum class BottomNavigationItem : BottomBarItem {
             @Composable get() = stringResource(Res.string.analyticsTabTitle)
     },
     OVERVIEW {
-        override val destination: String
-            get() = Constants.NavigationGraph.OVERVIEW
+        override val destination: NavigationGraph
+            get() = NavigationGraph.OverviewGraph
         override val enabledIcon: DrawableResource
             get() = Res.drawable.ic_dashboard
         override val disabledIcon: DrawableResource
@@ -94,8 +95,8 @@ enum class BottomNavigationItem : BottomBarItem {
                 get() = stringResource(Res.string.categoriesDrawerTitle)
         },*/
     SETTINGS {
-        override val destination: String
-            get() = Constants.NavigationGraph.SETTINGS
+        override val destination: NavigationGraph
+            get() = NavigationGraph.SettingsGraph
         override val enabledIcon: DrawableResource
             get() = Res.drawable.ic_settings
         override val disabledIcon: DrawableResource

@@ -31,9 +31,9 @@ import com.kuro.mdp.features.settings.domain.model.categories.MainCategoryUi
 import com.kuro.mdp.features.settings.domain.model.categories.SubCategoryUi
 import com.kuro.mdp.features.settings.presentation.extension.fetchName
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.views.DialogButtons
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.format
 
 @OptIn(ExperimentalMaterial3Api::class)

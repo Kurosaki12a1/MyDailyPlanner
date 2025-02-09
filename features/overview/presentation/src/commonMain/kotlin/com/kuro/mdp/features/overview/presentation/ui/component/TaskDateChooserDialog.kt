@@ -32,12 +32,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.views.DialogButtons
 import com.kuro.mdp.shared.presentation.views.ExpandedIcon
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
 import com.kuro.mdp.shared.utils.extensions.shiftDays
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.Constants
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format.DayOfWeekNames

@@ -49,6 +49,7 @@ internal class CategoriesViewModel(
             is CategoriesEvent.ChangeMainCategory -> {
                 updateState(CategoriesAction.ChangeMainCategory(event.mainCategory))
             }
+
             is CategoriesEvent.CheckSelectedCategory -> {
                 viewModelScope.launch {
                     categoriesUseCase.checkSelectedCategoryUseCase(state.value.categories)
@@ -80,6 +81,7 @@ internal class CategoriesViewModel(
                         )
                 }
             }
+
             is CategoriesEvent.Init -> {
                 viewModelScope.launch {
                     categoriesUseCase.loadCategoriesUseCase()
@@ -98,9 +100,11 @@ internal class CategoriesViewModel(
                         )
                 }
             }
+
             is CategoriesEvent.ShowSubCategoryDialog -> {
                 updateState(state.value.copy(isShowSubCategoryDialog = event.shouldShow))
             }
+
             is CategoriesEvent.UpdateMainCategory -> {
                 viewModelScope.launch {
                     categoriesUseCase.updateMainCategoryUseCase(event.mainCategory)

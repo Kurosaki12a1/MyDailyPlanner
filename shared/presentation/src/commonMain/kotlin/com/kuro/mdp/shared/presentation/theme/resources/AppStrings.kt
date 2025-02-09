@@ -2,7 +2,7 @@ package com.kuro.mdp.shared.presentation.theme.resources
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.kuro.mdp.shared.utils.extensions.string
+import com.kuro.mdp.shared.presentation.extensions.string
 import org.jetbrains.compose.resources.StringResource
 import shared.resources.Res
 import shared.resources.afterTaskNotifyText

@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">غیرفعال</string>
     <string name="notificationEnabledTitle">فعال</string>
     <string name="notificationDisabledTitle">غیرفعال</string>
+    <string name="sortedTypeDate">بر اساس تاریخ</string>
+    <string name="sortedTypeCategories">بر اساس طبقه بندی</string>
+    <string name="sortedTypeDuration">بر اساس مدت زمان</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">لیست خالی است</string>
+    <string name="sortedTypeTitle">مرتب شده</string>
 </resources>

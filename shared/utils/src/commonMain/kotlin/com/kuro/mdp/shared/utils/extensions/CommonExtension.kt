@@ -1,8 +1,5 @@
 package com.kuro.mdp.shared.utils.extensions
 
-import androidx.compose.runtime.Composable
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.stringResource
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -17,6 +14,3 @@ fun Int?.toStringOrEmpty() = this?.toString() ?: ""
 fun generateUniqueKey() = Uuid.random().toLongs { mostSignificantBits, _ ->
     mostSignificantBits and Long.MAX_VALUE
 }
-
-@Composable
-fun StringResource.string() = stringResource(this)

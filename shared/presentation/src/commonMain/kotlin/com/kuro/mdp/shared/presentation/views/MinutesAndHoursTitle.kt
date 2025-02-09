@@ -1,8 +1,8 @@
 package com.kuro.mdp.shared.presentation.views
 
 import androidx.compose.runtime.Composable
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.extensions.toDaysString
 import com.kuro.mdp.shared.utils.extensions.toMinutesAndHoursString
 import com.kuro.mdp.shared.utils.extensions.toMinutesOrHoursString

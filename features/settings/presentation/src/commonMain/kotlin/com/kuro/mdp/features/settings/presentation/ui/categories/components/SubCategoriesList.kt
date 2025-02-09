@@ -29,9 +29,9 @@ import com.kuro.mdp.features.settings.domain.model.categories.MainCategoryUi
 import com.kuro.mdp.features.settings.domain.model.categories.SubCategoryUi
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.domain.model.categories.DefaultCategoryType
+import com.kuro.mdp.shared.presentation.extensions.alphaByEnabled
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.alphaByEnabled
-import com.kuro.mdp.shared.utils.extensions.string
 
 @Composable
 internal fun SubCategoriesList(

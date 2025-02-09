@@ -26,7 +26,6 @@ internal class SettingsViewModel(
         dispatchEvent(SettingsEvent.Init)
     }
 
-
     override fun initState(): SettingsViewState = SettingsViewState()
 
     override fun handleEvent(event: SettingsEvent) {
@@ -85,8 +84,9 @@ internal class SettingsViewModel(
             is SettingsEvent.OpenCategoryScreen -> {
                 navigateTo(Destination.Categories())
             }
-            is SettingsEvent.OpenTemplateScreen -> {
 
+            is SettingsEvent.OpenTemplateScreen -> {
+                navigateTo(Destination.Templates)
             }
         }
     }

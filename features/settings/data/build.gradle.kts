@@ -30,6 +30,9 @@ kotlin {
             implementation(projects.shared.presentation)
             implementation(projects.shared.utils)
 
+            // Kotlin Date Time
+            implementation(libs.kotlinx.datetime)
+
             // Flow
             implementation(libs.kotlinx.coroutines.core)
 

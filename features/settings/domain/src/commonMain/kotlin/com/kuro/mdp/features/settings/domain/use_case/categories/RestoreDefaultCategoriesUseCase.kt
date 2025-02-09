@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flow
 class RestoreDefaultCategoriesUseCase(
     private val categoriesRepository: SettingsCategoriesRepository
 ) {
-    operator fun invoke() : Flow<ResultState<Unit>> = flow {
+    operator fun invoke(): Flow<ResultState<Unit>> = flow {
         categoriesRepository.restoreDefaultCategories().handle(
-            onFailure = { emit (ResultState.Failure(it)) }
+            onFailure = { emit(ResultState.Failure(it)) }
         )
     }
 }

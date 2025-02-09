@@ -1,5 +1,10 @@
 package com.kuro.mdp.app.di
 
+import com.kuro.mdp.app.domain.use_case.FetchSettingsUseCase
+import com.kuro.mdp.app.domain.use_case.MainUseCase
+import com.kuro.mdp.app.domain.use_case.UpdateEditorUseCase
+import com.kuro.mdp.app.domain.use_case.UpdateMainCategoryUseCase
+import com.kuro.mdp.app.domain.use_case.UpdateScheduleDateUseCase
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
 import com.kuro.mdp.features.home.data.homeDataModule
 import com.kuro.mdp.features.home.domain.homeDomainModule
@@ -31,5 +36,13 @@ val featureModules = module {
         overViewDomainModule,
         overViewPresentationModule,
     )
-    viewModel<MainViewModel> { MainViewModel(get(), get(), get(), get()) }
+    factory<MainUseCase> {
+        MainUseCase(
+            fetchSettingsUseCase = FetchSettingsUseCase(get()),
+            updateMainCategoryUseCase = UpdateMainCategoryUseCase(get()),
+            updateScheduleDateUseCase = UpdateScheduleDateUseCase(get()),
+            updateEditorUseCase = UpdateEditorUseCase(get())
+        )
+    }
+    viewModel<MainViewModel> { MainViewModel(get(), get()) }
 }

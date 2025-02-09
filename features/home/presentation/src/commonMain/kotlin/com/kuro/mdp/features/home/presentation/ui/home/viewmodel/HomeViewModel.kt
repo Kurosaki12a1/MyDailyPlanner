@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.features.home.domain.model.HomeError
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.features.home.domain.use_case.HomeUseCase
-import com.kuro.mdp.features.home.presentation.ui.home.ui.HomeEvent
-import com.kuro.mdp.features.home.presentation.ui.home.ui.HomeViewState
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeEvent
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeViewState
 import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
 import com.kuro.mdp.shared.domain.model.settings.TasksSettings
-import com.kuro.mdp.shared.presentation.navigation.destination.Destination
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.functional.TimeShiftException
@@ -79,7 +79,7 @@ internal class HomeViewModel(
             }
 
             is HomeEvent.PressAddTimeTaskButton -> {
-                // TODO
+
             }
 
             is HomeEvent.PressEditTimeTaskButton -> {
@@ -87,7 +87,7 @@ internal class HomeViewModel(
             }
 
             is HomeEvent.PressOverviewButton -> {
-                navigateTo(Destination.Overview)
+                navigateTo(NavigationGraph.OverviewGraph)
             }
 
             is HomeEvent.PressViewToggleButton -> {

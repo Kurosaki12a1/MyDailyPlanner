@@ -71,6 +71,8 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.kotlin.serilization)
+
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }

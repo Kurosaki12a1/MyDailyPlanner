@@ -9,9 +9,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextAlign
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.TopAppBarButton
 import com.kuro.mdp.shared.presentation.views.TopAppBarTitle
-import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.painterResource
 
 /**

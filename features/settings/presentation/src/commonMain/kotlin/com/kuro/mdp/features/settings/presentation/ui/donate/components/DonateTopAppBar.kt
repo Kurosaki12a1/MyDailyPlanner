@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.TopAppBarButton
 import com.kuro.mdp.shared.presentation.views.TopAppBarEmptyButton
 import com.kuro.mdp.shared.presentation.views.TopAppBarTitle
-import com.kuro.mdp.shared.utils.extensions.string
 
 /**
  * Created by: minhthinh.h on 1/14/2025

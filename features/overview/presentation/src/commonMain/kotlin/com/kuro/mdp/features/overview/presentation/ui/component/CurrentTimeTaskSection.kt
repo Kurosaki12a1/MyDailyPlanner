@@ -37,12 +37,12 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.overview.domain.model.schedules.TimeTaskOverView
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.features.overview.presentation.util.fetchName
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.mappers.mapToUi
 import com.kuro.mdp.shared.presentation.views.CategoryIconMonogram
 import com.kuro.mdp.shared.presentation.views.CategoryTextMonogram
 import com.kuro.mdp.shared.presentation.views.PlaceHolderBox
-import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import kotlin.math.roundToInt

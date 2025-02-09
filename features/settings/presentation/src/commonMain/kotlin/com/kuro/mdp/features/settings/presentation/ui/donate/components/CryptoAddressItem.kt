@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.domain.model.donate.CryptoAddress
 import com.kuro.mdp.features.settings.presentation.mappers.mapToIcon
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
-import com.kuro.mdp.shared.utils.extensions.string
+import com.kuro.mdp.shared.presentation.extensions.string
 import org.jetbrains.compose.resources.painterResource
 
 /**

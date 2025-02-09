@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
 import com.kuro.mdp.shared.domain.model.template.RepeatTimeType
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.views.BackMenuItem
 import com.kuro.mdp.shared.presentation.views.CheckedMenuItem
 import com.kuro.mdp.shared.presentation.views.NavMenuItem
-import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.Month
 

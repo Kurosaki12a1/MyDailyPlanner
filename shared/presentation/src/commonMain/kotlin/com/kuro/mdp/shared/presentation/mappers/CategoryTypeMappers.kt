@@ -2,10 +2,10 @@ package com.kuro.mdp.shared.presentation.mappers
 
 import androidx.compose.runtime.Composable
 import com.kuro.mdp.shared.domain.model.categories.DefaultCategoryType
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.theme.resources.AppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.AppStrings
-import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource

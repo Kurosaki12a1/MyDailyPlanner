@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.presentation.mappers.toLanguageName
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.presentation.LanguageUiType
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.DialogButtons
-import com.kuro.mdp.shared.utils.extensions.string
 
 /**
  * Created by: minhthinh.h on 12/26/2024

@@ -1,5 +1,7 @@
 package com.kuro.mdp.shared.presentation.navigation.graph
 
+import com.kuro.mdp.shared.utils.functional.Constants
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,19 +10,24 @@ import kotlinx.serialization.Serializable
  * Description:
  */
 @Serializable
-sealed class NavigationGraph {
+sealed class NavigationGraph(val mainDestination: String) {
     @Serializable
-    data object SplashGraph : NavigationGraph()
+    @SerialName(Constants.NavigationGraph.MAIN)
+    data object MainGraph : NavigationGraph(mainDestination = "")
 
     @Serializable
-    data object HomeGraph : NavigationGraph()
+    @SerialName(Constants.NavigationGraph.HOME)
+    data object HomeGraph : NavigationGraph(mainDestination = Constants.Destination.HOME)
 
     @Serializable
-    data object AnalyticsGraph : NavigationGraph()
+    @SerialName(Constants.NavigationGraph.ANALYTICS)
+    data object AnalyticsGraph : NavigationGraph(mainDestination = Constants.Destination.ANALYTICS)
 
     @Serializable
-    data object SettingsGraph : NavigationGraph()
+    @SerialName(Constants.NavigationGraph.SETTINGS)
+    data object SettingsGraph : NavigationGraph(mainDestination = Constants.Destination.SETTINGS)
 
     @Serializable
-    data object OverviewGraph : NavigationGraph()
+    @SerialName(Constants.NavigationGraph.OVERVIEW)
+    data object OverviewGraph : NavigationGraph(mainDestination = Constants.Destination.OVERVIEW)
 }

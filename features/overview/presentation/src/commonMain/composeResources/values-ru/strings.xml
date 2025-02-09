@@ -51,12 +51,6 @@
     <string name="addTemplatesFabTitle">+</string>
 
 
-
-
-
-
-
-
     <string name="addCategoryTitle">Добавить</string>
     <string name="nameCategoryTitle">Название</string>
     <string name="foundedPlannedTasksTitle">Найдено запланированных задач: %s</string>

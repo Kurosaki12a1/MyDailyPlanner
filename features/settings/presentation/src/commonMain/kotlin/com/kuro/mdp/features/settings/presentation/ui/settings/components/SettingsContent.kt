@@ -24,10 +24,10 @@ import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsViewState
 import com.kuro.mdp.shared.domain.model.settings.CalendarButtonBehavior
 import com.kuro.mdp.shared.presentation.LanguageUiType
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.ColorsUiType
 import com.kuro.mdp.shared.presentation.theme.ThemeUiType
 import com.kuro.mdp.shared.utils.DevicePlatform
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.Constants
 import com.kuro.mdp.shared.utils.getPlatform
 

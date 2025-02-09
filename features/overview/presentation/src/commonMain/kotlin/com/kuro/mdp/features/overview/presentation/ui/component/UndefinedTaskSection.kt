@@ -57,6 +57,7 @@ import com.kuro.mdp.features.overview.domain.model.schedules.UndefinedTaskOverVi
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.features.overview.presentation.util.fetchName
 import com.kuro.mdp.shared.domain.model.schedules.TaskPriority
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.theme.materials.badgePriorityMax
 import com.kuro.mdp.shared.presentation.theme.materials.badgePriorityMedium
@@ -64,7 +65,6 @@ import com.kuro.mdp.shared.presentation.views.MonogramBadge
 import com.kuro.mdp.shared.presentation.views.PlaceHolderBox
 import com.kuro.mdp.shared.presentation.views.toDaysTitle
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.Constants
 import kotlinx.coroutines.launch

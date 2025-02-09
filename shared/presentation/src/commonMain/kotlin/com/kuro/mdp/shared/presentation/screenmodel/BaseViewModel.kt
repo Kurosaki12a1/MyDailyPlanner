@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseEvent
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseViewState
@@ -59,6 +60,18 @@ abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
     ) {
         viewModelScope.launch {
             navigator.navigateTo(route, popUpToRoute, inclusive, isSingleTop)
+        }
+    }
+
+    /**
+     * Navigate to certain given graph
+     * @param route Route which you want navigate to
+     */
+    fun navigateTo(
+        route: NavigationGraph
+    ) {
+        viewModelScope.launch {
+            navigator.navigateToGraph(route)
         }
     }
 

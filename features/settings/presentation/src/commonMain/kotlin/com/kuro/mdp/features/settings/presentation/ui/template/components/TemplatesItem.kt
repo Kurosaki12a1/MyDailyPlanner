@@ -32,6 +32,7 @@ import com.kuro.mdp.features.settings.domain.model.template.TemplateUi
 import com.kuro.mdp.features.settings.presentation.extension.fetchName
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.theme.AppTheme
@@ -40,7 +41,6 @@ import com.kuro.mdp.shared.presentation.views.CategoryTextMonogram
 import com.kuro.mdp.shared.presentation.views.TemplateEditorDialog
 import com.kuro.mdp.shared.presentation.views.toMinutesOrHoursTitle
 import com.kuro.mdp.shared.utils.extensions.duration
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.format
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format.char
@@ -143,11 +143,9 @@ internal fun TemplateItemInfo(
     repeatTimes: List<RepeatTime>,
 ) {
     val timeFormat = LocalDateTime.Format {
-        dayOfMonth()
-        char('/')
-        monthNumber()
-        char('/')
-        yearTwoDigits(2000)
+        hour()
+        char('-')
+        minute()
     }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(16.dp)) {

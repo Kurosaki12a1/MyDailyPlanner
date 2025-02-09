@@ -5,7 +5,6 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import com.kuro.mdp.shared.utils.view.PlaceHolderHighlight
 
 /**
  * Created by: minhthinh.h on 1/21/2025

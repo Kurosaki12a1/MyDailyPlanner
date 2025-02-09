@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Désactivé</string>
     <string name="notificationEnabledTitle">Activé</string>
     <string name="notificationDisabledTitle">Désactivé</string>
+    <string name="sortedTypeDate">Par date</string>
+    <string name="sortedTypeCategories">Par catégorie</string>
+    <string name="sortedTypeDuration">Par durée</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">La liste est vide</string>
+    <string name="sortedTypeTitle">Trié</string>
 </resources>

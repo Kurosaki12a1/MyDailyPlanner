@@ -5,6 +5,7 @@ import org.jetbrains.compose.resources.StringResource
 import settings.resources.Res
 import settings.resources.aboutAppHeader
 import settings.resources.addCategoryTitle
+import settings.resources.addTemplatesFabTitle
 import settings.resources.askQuestionTitle
 import settings.resources.backIconDesc
 import settings.resources.backupDataTitle
@@ -23,6 +24,7 @@ import settings.resources.deleteCategoryTitle
 import settings.resources.developerTitle
 import settings.resources.donateHeader
 import settings.resources.donateTitle
+import settings.resources.emptyListTitle
 import settings.resources.engLanguageTitle
 import settings.resources.errorBackupFileMessage
 import settings.resources.errorBackupMessage
@@ -56,6 +58,10 @@ import settings.resources.secureModeTitle
 import settings.resources.secureSectionHeader
 import settings.resources.selectDayCalendarBehavior
 import settings.resources.settingsTitle
+import settings.resources.sortedTypeCategories
+import settings.resources.sortedTypeDate
+import settings.resources.sortedTypeDuration
+import settings.resources.sortedTypeTitle
 import settings.resources.spaLanguageTitle
 import settings.resources.statisticsActiveTitle
 import settings.resources.statisticsDisabledTitle
@@ -144,11 +150,17 @@ data class SettingsStrings(
     val subCategoryTitle: StringResource,
     val subCategoryDialogMainCategoryFormat: StringResource,
     val categoryFieldLabel: StringResource,
-    val navToBackTitle : StringResource,
-    val statisticsActiveTitle : StringResource,
-    val statisticsDisabledTitle : StringResource,
-    val notificationEnabledTitle : StringResource,
-    val notificationDisabledTitle : StringResource,
+    val navToBackTitle: StringResource,
+    val statisticsActiveTitle: StringResource,
+    val statisticsDisabledTitle: StringResource,
+    val notificationEnabledTitle: StringResource,
+    val notificationDisabledTitle: StringResource,
+    val sortedTypeDate: StringResource,
+    val sortedTypeCategories: StringResource,
+    val sortedTypeDuration: StringResource,
+    val sortedTypeTitle: StringResource,
+    val addTemplatesFabTitle: StringResource,
+    val emptyListTitle: StringResource
 )
 
 val baseSettingsStrings = SettingsStrings(
@@ -222,6 +234,12 @@ val baseSettingsStrings = SettingsStrings(
     statisticsDisabledTitle = Res.string.statisticsDisabledTitle,
     notificationEnabledTitle = Res.string.notificationEnabledTitle,
     notificationDisabledTitle = Res.string.notificationDisabledTitle,
+    sortedTypeDate = Res.string.sortedTypeDate,
+    sortedTypeCategories = Res.string.sortedTypeCategories,
+    sortedTypeDuration = Res.string.sortedTypeDuration,
+    sortedTypeTitle = Res.string.sortedTypeTitle,
+    addTemplatesFabTitle = Res.string.addTemplatesFabTitle,
+    emptyListTitle = Res.string.emptyListTitle
 )
 
 internal val LocalSettingsStrings = staticCompositionLocalOf<SettingsStrings> {

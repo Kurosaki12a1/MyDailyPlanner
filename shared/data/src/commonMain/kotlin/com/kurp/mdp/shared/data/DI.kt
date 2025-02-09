@@ -12,6 +12,8 @@ import com.kuro.mdp.shared.domain.repository.TimeTaskRepository
 import com.kuro.mdp.shared.domain.repository.UndefinedTasksRepository
 import com.kuro.mdp.shared.domain.repository.feature.FeatureCategoryLocalDataSource
 import com.kuro.mdp.shared.domain.repository.feature.FeatureCategoryRepository
+import com.kuro.mdp.shared.domain.repository.feature.FeatureEditorLocalDataSource
+import com.kuro.mdp.shared.domain.repository.feature.FeatureEditorRepository
 import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleLocalDataSource
 import com.kuro.mdp.shared.domain.repository.feature.FeatureScheduleRepository
 import com.kurp.mdp.shared.data.data_sources.api.categories.CategoriesLocalDataSource
@@ -51,6 +53,8 @@ import com.kurp.mdp.shared.data.repository.common.ScheduleStatusCheckerImpl
 import com.kurp.mdp.shared.data.repository.common.TimeTaskStatusCheckerImpl
 import com.kurp.mdp.shared.data.repository.feature.FeatureCategoryLocalDataSourceImpl
 import com.kurp.mdp.shared.data.repository.feature.FeatureCategoryRepositoryImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureEditorLocalDataSourceImpl
+import com.kurp.mdp.shared.data.repository.feature.FeatureEditorRepositoryImpl
 import com.kurp.mdp.shared.data.repository.feature.FeatureScheduleLocalDataSourceImpl
 import com.kurp.mdp.shared.data.repository.feature.FeatureScheduleRepositoryImpl
 import org.koin.core.module.Module
@@ -79,6 +83,7 @@ internal val databaseModule = module {
 
     single<FeatureCategoryLocalDataSource> { FeatureCategoryLocalDataSourceImpl() }
     single<FeatureScheduleLocalDataSource> { FeatureScheduleLocalDataSourceImpl() }
+    single<FeatureEditorLocalDataSource> { FeatureEditorLocalDataSourceImpl() }
 }
 
 internal val repositoryModule = module {
@@ -98,6 +103,7 @@ internal val repositoryModule = module {
 
     single<FeatureCategoryRepository> { FeatureCategoryRepositoryImpl(get()) }
     single<FeatureScheduleRepository> { FeatureScheduleRepositoryImpl(get()) }
+    single<FeatureEditorRepository> { FeatureEditorRepositoryImpl(get()) }
 }
 
 val sharedDataModule = listOf(databasePlatformModule(), databaseModule, repositoryModule)

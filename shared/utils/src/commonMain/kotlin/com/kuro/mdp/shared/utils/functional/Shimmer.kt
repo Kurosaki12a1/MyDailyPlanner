@@ -6,7 +6,6 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.util.lerp
-import com.kuro.mdp.shared.utils.view.PlaceHolderHighlight
 import kotlin.math.max
 
 /**

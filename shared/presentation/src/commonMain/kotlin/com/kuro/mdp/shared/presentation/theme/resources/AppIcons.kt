@@ -47,7 +47,6 @@ import shared.resources.ic_sport
 import shared.resources.ic_start_time
 import shared.resources.ic_store
 import shared.resources.ic_study
-import shared.resources.ic_sub_category
 import shared.resources.ic_subcategory
 import shared.resources.ic_template
 import shared.resources.ic_time
@@ -63,8 +62,8 @@ data class AppIcons(
     val logo: DrawableResource,
     val logoCircular: DrawableResource,
     val splashIcon: DrawableResource,
-    val category : DrawableResource,
-    val subCategory : DrawableResource,
+    val category: DrawableResource,
+    val subCategory: DrawableResource,
     val categoryWorkIcon: DrawableResource,
     val categoryRestIcon: DrawableResource,
     val categorySportIcon: DrawableResource,
@@ -103,11 +102,11 @@ data class AppIcons(
     val add: DrawableResource,
     val keyboard: DrawableResource,
     val priority: DrawableResource,
-    val startTime : DrawableResource,
-    val endTime : DrawableResource,
+    val startTime: DrawableResource,
+    val endTime: DrawableResource,
     val notification: DrawableResource,
-    val info : DrawableResource,
-    val notFound : DrawableResource
+    val info: DrawableResource,
+    val notFound: DrawableResource
 )
 
 internal val baseAppIcons = AppIcons(

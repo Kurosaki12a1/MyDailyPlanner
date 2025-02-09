@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import com.kuro.mdp.shared.presentation.extensions.scrollText
+import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.scrollText
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -36,11 +37,11 @@ fun <Item : BottomBarItem> BottomNavigationBar(
     ) {
         items.forEach { item ->
             NavigationBarItem(
-                selected = selectedItem == item.destination,
+                selected = selectedItem == item.destination.toString(),
                 onClick = { onItemSelected.invoke(item) },
                 icon = {
                     BottomBarIcon(
-                        selected = selectedItem == item.destination,
+                        selected = selectedItem?.contains(item.destination.mainDestination) == true,
                         enabledIcon = painterResource(item.enabledIcon),
                         disabledIcon = painterResource(item.disabledIcon),
                         description = item.label
@@ -49,7 +50,7 @@ fun <Item : BottomBarItem> BottomNavigationBar(
                 label = {
                     if (showLabel) {
                         BottomBarLabel(
-                            selected = selectedItem == item.destination,
+                            selected = selectedItem == item.destination.toString(),
                             title = item.label
                         )
                     }
@@ -99,7 +100,7 @@ private fun BottomBarLabel(
 }
 
 interface BottomBarItem {
-    val destination: String
+    val destination: NavigationGraph
     val label: String @Composable get
     val enabledIcon: DrawableResource
     val disabledIcon: DrawableResource

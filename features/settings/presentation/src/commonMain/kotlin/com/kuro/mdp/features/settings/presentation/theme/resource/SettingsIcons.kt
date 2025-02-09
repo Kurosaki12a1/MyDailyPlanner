@@ -50,8 +50,8 @@ data class SettingsIcons(
     val repeatVariant: DrawableResource,
     val statistics: DrawableResource,
     val notification: DrawableResource,
-    val time : DrawableResource,
-    val duration : DrawableResource,
+    val time: DrawableResource,
+    val duration: DrawableResource,
 )
 
 val baseSettingIcons = SettingsIcons(

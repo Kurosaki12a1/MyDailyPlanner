@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
-import com.kuro.mdp.shared.utils.extensions.string
+import com.kuro.mdp.shared.presentation.extensions.string
 
 @Composable
 internal fun CategoriesParametersMenu(

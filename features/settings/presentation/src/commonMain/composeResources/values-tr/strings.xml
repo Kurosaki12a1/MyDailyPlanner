@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Devre dışı</string>
     <string name="notificationEnabledTitle">Etkin</string>
     <string name="notificationDisabledTitle">Devre dışı</string>
+    <string name="sortedTypeDate">Tarihe göre</string>
+    <string name="sortedTypeCategories">Kategoriye göre</string>
+    <string name="sortedTypeDuration">Süreye göre</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">Liste boş</string>
+    <string name="sortedTypeTitle">Sıralı</string>
 </resources>

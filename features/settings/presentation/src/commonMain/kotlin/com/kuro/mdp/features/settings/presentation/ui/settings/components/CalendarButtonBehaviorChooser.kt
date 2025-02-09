@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.domain.model.settings.CalendarButtonBehavior
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.SegmentedButtonItem
 import com.kuro.mdp.shared.presentation.views.SegmentedButtons
-import com.kuro.mdp.shared.utils.extensions.string
 
 /**
  * Created by: minhthinh.h on 12/26/2024

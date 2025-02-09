@@ -8,6 +8,7 @@ import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseEvent
 sealed class TemplatesEvent : BaseEvent {
     data object Init : TemplatesEvent()
     data object ClearFailure : TemplatesEvent()
+    data object NavigateToSettings : TemplatesEvent()
     data class AddTemplate(val template: TemplateUi) : TemplatesEvent()
     data class UpdateTemplate(val template: TemplateUi) : TemplatesEvent()
     data class RestartTemplateRepeat(val template: TemplateUi) : TemplatesEvent()

@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Выключена</string>
     <string name="notificationEnabledTitle">Включено</string>
     <string name="notificationDisabledTitle">Выключено</string>
+    <string name="sortedTypeDate">По дате</string>
+    <string name="sortedTypeCategories">По категориям</string>
+    <string name="sortedTypeDuration">По длительности</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">Список пуст</string>
+    <string name="sortedTypeTitle">Сортировать</string>
 </resources>

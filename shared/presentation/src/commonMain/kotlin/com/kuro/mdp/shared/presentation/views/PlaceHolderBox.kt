@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import com.kuro.mdp.shared.utils.extensions.placeholder
-import com.kuro.mdp.shared.utils.extensions.shimmer
-import com.kuro.mdp.shared.utils.view.PlaceHolderHighlight
+import com.kuro.mdp.shared.presentation.extensions.placeholder
+import com.kuro.mdp.shared.presentation.extensions.shimmer
+import com.kuro.mdp.shared.utils.functional.PlaceHolderHighlight
 
 /**
  * Created by: minhthinh.h on 1/21/2025

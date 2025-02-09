@@ -32,12 +32,21 @@ object Constants {
     }
 
     object NavigationGraph {
-        const val HOME = "Home"
-        const val SPLASH = "Splash"
-        const val ANALYTICS = "Analytics"
-        const val SETTINGS = "Settings"
-        const val OVERVIEW = "Overview"
-        const val CATEGORIES = "Categories"
+        const val HOME = "HomeGraph"
+        const val MAIN = "MainGraph"
+        const val ANALYTICS = "AnalyticsGraph"
+        const val SETTINGS = "SettingsGraph"
+        const val OVERVIEW = "OverviewGraph"
+        const val CATEGORIES = "CategoriesGraph"
+    }
+
+    object Destination {
+        const val HOME = "HomeDestination"
+        const val SPLASH = "SplashDestination"
+        const val ANALYTICS = "AnalyticsDestination"
+        const val SETTINGS = "SettingsDestination"
+        const val OVERVIEW = "OverviewDestination"
+        const val CATEGORIES = "CategoriesDestination"
     }
 
     object NavigationArguments {

@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Đã tắt</string>
     <string name="notificationEnabledTitle">Đã bật</string>
     <string name="notificationDisabledTitle">Đã tắt</string>
+    <string name="sortedTypeDate">Theo ngày</string>
+    <string name="sortedTypeCategories">Theo danh mục</string>
+    <string name="sortedTypeDuration">Theo thời lượng</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">Danh sách trống</string>
+    <string name="sortedTypeTitle">Đã sắp xếp</string>
 </resources>

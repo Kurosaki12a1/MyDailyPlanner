@@ -100,8 +100,7 @@ class OverViewViewModel(
             }
 
             is OverViewEvent.PressScheduleButton -> {
-                val screen = Destination.Home()
-                navigateTo(screen)
+                navigateTo(Destination.Home())
             }
         }
     }

@@ -29,11 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
+import com.kuro.mdp.shared.presentation.extensions.scrollText
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.utils.extensions.endThisDay
 import com.kuro.mdp.shared.utils.extensions.mapToDate
-import com.kuro.mdp.shared.utils.extensions.scrollText
-import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format.DayOfWeekNames
 import kotlinx.datetime.format.MonthNames

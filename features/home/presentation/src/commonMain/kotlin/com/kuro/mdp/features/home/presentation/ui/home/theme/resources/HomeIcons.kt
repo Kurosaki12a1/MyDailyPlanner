@@ -11,6 +11,7 @@ import shared.resources.ic_category
 import shared.resources.ic_charts
 import shared.resources.ic_check
 import shared.resources.ic_complete_task
+import shared.resources.ic_delete
 import shared.resources.ic_end_time
 import shared.resources.ic_info
 import shared.resources.ic_menu
@@ -30,6 +31,7 @@ import shared.resources.ic_schedule
 import shared.resources.ic_start_time
 import shared.resources.ic_stop
 import shared.resources.ic_subcategory
+import shared.resources.ic_template
 import shared.resources.ic_time
 import shared.resources.ic_timer
 import shared.resources.ic_update_repeat
@@ -69,7 +71,10 @@ internal data class HomeIcons(
     val schedule: DrawableResource,
     val completedTask: DrawableResource,
     val unExecutedTask: DrawableResource,
-    val offNotifications: DrawableResource
+    val offNotifications: DrawableResource,
+    val templates: DrawableResource,
+    val delete: DrawableResource,
+    val deadline: DrawableResource
 )
 
 internal val baseHomeIcons = HomeIcons(
@@ -103,6 +108,9 @@ internal val baseHomeIcons = HomeIcons(
     completedTask = Res.drawable.ic_complete_task,
     unExecutedTask = Res.drawable.ic_not_complete_task,
     offNotifications = Res.drawable.ic_bell_off,
+    templates = Res.drawable.ic_template,
+    delete = Res.drawable.ic_delete,
+    deadline = Res.drawable.ic_timer
 )
 
 internal val LocalHomeIcons = staticCompositionLocalOf<HomeIcons> {

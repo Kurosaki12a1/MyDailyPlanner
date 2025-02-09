@@ -69,4 +69,10 @@
     <string name="statisticsDisabledTitle">Wyłączone</string>
     <string name="notificationEnabledTitle">Włączone</string>
     <string name="notificationDisabledTitle">Wyłączone</string>
+    <string name="sortedTypeDate">Według daty</string>
+    <string name="sortedTypeCategories">Według kategorii</string>
+    <string name="sortedTypeDuration">Według czasu trwania</string>
+    <string name="addTemplatesFabTitle">+</string>
+    <string name="emptyListTitle">Lista jest pusta</string>
+    <string name="sortedTypeTitle">Posortowane</string>
 </resources>

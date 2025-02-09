@@ -41,6 +41,7 @@ import com.kuro.mdp.features.overview.domain.model.categories.MainCategoryOverVi
 import com.kuro.mdp.features.overview.domain.model.schedules.UndefinedTaskOverView
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.shared.domain.model.schedules.TaskPriority
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.views.CompactCategoryChooser
 import com.kuro.mdp.shared.presentation.views.CompactSubCategoryChooser
@@ -48,7 +49,6 @@ import com.kuro.mdp.shared.presentation.views.DialogButtons
 import com.kuro.mdp.shared.presentation.views.PriorityChooser
 import com.kuro.mdp.shared.utils.extensions.generateUniqueKey
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.functional.Constants
 import org.jetbrains.compose.resources.painterResource
 

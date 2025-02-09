@@ -24,11 +24,11 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.overview.domain.model.schedules.ScheduleOverView
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
 import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
+import com.kuro.mdp.shared.presentation.extensions.alphaByEnabled
+import com.kuro.mdp.shared.presentation.extensions.scrollText
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.alphaByEnabled
 import com.kuro.mdp.shared.utils.extensions.isCurrentDay
-import com.kuro.mdp.shared.utils.extensions.scrollText
-import com.kuro.mdp.shared.utils.extensions.string
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format.DayOfWeekNames
 import kotlinx.datetime.format.MonthNames

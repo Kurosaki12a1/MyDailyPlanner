@@ -27,10 +27,10 @@ import androidx.compose.ui.unit.dp
 import com.kuro.mdp.shared.domain.model.categories.Categories
 import com.kuro.mdp.shared.domain.model.categories.MainCategory
 import com.kuro.mdp.shared.domain.model.categories.SubCategory
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.fetchName
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.theme.AppTheme
-import com.kuro.mdp.shared.utils.extensions.string
 import org.jetbrains.compose.resources.painterResource
 
 @Composable

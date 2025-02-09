@@ -46,9 +46,9 @@ import com.kuro.mdp.features.settings.domain.model.categories.MainCategoryUi
 import com.kuro.mdp.features.settings.presentation.extension.fetchName
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.shared.domain.model.categories.DefaultCategoryType
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.mappers.mapToIconPainter
 import com.kuro.mdp.shared.presentation.views.WarningDeleteDialog
-import com.kuro.mdp.shared.utils.extensions.string
 
 @Composable
 internal fun MainCategoriesHorizontalList(

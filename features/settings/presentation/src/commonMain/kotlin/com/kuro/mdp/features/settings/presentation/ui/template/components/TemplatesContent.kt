@@ -38,6 +38,7 @@ import com.kuro.mdp.features.settings.presentation.mappers.mapToString
 import com.kuro.mdp.features.settings.presentation.theme.SettingsTheme
 import com.kuro.mdp.features.settings.presentation.ui.template.TemplateViewState
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.EmptyDateView
 import com.kuro.mdp.shared.presentation.views.ExpandedIcon
 
@@ -112,7 +113,7 @@ internal fun TemplatesLazyColumn(
         Box(Modifier.fillMaxSize()) {
             EmptyDateView(
                 modifier = Modifier.align(Alignment.Center),
-                emptyTitle = SettingsTheme.strings.emptyListTitle,
+                emptyTitle = SettingsTheme.strings.emptyListTitle.string(),
             )
         }
     } else {
@@ -134,7 +135,7 @@ internal fun TemplatesFiltersHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = SettingsTheme.strings.sortedTypeTitle,
+            text = SettingsTheme.strings.sortedTypeTitle.string(),
             color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.labelLarge,
         )

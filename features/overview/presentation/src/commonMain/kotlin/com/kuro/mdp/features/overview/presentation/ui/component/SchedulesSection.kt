@@ -26,8 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kuro.mdp.features.overview.domain.model.schedules.ScheduleOverView
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
+import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.PlaceHolderBox
-import com.kuro.mdp.shared.utils.extensions.string
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.Constants
 
