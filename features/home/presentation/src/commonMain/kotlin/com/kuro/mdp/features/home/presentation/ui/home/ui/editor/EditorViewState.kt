@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.home.presentation.ui.home.ui.editor
 
+import androidx.compose.runtime.Stable
 import com.kuro.mdp.features.home.domain.model.categories.CategoriesHome
 import com.kuro.mdp.features.home.domain.model.editor.EditModelHome
 import com.kuro.mdp.features.home.domain.model.editor.error.CategoryValidateError
@@ -7,6 +8,8 @@ import com.kuro.mdp.features.home.domain.model.editor.error.TimeRangeError
 import com.kuro.mdp.features.home.domain.model.schedules.UndefinedTaskHome
 import com.kuro.mdp.features.home.domain.model.templates.TemplateHome
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseViewState
+import com.kuro.mdp.shared.utils.functional.TimeRange
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 
 /**
@@ -15,6 +18,7 @@ import kotlinx.serialization.Serializable
  * Description:
  */
 @Serializable
+@Stable
 data class EditorViewState(
     val editModel: EditModelHome? = null,
     val categories: List<CategoriesHome> = emptyList(),
@@ -24,4 +28,16 @@ data class EditorViewState(
     val isUndefinedTasksSheetOpen: Boolean = false,
     val timeRangeValid: TimeRangeError? = null,
     val categoryValid: CategoryValidateError? = null,
+    val error: EditorError? = null
 ) : BaseViewState
+
+@Serializable
+@Stable
+sealed class EditorError {
+    data class ShowError(val throwable: Throwable) : EditorError()
+    data class ShowOverLayError(
+        val currentTimeRange: TimeRange,
+        val startOverlay: LocalDateTime?,
+        val endOverlay: LocalDateTime?
+    ) : EditorError()
+}

@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import com.kuro.mdp.shared.domain.model.template.RepeatTime
 import com.kuro.mdp.shared.domain.model.template.Template
+import com.kuro.mdp.shared.presentation.extensions.getId
+import com.kuro.mdp.shared.presentation.extensions.getString
 import com.kuro.mdp.shared.presentation.mappers.mapToIcon
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
@@ -15,8 +17,6 @@ import com.kuro.mdp.shared.presentation.theme.resources.AppIcons
 import com.kuro.mdp.shared.presentation.theme.resources.baseAppStrings
 import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
-import extensions.getId
-import extensions.getString
 import kotlinx.datetime.LocalDateTime
 
 /**
@@ -39,7 +39,7 @@ class TemplatesAlarmManagerImpl(
         timeType = NotificationTimeType.START_TASK,
         repeatTime = repeatTime,
         time = template.startTime,
-        category = template.category.let { context.getString(it.default?.mapToString(baseAppStrings)) },
+        category = template.category.let { context.getString(resource = it.default?.mapToString(baseAppStrings)) },
         subCategory = template.subCategory?.name,
         icon = template.category.default?.mapToIcon(appIcons)?.getId(context) { IconProvider.get(it) }
     )
@@ -79,7 +79,7 @@ class TemplatesAlarmManagerImpl(
         val id = template.templateId + repeatTime.key
         val alarmIntent = receiverProvider.provideReceiverIntent(
             AlarmReceiverIntent(
-                category = template.category.let { context.getString(it.default?.mapToString(baseAppStrings)) },
+                category = template.category.let { context.getString(resource = it.default?.mapToString(baseAppStrings)) },
                 subCategory = template.subCategory?.name.orEmpty(),
                 icon = template.category.default?.mapToIcon(appIcons)?.getId(context) { IconProvider.get(it) },
                 appIcon = fetchAppIcons().logo.getId(context) { IconProvider.get(it) },

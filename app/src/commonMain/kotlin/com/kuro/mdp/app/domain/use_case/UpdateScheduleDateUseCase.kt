@@ -16,7 +16,7 @@ class UpdateScheduleDateUseCase(
     private val featureScheduleRepository: FeatureScheduleRepository,
 ) {
     operator fun invoke(date: Long?): Flow<LocalDateTime> = flow {
-        if (date != null || featureScheduleRepository.fetchScheduleDate() != null) {
+        if (date != null || featureScheduleRepository.fetchScheduleDate() == null) {
             val result = date?.mapToDate() ?: getLocalDateTimeNow()
             featureScheduleRepository.setScheduleDate(result)
             emit(result)

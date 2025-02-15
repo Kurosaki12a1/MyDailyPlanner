@@ -4,10 +4,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.EditorScreen
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeScreen
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
-import com.kuro.mdp.shared.utils.extensions.mapToDate
 import com.kuro.mdp.shared.utils.functional.Constants.Arguments.SCHEDULE_DATE
 
 /**
@@ -17,21 +17,18 @@ import com.kuro.mdp.shared.utils.functional.Constants.Arguments.SCHEDULE_DATE
  */
 fun NavGraphBuilder.homeNavGraph() {
     navigation<NavigationGraph.HomeGraph>(
-        startDestination = Destination.Home(),
+        startDestination = Destination.Home::class,
     ) {
         composable<Destination.Home> {
             val scheduleDate = it.arguments?.getLong(SCHEDULE_DATE)
             HomeTheme {
-                HomeScreen(
-                    scheduleDate = scheduleDate?.mapToDate()
-                )
+                HomeScreen()
             }
         }
-        // TODO: https://stackoverflow.com/questions/70916976/how-to-use-parcelize-annotation-in-shared-module-of-kotlin-multiplatform-projec
-        /* composable<Destination.Editor> {
-             HomeTheme {
-                 EditorScreen()
-             }
-         }*/
+        composable<Destination.EditorRoute> {
+            HomeTheme {
+                EditorScreen()
+            }
+        }
     }
 }

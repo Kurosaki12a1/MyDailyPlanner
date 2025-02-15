@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class EditorAction {
-    object Navigate : EditorAction()
+    data object Navigate : EditorAction()
     data class SetUp(val editModel: EditModelHome, val categories: List<CategoriesHome>) : EditorAction()
     data class UpdateUndefinedTasks(val tasks: List<UndefinedTaskHome>) : EditorAction()
     data class UpdateCategories(val categories: List<CategoriesHome>) : EditorAction()

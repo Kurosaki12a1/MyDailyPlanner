@@ -8,6 +8,8 @@ import com.kuro.mdp.shared.domain.model.categories.MainCategory
 import com.kuro.mdp.shared.domain.model.categories.SubCategory
 import com.kuro.mdp.shared.domain.model.schedules.TaskNotificationType
 import com.kuro.mdp.shared.domain.model.schedules.TimeTask
+import com.kuro.mdp.shared.presentation.extensions.getId
+import com.kuro.mdp.shared.presentation.extensions.getString
 import com.kuro.mdp.shared.presentation.mappers.mapToIcon
 import com.kuro.mdp.shared.presentation.mappers.mapToString
 import com.kuro.mdp.shared.presentation.model.AlarmReceiverIntent
@@ -19,8 +21,6 @@ import com.kuro.mdp.shared.presentation.theme.resources.fetchAppIcons
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.Constants
 import com.kuro.mdp.shared.utils.managers.DateManager
-import extensions.getId
-import extensions.getString
 import kotlinx.datetime.LocalDateTime
 
 /**

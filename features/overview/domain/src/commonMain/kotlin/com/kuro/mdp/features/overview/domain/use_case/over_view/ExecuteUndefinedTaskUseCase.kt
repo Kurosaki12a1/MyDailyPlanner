@@ -9,6 +9,8 @@ import com.kuro.mdp.shared.utils.extensions.startThisDay
 import com.kuro.mdp.shared.utils.functional.TimeRange
 import com.kuro.mdp.shared.utils.managers.DateManager
 import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /**
  * Created by: minhthinh.h on 1/22/2025
@@ -27,6 +29,6 @@ class ExecuteUndefinedTaskUseCase(
             template = null,
             undefinedTaskId = task.id
         )
-        navigator.navigateTo(route = screen)
+        navigator.navigateTo(route = Destination.EditorRoute(Json.encodeToString(screen)))
     }
 }

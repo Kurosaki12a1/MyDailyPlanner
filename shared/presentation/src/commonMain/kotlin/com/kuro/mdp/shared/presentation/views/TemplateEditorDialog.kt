@@ -40,14 +40,14 @@ import com.kuro.mdp.shared.domain.model.template.Template
 import com.kuro.mdp.shared.presentation.extensions.changeTwoDigitNumber
 import com.kuro.mdp.shared.presentation.extensions.endLimitCharTransition
 import com.kuro.mdp.shared.presentation.extensions.string
+import com.kuro.mdp.shared.presentation.is24HourFormat
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.utils.extensions.generateUniqueKey
-import com.kuro.mdp.shared.utils.extensions.getLocalDateWithSpecificTime
 import com.kuro.mdp.shared.utils.extensions.mapHour24ToAmPm
 import com.kuro.mdp.shared.utils.extensions.mapHourAmPmTo24
+import com.kuro.mdp.shared.utils.extensions.setLocalDateWithSpecificTime
 import com.kuro.mdp.shared.utils.extensions.shiftDays
 import com.kuro.mdp.shared.utils.functional.TimeFormat
-import com.kuro.mdp.shared.utils.is24HourFormat
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -158,23 +158,23 @@ fun TemplateEditorDialog(
                     },
                     onConfirmClick = {
                         val startTime = if (is24Format) {
-                            getLocalDateWithSpecificTime(
+                            setLocalDateWithSpecificTime(
                                 hour = editableStartHour.text.toInt(),
                                 minute = editableStartMinute.text.toInt()
                             )
                         } else {
-                            getLocalDateWithSpecificTime(
+                            setLocalDateWithSpecificTime(
                                 hour = editableStartHour.text.toInt().mapHourAmPmTo24(startFormat),
                                 minute = editableStartMinute.text.toInt()
                             )
                         }
                         val endTime = if (is24Format) {
-                            getLocalDateWithSpecificTime(
+                            setLocalDateWithSpecificTime(
                                 hour = editableEndHour.text.toInt(),
                                 minute = editableEndMinute.text.toInt()
                             )
                         } else {
-                            getLocalDateWithSpecificTime(
+                            setLocalDateWithSpecificTime(
                                 hour = editableEndHour.text.toInt().mapHourAmPmTo24(endFormat),
                                 minute = editableEndMinute.text.toInt()
                             )

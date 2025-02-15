@@ -4,6 +4,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import org.jetbrains.compose.resources.DrawableResource
 import shared.resources.Res
 import shared.resources.ic_add
+import shared.resources.ic_arrow_righ
 import shared.resources.ic_bell_off
 import shared.resources.ic_calendar
 import shared.resources.ic_cancel
@@ -13,17 +14,20 @@ import shared.resources.ic_check
 import shared.resources.ic_complete_task
 import shared.resources.ic_delete
 import shared.resources.ic_end_time
+import shared.resources.ic_favorite_border
 import shared.resources.ic_info
 import shared.resources.ic_menu
 import shared.resources.ic_more
 import shared.resources.ic_next
 import shared.resources.ic_not_complete_task
 import shared.resources.ic_not_found
+import shared.resources.ic_note_outline
 import shared.resources.ic_notes
 import shared.resources.ic_notification
 import shared.resources.ic_off_repeat
 import shared.resources.ic_play
 import shared.resources.ic_previous
+import shared.resources.ic_priority_high
 import shared.resources.ic_remove
 import shared.resources.ic_repeat
 import shared.resources.ic_repeat_variant
@@ -74,7 +78,12 @@ internal data class HomeIcons(
     val offNotifications: DrawableResource,
     val templates: DrawableResource,
     val delete: DrawableResource,
-    val deadline: DrawableResource
+    val deadline: DrawableResource,
+    val notesField: DrawableResource,
+    val unFavorite: DrawableResource,
+    val priority: DrawableResource,
+    val showDialog: DrawableResource,
+    val notifications: DrawableResource
 )
 
 internal val baseHomeIcons = HomeIcons(
@@ -110,7 +119,12 @@ internal val baseHomeIcons = HomeIcons(
     offNotifications = Res.drawable.ic_bell_off,
     templates = Res.drawable.ic_template,
     delete = Res.drawable.ic_delete,
-    deadline = Res.drawable.ic_timer
+    deadline = Res.drawable.ic_timer,
+    notesField = Res.drawable.ic_note_outline,
+    unFavorite = Res.drawable.ic_favorite_border,
+    priority = Res.drawable.ic_priority_high,
+    showDialog = Res.drawable.ic_arrow_righ,
+    notifications = Res.drawable.ic_notification
 )
 
 internal val LocalHomeIcons = staticCompositionLocalOf<HomeIcons> {

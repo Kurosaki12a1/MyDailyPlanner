@@ -13,6 +13,7 @@ import com.kuro.mdp.features.home.data.repository.home.HomeSettingsRepositoryImp
 import com.kuro.mdp.features.home.data.repository.home.HomeSubCategoriesRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeTemplatesRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeTimeShiftRepositoryImpl
+import com.kuro.mdp.features.home.data.repository.home.HomeTimeTaskRepositoryImpl
 import com.kuro.mdp.features.home.data.repository.home.HomeUndefinedTasksRepositoryImpl
 import com.kuro.mdp.features.home.domain.api.ScheduleHomeToUiMapper
 import com.kuro.mdp.features.home.domain.api.TimeTaskHomeToUiMapper
@@ -27,6 +28,7 @@ import com.kuro.mdp.features.home.domain.repository.home.HomeSettingsRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeSubCategoriesRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeTemplatesRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeTimeShiftRepository
+import com.kuro.mdp.features.home.domain.repository.home.HomeTimeTaskRepository
 import com.kuro.mdp.features.home.domain.repository.home.HomeUndefinedTasksRepository
 import org.koin.dsl.module
 
@@ -49,6 +51,7 @@ val homeDataModule = module {
     single<HomeTimeShiftRepository> { HomeTimeShiftRepositoryImpl(get(), get(), get()) }
     single<HomeUndefinedTasksRepository> { HomeUndefinedTasksRepositoryImpl(get()) }
     single<HomeEditorRepository> { HomeEditorRepositoryImpl(get()) }
+    single<HomeTimeTaskRepository> { HomeTimeTaskRepositoryImpl(get(), get(), get(), get(), get()) }
 
     single<TimeRangeValidator> { TimeRangeValidatorImpl() }
     single<CategoryValidator> { CategoryValidatorImpl() }

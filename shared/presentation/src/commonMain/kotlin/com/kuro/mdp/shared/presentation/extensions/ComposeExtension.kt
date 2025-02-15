@@ -37,11 +37,10 @@ import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
+import com.kuro.mdp.shared.presentation.model.Fade
+import com.kuro.mdp.shared.presentation.model.PlaceHolderHighlight
+import com.kuro.mdp.shared.presentation.model.Shimmer
 import com.kuro.mdp.shared.utils.functional.Constants.Delay.MARQUEE_LOADING_TEXT
-import com.kuro.mdp.shared.utils.functional.Fade
-import com.kuro.mdp.shared.utils.functional.PlaceHolderDefaults
-import com.kuro.mdp.shared.utils.functional.PlaceHolderHighlight
-import com.kuro.mdp.shared.utils.functional.Shimmer
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -253,7 +252,7 @@ private inline fun DrawScope.withLayer(
  */
 fun PlaceHolderHighlight.Companion.fade(
     highlightColor: Color,
-    animationSpec: InfiniteRepeatableSpec<Float> = PlaceHolderDefaults.fadeAnimationSpec,
+    animationSpec: InfiniteRepeatableSpec<Float> = com.kuro.mdp.shared.presentation.model.PlaceHolderDefaults.fadeAnimationSpec,
 ): PlaceHolderHighlight = Fade(
     highlightColor = highlightColor,
     animationSpec = animationSpec,
@@ -274,7 +273,7 @@ fun PlaceHolderHighlight.Companion.fade(
  */
 fun PlaceHolderHighlight.Companion.shimmer(
     highlightColor: Color,
-    animationSpec: InfiniteRepeatableSpec<Float> = PlaceHolderDefaults.shimmerAnimationSpec,
+    animationSpec: InfiniteRepeatableSpec<Float> = com.kuro.mdp.shared.presentation.model.PlaceHolderDefaults.shimmerAnimationSpec,
     @FloatRange(from = 0.0, to = 1.0) progressForMaxAlpha: Float = 0.6f,
 ): PlaceHolderHighlight = Shimmer(
     highlightColor = highlightColor,

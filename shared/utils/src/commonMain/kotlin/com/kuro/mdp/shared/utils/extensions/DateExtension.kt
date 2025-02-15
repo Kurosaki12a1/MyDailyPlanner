@@ -210,9 +210,13 @@ fun Long?.mapToDate(timeZone: TimeZone = TimeZone.currentSystemDefault()): Local
 
 fun getLocalDateTimeNow() = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-fun getLocalDateWithSpecificTime(hour: Int, minute: Int): LocalDateTime {
+fun setLocalDateWithSpecificTime(hour: Int, minute: Int): LocalDateTime {
     val currentTime = getLocalDateTimeNow()
     return LocalDateTime(currentTime.year, currentTime.month, currentTime.dayOfMonth, hour, minute, 0, 0)
+}
+
+fun LocalDateTime.setSpecificTime(hour: Int, minute: Int): LocalDateTime {
+    return LocalDateTime(this.year, this.month, this.dayOfMonth, hour, minute, 0, 0)
 }
 
 fun duration(start: LocalDateTime, end: LocalDateTime): Long {
@@ -303,4 +307,12 @@ fun Int.mapHour24ToAmPm(): Pair<TimeFormat, Int> {
             else -> this@mapHour24ToAmPm - 12
         },
     )
+}
+
+fun Int.minutesToMillis(): Long {
+    return this * Constants.Date.MILLIS_IN_MINUTE
+}
+
+fun Int.hoursToMillis(): Long {
+    return this * Constants.Date.MILLIS_IN_HOUR
 }

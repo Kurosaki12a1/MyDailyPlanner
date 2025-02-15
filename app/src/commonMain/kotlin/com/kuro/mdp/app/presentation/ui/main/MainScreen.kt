@@ -15,14 +15,15 @@ import com.kuro.mdp.app.presentation.ui.BackHandlerPlatform
 import com.kuro.mdp.app.presentation.ui.bottom_bar.TabsBottomNavigationBar
 import com.kuro.mdp.app.presentation.ui.bottom_bar.shouldBottomBarVisible
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
+import com.kuro.mdp.shared.presentation.ScreenProtection
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.theme.MyDailyPlannerTheme
-import com.kuro.mdp.shared.utils.ScreenProtection
 import com.kuro.mdp.shared.utils.functional.Constants.Delay.NAVIGATION_FLOW
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.serialization.json.Json
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
@@ -145,8 +146,8 @@ fun NavigationEffect(
                             updateMainCategoryId((intent.route as Destination.Categories).mainCategoryId)
                         }
 
-                        is Destination.Editor -> {
-                            updateEditor(intent.route as Destination.Editor)
+                        is Destination.EditorRoute -> {
+                            updateEditor(Json.decodeFromString<Destination.Editor>((intent.route as Destination.EditorRoute).data))
                         }
 
                         else -> {

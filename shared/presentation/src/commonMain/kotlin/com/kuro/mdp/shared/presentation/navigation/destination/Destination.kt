@@ -44,10 +44,16 @@ sealed class Destination {
     @Serializable
     data class Categories(@SerialName(ID) val mainCategoryId: Int? = null) : Destination()
 
+    // This cannot use as route because KMP does not support deep link right now
     @Serializable
     data class Editor(
         val timeTask: TimeTask,
         val template: Template?,
         val undefinedTaskId: Long? = null
+    ) : Destination()
+
+    @Serializable
+    data class EditorRoute(
+        val data: String
     ) : Destination()
 }

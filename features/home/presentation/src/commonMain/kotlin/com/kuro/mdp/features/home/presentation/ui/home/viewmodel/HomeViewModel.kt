@@ -3,9 +3,10 @@ package com.kuro.mdp.features.home.presentation.ui.home.viewmodel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
+import com.kuro.mdp.features.home.domain.mapper.schedules.mapToDomain
 import com.kuro.mdp.features.home.domain.model.HomeError
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
-import com.kuro.mdp.features.home.domain.use_case.HomeUseCase
+import com.kuro.mdp.features.home.domain.use_case.home.HomeUseCase
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeEvent
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeViewState
 import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
@@ -33,13 +34,17 @@ internal class HomeViewModel(
     val isDateDialogShown: State<Boolean>
         get() = _isDateDialogShown
 
+    init {
+        dispatchEvent(HomeEvent.Init)
+    }
+
     override fun initState(): HomeViewState = HomeViewState()
 
     override fun handleEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.Init -> {
                 viewModelScope.launch {
-                    homeUseCase.initHomeUseCase(event.scheduleDate).collectAndHandle(
+                    homeUseCase.initHomeUseCase().collectAndHandle(
                         onFailure = { e -> showError(e) },
                         onSuccess = { task -> setUpSettings(task) }
                     )
@@ -79,11 +84,21 @@ internal class HomeViewModel(
             }
 
             is HomeEvent.PressAddTimeTaskButton -> {
-
+                viewModelScope.launch {
+                    homeUseCase.addTimeTaskUseCase(
+                        date = state.value.currentDate,
+                        startTime = event.startTime,
+                        endTime = event.endTime
+                    )
+                }
             }
 
             is HomeEvent.PressEditTimeTaskButton -> {
-
+                viewModelScope.launch {
+                    homeUseCase.editTimeTaskUseCase(
+                        timeTask = event.timeTask.mapToDomain()
+                    )
+                }
             }
 
             is HomeEvent.PressOverviewButton -> {

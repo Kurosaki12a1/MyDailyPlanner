@@ -1,5 +1,8 @@
 package com.kurp.mdp.shared.data.data_sources.impl.schedules
 
+import com.kuro.mdp.shared.utils.extensions.endThisDay
+import com.kuro.mdp.shared.utils.extensions.mapToDate
+import com.kuro.mdp.shared.utils.extensions.startThisDay
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.TimeRange
 import com.kurp.mdp.shared.data.data_sources.api.schedules.SchedulesLocalDataSource
@@ -27,7 +30,9 @@ class SchedulesLocalDataSourceImpl(
     }
 
     override fun fetchScheduleByDate(date: Long): Flow<ScheduleDetails?> {
-        return scheduleDao.fetchDailyScheduleByDate(date)
+        val startDate = date.mapToDate().startThisDay().toEpochMillis()
+        val endDate = date.mapToDate().endThisDay().toEpochMillis()
+        return scheduleDao.fetchDailyScheduleByDate(startDate, endDate)
     }
 
     override suspend fun fetchScheduleByRange(timeRange: TimeRange?): Flow<List<ScheduleDetails>> {

@@ -23,8 +23,8 @@ interface SchedulesDao {
     fun fetchAllSchedules(): Flow<List<ScheduleDetails>>
 
     @Transaction
-    @Query("SELECT * FROM dailySchedules WHERE date = :date")
-    fun fetchDailyScheduleByDate(date: Long): Flow<ScheduleDetails?>
+    @Query("SELECT * FROM dailySchedules WHERE date >= :startOfDay AND date <= :endOfDay")
+    fun fetchDailyScheduleByDate(startOfDay: Long, endOfDay : Long): Flow<ScheduleDetails?>
 
     @Update
     suspend fun updateDailySchedules(schedules: List<DailyScheduleEntity>)
