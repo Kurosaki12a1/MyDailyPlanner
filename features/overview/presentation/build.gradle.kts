@@ -69,7 +69,7 @@ kotlin {
 
 android {
     namespace = "com.kuro.mdp.features.overview.presentation"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 29
     }

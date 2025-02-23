@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -26,12 +27,44 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
+        }
         commonMain.dependencies {
+            implementation(projects.shared.domain)
+            implementation(projects.shared.presentation)
+            implementation(projects.shared.utils)
+            implementation(projects.charts)
+
+            implementation(projects.features.analytics.domain)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
+
+            // Navigation
+            implementation(libs.navigation.compose)
+            // Kotlin Date Time
+            implementation(libs.kotlinx.datetime)
+
+            // Kotlin Serialization
+            implementation(libs.kotlin.serilization)
+
+            // ViewModel
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+
+            // Koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
+
+            // Chart
+            //  implementation(libs.compose.charts)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -41,7 +74,7 @@ kotlin {
 
 android {
     namespace = "com.kuro.mdp.features.analytics.presentation"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 29
     }

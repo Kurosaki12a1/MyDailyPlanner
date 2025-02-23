@@ -42,6 +42,9 @@ sealed class Destination {
     data object Templates : Destination()
 
     @Serializable
+    data object Details : Destination()
+
+    @Serializable
     data class Categories(@SerialName(ID) val mainCategoryId: Int? = null) : Destination()
 
     // This cannot use as route because KMP does not support deep link right now

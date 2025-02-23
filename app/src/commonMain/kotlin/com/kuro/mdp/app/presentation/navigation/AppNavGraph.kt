@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kuro.mdp.app.presentation.ui.splash.SplashScreen
+import com.kuro.mdp.features.analytics.presentation.navigation.analyticsNavGraph
 import com.kuro.mdp.features.home.presentation.ui.home.navigation.homeNavGraph
 import com.kuro.mdp.features.overview.presentation.navigation.overviewNavGraph
 import com.kuro.mdp.features.settings.presentation.navigation.settingsNavGraph

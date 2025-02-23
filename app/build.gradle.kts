@@ -50,6 +50,10 @@ kotlin {
             implementation(projects.features.overview.domain)
             implementation(projects.features.overview.data)
 
+            implementation(projects.features.analytics.presentation)
+            implementation(projects.features.analytics.domain)
+            implementation(projects.features.analytics.data)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

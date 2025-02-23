@@ -38,9 +38,9 @@ import com.kuro.mdp.shared.presentation.views.toMinutesOrHoursTitle
 import com.kuro.mdp.shared.utils.extensions.duration
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
 import com.kuro.mdp.shared.utils.functional.Constants
+import com.kuro.mdp.shared.utils.functional.getTimeFormatOfDay
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
-import kotlinx.datetime.format.char
 
 /**
  * Created by: minhthinh.h on 12/19/2024
@@ -140,21 +140,10 @@ fun StartTaskTimeTitle(
     time: LocalDateTime,
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
 ) {
-    val amFormat = LocalAppStrings.current.amFormatTitle.string()
-    val pmFormat = LocalAppStrings.current.pmFormatTitle.string()
-    val timeFormat = LocalDateTime.Format {
-        monthNumber()
-        char('/')
-        dayOfMonth()
-        char('/')
-        yearTwoDigits(2000)
-        chars(", ")
-        amPmHour()
-        char(':')
-        minute()
-        char(' ')
-        amPmMarker(am = amFormat, pm = pmFormat)
-    }
+    val timeFormat = getTimeFormatOfDay(
+        amFormat = LocalAppStrings.current.amFormatTitle.string(),
+        pmFormat = LocalAppStrings.current.pmFormatTitle.string()
+    )
     Text(
         modifier = modifier.defaultMinSize(minWidth = 42.dp),
         text = time.format(timeFormat),
@@ -169,21 +158,10 @@ fun EndTaskTimeTitle(
     isVisible: Boolean,
     time: LocalDateTime,
 ) {
-    val amFormat = LocalAppStrings.current.amFormatTitle.string()
-    val pmFormat = LocalAppStrings.current.pmFormatTitle.string()
-    val timeFormat = LocalDateTime.Format {
-        monthNumber()
-        char('/')
-        dayOfMonth()
-        char('/')
-        yearTwoDigits(2000)
-        chars(", ")
-        amPmHour()
-        char(':')
-        minute()
-        char(' ')
-        amPmMarker(am = amFormat, pm = pmFormat)
-    }
+    val timeFormat = getTimeFormatOfDay(
+        amFormat = LocalAppStrings.current.amFormatTitle.string(),
+        pmFormat = LocalAppStrings.current.pmFormatTitle.string()
+    )
     val alpha by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         label = "alpha",

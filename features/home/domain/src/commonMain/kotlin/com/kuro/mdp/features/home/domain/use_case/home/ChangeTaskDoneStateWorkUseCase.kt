@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.home.domain.use_case.home
 
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.ResultState
@@ -18,7 +19,7 @@ class ChangeTaskDoneStateWorkUseCase(
     private val scheduleRepository: HomeScheduleRepository
 ) {
 
-    operator fun invoke(date: LocalDateTime?, key: Long): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(date: LocalDateTime?, key: Long): Flow<ResultState<HomeAction>> = flow {
         if (date != null) {
             scheduleRepository.fetchScheduleByDate(date.toEpochMillis()).firstOrNull()?.handle(
                 onFailure = { e -> emit(ResultState.Failure(e)) },

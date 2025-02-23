@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.home.presentation.ui.home.mappers
 
 import com.kuro.mdp.features.home.presentation.ui.home.theme.resources.HomeStrings
-import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.EditorError
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorError
 import org.jetbrains.compose.resources.StringResource
 
 /**

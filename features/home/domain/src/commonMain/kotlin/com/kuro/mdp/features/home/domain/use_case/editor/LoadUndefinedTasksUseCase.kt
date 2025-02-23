@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.home.domain.use_case.editor
 
 import com.kuro.mdp.features.home.domain.mapper.schedules.mapToUi
-import com.kuro.mdp.features.home.domain.model.editor.EditorAction
+import com.kuro.mdp.features.home.domain.model.actions.EditorAction
 import com.kuro.mdp.features.home.domain.repository.home.HomeUndefinedTasksRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import kotlinx.coroutines.flow.Flow

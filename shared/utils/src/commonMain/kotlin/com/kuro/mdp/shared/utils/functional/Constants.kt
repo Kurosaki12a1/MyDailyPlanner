@@ -121,4 +121,8 @@ object Constants {
         const val LOADING = "LOADING"
         const val DEFAULT = "DEFAULT"
     }
+
+    object Math {
+        const val PI: Double = 3.141592653589793
+    }
 }

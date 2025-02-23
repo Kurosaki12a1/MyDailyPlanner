@@ -5,20 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.features.home.domain.mapper.schedules.mapToDomain
 import com.kuro.mdp.features.home.domain.model.HomeError
-import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.use_case.home.HomeUseCase
-import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeEvent
-import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeViewState
-import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
-import com.kuro.mdp.shared.domain.model.settings.TasksSettings
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeEvent
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeViewState
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
-import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
+import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModelNew
 import com.kuro.mdp.shared.utils.functional.TimeShiftException
 import com.kuro.mdp.shared.utils.functional.TimeTaskImportanceException
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDateTime
 
 /**
  * Created by: minhthinh.h on 12/20/2024
@@ -28,7 +24,7 @@ import kotlinx.datetime.LocalDateTime
 internal class HomeViewModel(
     private val homeUseCase: HomeUseCase,
     navigator: Navigator
-) : BaseViewModel<HomeViewState, HomeEvent>(navigator) {
+) : BaseViewModelNew<HomeViewState, HomeEvent, HomeAction>(navigator) {
 
     private val _isDateDialogShown = mutableStateOf(false)
     val isDateDialogShown: State<Boolean>
@@ -44,42 +40,33 @@ internal class HomeViewModel(
         when (event) {
             is HomeEvent.Init -> {
                 viewModelScope.launch {
-                    homeUseCase.initHomeUseCase().collectAndHandle(
-                        onFailure = { e -> showError(e) },
-                        onSuccess = { task -> setUpSettings(task) }
-                    )
+                    homeUseCase.initHomeUseCase()
+                        .collectAndHandleWork()
                 }
             }
 
             is HomeEvent.ChangeTaskDoneStateButton -> {
                 viewModelScope.launch {
-                    homeUseCase.changeTaskDoneStateWorkUseCase(state.value.currentDate, event.timeTask.key).collectAndHandle(
-                        onFailure = { e -> showError(e) }
+                    homeUseCase.changeTaskDoneStateWorkUseCase(
+                        state.value.currentDate,
+                        event.timeTask.key
                     )
+                        .collectAndHandleWork()
                 }
             }
 
             is HomeEvent.CreateSchedule -> {
                 viewModelScope.launch {
-                    homeUseCase.createScheduleUseCase(state.value.currentDate).collectAndHandle(
-                        onFailure = { e -> showError(e) }
-                    )
+                    homeUseCase.createScheduleUseCase(state.value.currentDate)
+                        .collectAndHandleWork()
                 }
             }
 
 
             is HomeEvent.LoadSchedule -> {
                 viewModelScope.launch {
-                    homeUseCase.loadScheduleUseCase(event.date).collectAndHandle(
-                        onFailure = { e -> showError(e) },
-                        onSuccess = { data ->
-                            loadSchedule(
-                                timeTasks = data?.timeTasks ?: emptyList(),
-                                date = data?.date,
-                                dateStatus = if (data?.progress == -1f) null else data?.dateStatus
-                            )
-                        }
-                    )
+                    homeUseCase.loadScheduleUseCase(event.date)
+                        .collectAndHandleWork()
                 }
             }
 
@@ -89,7 +76,7 @@ internal class HomeViewModel(
                         date = state.value.currentDate,
                         startTime = event.startTime,
                         endTime = event.endTime
-                    )
+                    ).handleWork()
                 }
             }
 
@@ -97,7 +84,7 @@ internal class HomeViewModel(
                 viewModelScope.launch {
                     homeUseCase.editTimeTaskUseCase(
                         timeTask = event.timeTask.mapToDomain()
-                    )
+                    ).handleWork()
                 }
             }
 
@@ -107,9 +94,7 @@ internal class HomeViewModel(
 
             is HomeEvent.PressViewToggleButton -> {
                 viewModelScope.launch {
-                    homeUseCase.changeTaskViewStatusUseCase(event.status).collectAndHandle(
-                        onFailure = { e -> showError(e) }
-                    )
+                    homeUseCase.changeTaskViewStatusUseCase(event.status).collectAndHandleWork()
                 }
             }
 
@@ -119,54 +104,71 @@ internal class HomeViewModel(
 
             is HomeEvent.TimeTaskShiftDown -> {
                 viewModelScope.launch {
-                    homeUseCase.shiftDownTimeWorkUseCase(event.timeTask).collectAndHandle(
-                        onFailure = { e -> showError(e) }
-                    )
+                    homeUseCase.shiftDownTimeWorkUseCase(event.timeTask)
+                        .collectAndHandleWork()
                 }
             }
 
             is HomeEvent.TimeTaskShiftUp -> {
                 viewModelScope.launch {
-                    homeUseCase.shiftUpTimeWorkUseCase(event.timeTask).collectAndHandle(
-                        onFailure = { e -> showError(e) }
-                    )
+                    homeUseCase.shiftUpTimeWorkUseCase(event.timeTask)
+                        .collectAndHandleWork()
                 }
+            }
+
+            HomeEvent.ClearFailure -> {
+                showError(null)
             }
         }
     }
 
-    override fun showError(e: Throwable) {
-        updateState(
-            newState = state.value.copy(
-                error = when (e) {
-                    is TimeShiftException -> HomeError.ShiftError
-                    is TimeTaskImportanceException -> HomeError.ImportanceError
-                    else -> HomeError.OtherError(e)
+    override fun showError(e: Throwable?) {
+        update {
+            if (e == null) it.copy(error = null)
+            else {
+                it.copy(
+                    error = when (e) {
+                        is TimeShiftException -> HomeError.ShiftError
+                        is TimeTaskImportanceException -> HomeError.ImportanceError
+                        else -> HomeError.OtherError(e)
+                    }
+                )
+            }
+        }
+    }
+
+    override fun updateState(action: HomeAction) {
+        when (action) {
+            is HomeAction.Navigate -> {
+                update { state.value }
+            }
+
+            is HomeAction.SetEmptySchedule -> update {
+                it.copy(
+                    timeTasks = emptyList(),
+                    currentDate = action.date,
+                    dateStatus = action.status
+                )
+            }
+
+            is HomeAction.SetupSettings -> {
+                update {
+                    it.copy(
+                        taskViewStatus = action.settings.taskViewStatus,
+                        calendarButtonBehavior = action.settings.calendarButtonBehavior
+                    )
                 }
-            )
-        )
-    }
+            }
 
-    private fun setUpSettings(settings: TasksSettings) {
-        updateState(
-            newState = state.value.copy(
-                taskViewStatus = settings.taskViewStatus,
-                calendarButtonBehavior = settings.calendarButtonBehavior
-            )
-        )
-    }
-
-    private fun loadSchedule(
-        timeTasks: List<TimeTaskHome>,
-        date: LocalDateTime?,
-        dateStatus: DailyScheduleStatus?
-    ) {
-        updateState(
-            newState = state.value.copy(
-                timeTasks = timeTasks,
-                currentDate = date,
-                dateStatus = dateStatus
-            )
-        )
+            is HomeAction.UpdateSchedule -> {
+                update {
+                    it.copy(
+                        timeTasks = action.schedule.timeTasks,
+                        currentDate = action.schedule.date,
+                        dateStatus = action.schedule.dateStatus,
+                    )
+                }
+            }
+        }
     }
 }

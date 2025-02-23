@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.home.domain.use_case.home
 
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.repository.home.HomeSettingsRepository
 import com.kuro.mdp.shared.domain.model.settings.ViewToggleStatus
 import com.kuro.mdp.shared.utils.functional.ResultState
@@ -17,7 +18,7 @@ class ChangeTaskViewStatusUseCase(
     private val settingsRepository: HomeSettingsRepository
 ) {
 
-    operator fun invoke(status: ViewToggleStatus): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(status: ViewToggleStatus): Flow<ResultState<HomeAction>> = flow {
         val newStatus = when (status) {
             ViewToggleStatus.EXPANDED -> ViewToggleStatus.COMPACT
             ViewToggleStatus.COMPACT -> ViewToggleStatus.EXPANDED
@@ -27,9 +28,7 @@ class ChangeTaskViewStatusUseCase(
             onSuccess = { oldSettings ->
                 val newSettings = oldSettings.copy(taskViewStatus = newStatus)
                 settingsRepository.updateTasksSettings(newSettings).handle(
-                    onFailure = { e -> emit(ResultState.Failure(e)) },
-                    onSuccess = { emit(ResultState.Success(Unit)) }
-                )
+                    onFailure = { e -> emit(ResultState.Failure(e)) })
             }
         )
     }

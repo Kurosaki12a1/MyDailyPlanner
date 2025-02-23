@@ -1,5 +1,6 @@
 package com.kuro.mdp.features.home.domain.use_case.home
 
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.handle
@@ -16,15 +17,10 @@ class CreateScheduleUseCase(
     private val scheduleRepository: HomeScheduleRepository
 ) {
 
-    operator fun invoke(date: LocalDateTime?): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(date: LocalDateTime?): Flow<ResultState<HomeAction>> = flow {
         if (date != null) {
             scheduleRepository.createSchedule(date).handle(
-                onFailure = { e ->
-                    emit(ResultState.Failure(e))
-                },
-                onSuccess = {
-                    emit(ResultState.Success(Unit))
-                }
+                onFailure = { e -> emit(ResultState.Failure(e)) }
             )
         }
     }

@@ -4,7 +4,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.kuro.mdp.features.overview.presentation.theme.OverViewTheme
-import com.kuro.mdp.features.overview.presentation.ui.OverViewScreen
+import com.kuro.mdp.features.overview.presentation.ui.details.DetailsScreen
+import com.kuro.mdp.features.overview.presentation.ui.overview.OverViewScreen
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 
@@ -20,6 +21,11 @@ fun NavGraphBuilder.overviewNavGraph() {
         composable<Destination.Overview> {
             OverViewTheme {
                 OverViewScreen()
+            }
+        }
+        composable<Destination.Details> {
+            OverViewTheme {
+                DetailsScreen()
             }
         }
     }

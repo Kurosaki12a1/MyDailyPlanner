@@ -30,6 +30,7 @@ dependencyResolutionManagement {
 
 include(":app")
 include(":shared")
+include(":charts")
 include(":features")
 include(":features:home")
 include(":features:settings")

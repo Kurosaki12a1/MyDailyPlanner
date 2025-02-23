@@ -54,8 +54,8 @@ import com.kuro.mdp.shared.presentation.views.NoneItemsView
 import com.kuro.mdp.shared.presentation.views.toMinutesOrHoursTitle
 import com.kuro.mdp.shared.utils.extensions.duration
 import com.kuro.mdp.shared.utils.format
+import com.kuro.mdp.shared.utils.functional.getTimeFormatShort
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.format.char
 
 /**
  * Created by: minhthinh.h on 2/7/2025
@@ -230,11 +230,7 @@ internal fun TemplateBottomSheetItemInfo(
     isEnableNotification: Boolean,
     repeatTimes: List<RepeatTime>,
 ) {
-    val timeFormat = LocalDateTime.Format {
-        hour()
-        char('-')
-        minute()
-    }
+    val timeFormat = getTimeFormatShort()
     val startTimeFormat = timeFormat.format(startTime)
     val endTimeFormat = timeFormat.format(endTime)
     val duration = duration(startTime, endTime).toMinutesOrHoursTitle()

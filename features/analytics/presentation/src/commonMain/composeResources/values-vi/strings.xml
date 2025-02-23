@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="topAppBarTitle">Phân tích</string>
+    <string name="topAppBarAnalyticsTitle">Phân tích</string>
     <string name="menuIconDesc">Thực đơn</string>
     <string name="timeTabTitle">Thời gian</string>
     <string name="workLoadTabTitle">Khối lượng công việc</string>

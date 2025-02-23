@@ -6,6 +6,9 @@ import com.kuro.mdp.app.domain.use_case.UpdateEditorUseCase
 import com.kuro.mdp.app.domain.use_case.UpdateMainCategoryUseCase
 import com.kuro.mdp.app.domain.use_case.UpdateScheduleDateUseCase
 import com.kuro.mdp.app.presentation.viewmodel.MainViewModel
+import com.kuro.mdp.features.analytics.data.analyticsDataModule
+import com.kuro.mdp.features.analytics.domain.analyticsDomainModule
+import com.kuro.mdp.features.analytics.presentation.analyticsPresentationModule
 import com.kuro.mdp.features.home.data.homeDataModule
 import com.kuro.mdp.features.home.domain.homeDomainModule
 import com.kuro.mdp.features.home.presentation.ui.home.homePresentationModule
@@ -26,6 +29,9 @@ import org.koin.dsl.module
 
 val featureModules = module {
     includes(
+        analyticsDataModule,
+        analyticsDomainModule,
+        analyticsPresentationModule,
         homeDataModule,
         homePresentationModule,
         homeDomainModule,

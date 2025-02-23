@@ -1,17 +1,16 @@
 package com.kuro.mdp.features.home.presentation.ui.home.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.kuro.mdp.features.home.domain.model.actions.EditorAction
 import com.kuro.mdp.features.home.domain.model.editor.EditModelHome
-import com.kuro.mdp.features.home.domain.model.editor.EditorAction
 import com.kuro.mdp.features.home.domain.use_case.editor.EditorUseCase
-import com.kuro.mdp.features.home.presentation.Home.home.Home.editor.EditorEvent
-import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.EditorError
-import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.EditorViewState
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorError
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorEvent
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorViewState
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
-import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
+import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModelNew
 import com.kuro.mdp.shared.utils.extensions.duration
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import com.kuro.mdp.shared.utils.managers.TimeOverlayException
 import kotlinx.coroutines.launch
 
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
 class EditorViewModel(
     private val editorUseCase: EditorUseCase,
     navigator: Navigator
-) : BaseViewModel<EditorViewState, EditorEvent>(navigator) {
+) : BaseViewModelNew<EditorViewState, EditorEvent, EditorAction>(navigator) {
 
     init {
         dispatchEvent(EditorEvent.Init)
@@ -33,9 +32,24 @@ class EditorViewModel(
 
     override fun handleEvent(event: EditorEvent) {
         when (event) {
-            is EditorEvent.AddSubCategory -> {}
-            is EditorEvent.ApplyTemplate -> {}
-            is EditorEvent.ApplyUndefinedTask -> {}
+            is EditorEvent.AddSubCategory -> {
+                viewModelScope.launch {
+                    state.value.editModel?.mainCategory?.let {
+                        editorUseCase.addSubCategoryUseCase(event.name, it).collectAndHandleWork()
+                    }
+                }
+            }
+
+            is EditorEvent.ApplyTemplate -> {
+                editorUseCase.applyTemplateUseCase(state.value.editModel, event.template)
+                    .handleWork()
+            }
+
+            is EditorEvent.ApplyUndefinedTask -> {
+                editorUseCase.applyUndefinedTaskUseCase(state.value.editModel, event.task)
+                    .handleWork()
+            }
+
             is EditorEvent.ChangeCategories -> updateEditModel {
                 copy(mainCategory = event.category, subCategory = event.subCategory)
             }
@@ -53,37 +67,26 @@ class EditorViewModel(
             }
 
             is EditorEvent.ClearFailure -> {
-                updateState(newState = state.value.copy(error = null))
+                showError(null)
             }
 
             is EditorEvent.CreateTemplate -> {
                 viewModelScope.launch {
-                    editorUseCase.createTemplateUseCase(state.value.editModel).collectAndHandle(
-                        onFailure = { showError(it) },
-                        onSuccess = { updateState(it) }
-                    )
+                    editorUseCase.createTemplateUseCase(state.value.editModel)
+                        .collectAndHandleWork()
                 }
             }
 
             is EditorEvent.Init -> {
                 viewModelScope.launch {
                     launch {
-                        editorUseCase.loadTemplatesUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                        editorUseCase.loadTemplatesUseCase().collectAndHandleWork()
                     }
                     launch {
-                        editorUseCase.loadUndefinedTasksUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                        editorUseCase.loadUndefinedTasksUseCase().collectAndHandleWork()
                     }
                     launch {
-                        editorUseCase.loadSendModelUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                        editorUseCase.loadSendModelUseCase().collectAndHandleWork()
                     }
                 }
             }
@@ -97,11 +100,11 @@ class EditorViewModel(
             }
 
             is EditorEvent.OpenTemplatesSheet -> {
-                updateState(state.value.copy(isTemplatesSheetOpen = event.shouldOpen))
+                update { it.copy(isTemplatesSheetOpen = event.shouldOpen) }
             }
 
             is EditorEvent.OpenUndefinedTasksSheet -> {
-                updateState(state.value.copy(isUndefinedTasksSheetOpen = event.shouldOpen))
+                update { it.copy(isUndefinedTasksSheetOpen = event.shouldOpen) }
             }
 
             is EditorEvent.PressBackButton -> {
@@ -114,99 +117,89 @@ class EditorViewModel(
 
             is EditorEvent.PressDeleteButton -> {
                 viewModelScope.launch {
-                    editorUseCase.deleteModelUseCase(state.value.editModel).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    editorUseCase.deleteModelUseCase(state.value.editModel).collectAndHandleWork()
                 }
             }
 
             is EditorEvent.PressSaveButton -> {
                 viewModelScope.launch {
-                    editorUseCase.saveModelUseCase(state.value.editModel).collectAndHandle(
-                        onFailure = { showError(it) },
-                        onSuccess = { updateState(it) }
-                    )
+                    editorUseCase.saveModelUseCase(state.value.editModel).collectAndHandleWork()
                 }
             }
         }
     }
 
-    override fun showError(e: Throwable) {
+    override fun showError(e: Throwable?) {
         when (e) {
+            null -> {
+                update {
+                    it.copy(error = null)
+                }
+            }
+
             is TimeOverlayException -> {
-                updateState(
-                    state.value.copy(
+                update {
+                    it.copy(
                         error = EditorError.ShowOverLayError(
                             currentTimeRange = state.value.editModel!!.timeRange,
                             startOverlay = e.startOverlay,
                             endOverlay = e.endOverlay
                         )
                     )
-                )
+                }
             }
 
             else -> {
-                updateState(
-                    state.value.copy(
+                update {
+                    it.copy(
                         error = EditorError.ShowError(e)
                     )
-                )
+                }
             }
         }
-
     }
 
-    private fun updateState(action: EditorAction) {
+    override fun updateState(action: EditorAction) {
         when (action) {
             is EditorAction.Navigate -> {
-
+                update { it.copy() }
             }
 
-            is EditorAction.SetUp -> updateState(
-                state.value.copy(
+            is EditorAction.SetUp -> update {
+                it.copy(
                     editModel = action.editModel,
                     categories = action.categories,
                     timeRangeValid = null,
                     categoryValid = null,
                 )
-            )
+            }
 
-            is EditorAction.UpdateCategories -> updateState(
-                state.value.copy(
-                    categories = action.categories,
-                )
-            )
+            is EditorAction.UpdateCategories -> update {
+                it.copy(categories = action.categories)
+            }
 
-            is EditorAction.UpdateTemplates -> updateState(
-                state.value.copy(
-                    templates = action.templates,
-                )
-            )
+            is EditorAction.UpdateTemplates -> update {
+                it.copy(templates = action.templates)
+            }
 
-            is EditorAction.UpdateUndefinedTasks -> updateState(
-                state.value.copy(
-                    undefinedTasks = action.tasks,
-                )
-            )
+            is EditorAction.UpdateUndefinedTasks -> update {
+                it.copy(undefinedTasks = action.tasks)
+            }
 
-            is EditorAction.UpdateEditModel -> updateState(
-                state.value.copy(
-                    editModel = action.editModel,
-                )
-            )
+            is EditorAction.UpdateEditModel -> update {
+                it.copy(editModel = action.editModel)
+            }
 
-            is EditorAction.UpdateTemplateId -> updateState(
-                state.value.copy(
-                    editModel = state.value.editModel?.copy(templateId = action.templateId),
-                )
-            )
+            is EditorAction.UpdateTemplateId -> update {
+                it.copy(editModel = state.value.editModel?.copy(templateId = action.templateId))
+            }
 
-            is EditorAction.SetValidError -> updateState(
-                state.value.copy(
+            is EditorAction.SetValidError -> update {
+                it.copy(
                     timeRangeValid = action.timeRange,
-                    categoryValid = action.category,
+                    categoryValid = action.category
                 )
-            )
+            }
         }
     }
 
@@ -214,6 +207,6 @@ class EditorViewModel(
         onTransform: EditModelHome.() -> EditModelHome,
     ) {
         val editModel = checkNotNull(state.value.editModel)
-        updateState(state.value.copy(editModel = onTransform(editModel)))
+        update { it.copy(editModel = onTransform(editModel)) }
     }
 }

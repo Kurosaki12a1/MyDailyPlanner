@@ -6,6 +6,9 @@ package com.kuro.mdp.features.home.domain.use_case.editor
  * Description:
  */
 data class EditorUseCase(
+    val addSubCategoryUseCase: AddSubCategoryUseCase,
+    val applyTemplateUseCase: ApplyTemplateUseCase,
+    val applyUndefinedTaskUseCase: ApplyUndefinedTaskUseCase,
     val loadTemplatesUseCase: LoadTemplatesUseCase,
     val loadUndefinedTasksUseCase: LoadUndefinedTasksUseCase,
     val loadSendModelUseCase: LoadSendModelUseCase,

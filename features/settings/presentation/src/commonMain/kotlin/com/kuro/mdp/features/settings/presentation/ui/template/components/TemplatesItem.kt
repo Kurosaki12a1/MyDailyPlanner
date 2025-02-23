@@ -42,8 +42,8 @@ import com.kuro.mdp.shared.presentation.views.TemplateEditorDialog
 import com.kuro.mdp.shared.presentation.views.toMinutesOrHoursTitle
 import com.kuro.mdp.shared.utils.extensions.duration
 import com.kuro.mdp.shared.utils.format
+import com.kuro.mdp.shared.utils.functional.getTimeFormatShort
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.format.char
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -142,11 +142,7 @@ internal fun TemplateItemInfo(
     isConsiderInStatistics: Boolean,
     repeatTimes: List<RepeatTime>,
 ) {
-    val timeFormat = LocalDateTime.Format {
-        hour()
-        char('-')
-        minute()
-    }
+    val timeFormat = getTimeFormatShort()
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {

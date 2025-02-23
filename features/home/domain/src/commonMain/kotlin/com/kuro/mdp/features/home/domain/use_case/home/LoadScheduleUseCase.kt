@@ -2,10 +2,10 @@ package com.kuro.mdp.features.home.domain.use_case.home
 
 import com.kuro.mdp.features.home.domain.api.ScheduleHomeToUiMapper
 import com.kuro.mdp.features.home.domain.mapper.schedules.mapToDomain
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.model.schedules.ScheduleHome
 import com.kuro.mdp.features.home.domain.repository.common.TimeTaskStatusController
 import com.kuro.mdp.features.home.domain.repository.home.HomeScheduleRepository
-import com.kuro.mdp.shared.domain.model.schedules.DailyScheduleStatus
 import com.kuro.mdp.shared.domain.model.schedules.TimeTaskStatus
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.Constants
@@ -34,7 +34,7 @@ class LoadScheduleUseCase(
     private val statusController: TimeTaskStatusController
 ) {
 
-    operator fun invoke(date: LocalDateTime?): Flow<ResultState<ScheduleHome?>> = channelFlow {
+    operator fun invoke(date: LocalDateTime?): Flow<ResultState<HomeAction>> = channelFlow {
         var cycleUpdateJob: Job? = null
         val sendDate = scheduleRepository.fetchFeatureScheduleDate()
         val scheduleDate = sendDate ?: date ?: dateManager.fetchBeginningCurrentDay()
@@ -48,7 +48,7 @@ class LoadScheduleUseCase(
                     if (scheduleModel != null) {
                         val schedule = scheduleModel.map(mapperToUi)
 
-                        send(ResultState.Success(schedule))
+                        send(ResultState.Success(HomeAction.UpdateSchedule(schedule)))
 
                         cycleUpdateJob = refreshScheduleState(schedule)
                             .onEach { send(it) }
@@ -56,11 +56,7 @@ class LoadScheduleUseCase(
                             .apply { start() }
                     } else {
                         send(
-                            ResultState.Success(
-                                ScheduleHome(
-                                    date = scheduleDate, timeTasks = emptyList(), progress = -1f, dateStatus = DailyScheduleStatus.PLANNED
-                                )
-                            )
+                            ResultState.Success(HomeAction.SetEmptySchedule(scheduleDate, null))
                         )
                     }
                 }
@@ -68,7 +64,7 @@ class LoadScheduleUseCase(
         }
     }
 
-    private fun refreshScheduleState(schedule: ScheduleHome) = flow {
+    private fun refreshScheduleState(schedule: ScheduleHome): Flow<ResultState<HomeAction>> = flow {
         var oldTimeTasks = schedule.timeTasks
         var isWorking = true
         while (isWorking) {
@@ -77,7 +73,7 @@ class LoadScheduleUseCase(
                 val completedChange = oldTimeTasks.map { it.isCompleted } != newTimeTasks.map { it.isCompleted }
                 oldTimeTasks = newTimeTasks
                 val newSchedule = schedule.copy(timeTasks = oldTimeTasks)
-                emit(ResultState.Success(newSchedule))
+                emit(ResultState.Success(HomeAction.UpdateSchedule(newSchedule)))
                 if (completedChange) scheduleRepository.updateSchedule(newSchedule.mapToDomain())
             }
             isWorking = oldTimeTasks.find { it.executionStatus != TimeTaskStatus.COMPLETED } != null

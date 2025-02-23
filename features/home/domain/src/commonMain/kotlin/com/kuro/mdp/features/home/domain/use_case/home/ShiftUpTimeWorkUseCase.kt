@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.home.domain.use_case.home
 
 import com.kuro.mdp.features.home.domain.mapper.schedules.mapToDomain
+import com.kuro.mdp.features.home.domain.model.actions.HomeAction
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
 import com.kuro.mdp.features.home.domain.repository.home.HomeTimeShiftRepository
 import com.kuro.mdp.shared.domain.model.schedules.TimeTask
@@ -21,7 +22,7 @@ class ShiftUpTimeWorkUseCase(
     private val timeTaskAlarmManager: TimeTaskAlarmManager
 ) {
 
-    operator fun invoke(timeTask: TimeTaskHome): Flow<ResultState<List<TimeTask>>> = flow {
+    operator fun invoke(timeTask: TimeTaskHome): Flow<ResultState<HomeAction>> = flow {
         timeShiftRepository.shiftUpTimeTask(timeTask.mapToDomain(), Constants.Date.SHIFT_MINUTE_VALUE).handle(
             onFailure = { emit(ResultState.Failure(it)) },
             onSuccess = { updateTasks -> updateTasks.forEach { notifyUpdate(it) } }

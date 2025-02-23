@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
-import com.kuro.mdp.features.home.presentation.ui.home.ui.home.HomeViewState
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeViewState
 import com.kuro.mdp.shared.domain.model.settings.ViewToggleStatus
 import kotlinx.datetime.LocalDateTime
 

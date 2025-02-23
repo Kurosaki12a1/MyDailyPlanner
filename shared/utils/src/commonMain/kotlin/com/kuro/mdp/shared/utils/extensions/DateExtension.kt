@@ -19,6 +19,7 @@ import kotlinx.datetime.plus
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlin.math.abs
+import kotlin.math.ceil
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
@@ -287,9 +288,27 @@ fun LocalDateTime.changeDay(date: LocalDateTime): LocalDateTime {
     return LocalDateTime(date.year, date.month, date.dayOfMonth, this.hour, this.minute, this.second, this.nanosecond)
 }
 
+fun LocalDateTime.endOfCurrentMonth(): LocalDateTime {
+    val endOfMonth = LocalDate(this.year, this.month, this.date.lengthOfMonth())
+    return LocalDateTime(endOfMonth, this.time)
+}
+
+fun LocalDateTime.isCurrentMonth(date: LocalDateTime = getLocalDateTimeNow()): Boolean {
+    return this.date.month == date.month
+}
+
 fun TimeRange.isIncludeTime(time: LocalDateTime): Boolean {
     return time.toEpochMillis() >= this.from.toEpochMillis() && time.toEpochMillis() <= this.to.toEpochMillis()
 }
+
+fun TimeRange.toDaysTitle(): String {
+    return "${from.dayOfMonth}-${to.dayOfMonth}"
+}
+
+fun TimeRange.toMonthTitle(): String {
+    return "${from.monthNumber}-${to.monthNumber}"
+}
+
 
 fun Int.mapHourAmPmTo24(format: TimeFormat): Int {
     return when (format) {
@@ -316,3 +335,13 @@ fun Int.minutesToMillis(): Long {
 fun Int.hoursToMillis(): Long {
     return this * Constants.Date.MILLIS_IN_HOUR
 }
+
+fun countWeeksByDays(days: Int): Int {
+    return ceil(days.toDouble() / Constants.Date.DAYS_IN_WEEK).toInt()
+}
+
+fun countMonthByDays(days: Int): Int {
+    return ceil(days.toDouble() / Constants.Date.DAYS_IN_MONTH).toInt()
+}
+
+

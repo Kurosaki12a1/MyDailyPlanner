@@ -1,5 +1,8 @@
 package com.kuro.mdp.features.home.domain
 
+import com.kuro.mdp.features.home.domain.use_case.editor.AddSubCategoryUseCase
+import com.kuro.mdp.features.home.domain.use_case.editor.ApplyTemplateUseCase
+import com.kuro.mdp.features.home.domain.use_case.editor.ApplyUndefinedTaskUseCase
 import com.kuro.mdp.features.home.domain.use_case.editor.CreateTemplateUseCase
 import com.kuro.mdp.features.home.domain.use_case.editor.DeleteModelUseCase
 import com.kuro.mdp.features.home.domain.use_case.editor.EditorUseCase
@@ -40,6 +43,9 @@ val homeDomainModule = module {
     }
     factory<EditorUseCase> {
         EditorUseCase(
+            addSubCategoryUseCase = AddSubCategoryUseCase(get()),
+            applyTemplateUseCase = ApplyTemplateUseCase(),
+            applyUndefinedTaskUseCase = ApplyUndefinedTaskUseCase(),
             loadTemplatesUseCase = LoadTemplatesUseCase(get()),
             loadUndefinedTasksUseCase = LoadUndefinedTasksUseCase(get()),
             loadSendModelUseCase = LoadSendModelUseCase(get(), get()),

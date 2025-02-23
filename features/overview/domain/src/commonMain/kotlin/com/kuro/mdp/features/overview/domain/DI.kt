@@ -1,5 +1,7 @@
 package com.kuro.mdp.features.overview.domain
 
+import com.kuro.mdp.features.overview.domain.use_case.details.DetailsUseCase
+import com.kuro.mdp.features.overview.domain.use_case.details.LoadAllSchedulesUseCase
 import com.kuro.mdp.features.overview.domain.use_case.over_view.CreateOrUpdateTaskUseCase
 import com.kuro.mdp.features.overview.domain.use_case.over_view.DeleteUndefinedTaskUseCase
 import com.kuro.mdp.features.overview.domain.use_case.over_view.ExecuteUndefinedTaskUseCase
@@ -23,6 +25,11 @@ val overViewDomainModule = module {
             createOrUpdateTaskUseCase = CreateOrUpdateTaskUseCase(get()),
             executeUndefinedTaskUseCase = ExecuteUndefinedTaskUseCase(get(), get()),
             deleteUndefinedTaskUseCase = DeleteUndefinedTaskUseCase(get())
+        )
+    }
+    factory<DetailsUseCase> {
+        DetailsUseCase(
+            loadAllSchedulesUseCase = LoadAllSchedulesUseCase(get(), get(), get())
         )
     }
 }

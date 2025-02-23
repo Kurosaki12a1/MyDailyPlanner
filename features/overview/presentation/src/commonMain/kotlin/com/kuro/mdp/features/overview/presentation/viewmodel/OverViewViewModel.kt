@@ -3,8 +3,8 @@ package com.kuro.mdp.features.overview.presentation.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.features.overview.domain.model.OverViewError
 import com.kuro.mdp.features.overview.domain.use_case.over_view.OverViewUseCase
-import com.kuro.mdp.features.overview.presentation.ui.OverViewEvent
-import com.kuro.mdp.features.overview.presentation.ui.OverViewViewState
+import com.kuro.mdp.features.overview.presentation.ui.overview.OverViewEvent
+import com.kuro.mdp.features.overview.presentation.ui.overview.OverViewViewState
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
@@ -42,7 +42,7 @@ class OverViewViewModel(
                                     state.value.copy(
                                         isLoading = false,
                                         currentDate = it.first,
-                                        currentSchedule = it.second.find { ownDate -> ownDate.date == it.first },
+                                        currentSchedule = it.second.find { ownDate -> ownDate.date.date == it.first.date },
                                         schedules = it.second
                                     )
                                 )
@@ -91,7 +91,7 @@ class OverViewViewModel(
             }
 
             is OverViewEvent.OpenAllSchedules -> {
-                // Detail
+                navigateTo(Destination.Details)
             }
 
             is OverViewEvent.OpenSchedule -> {
@@ -99,9 +99,9 @@ class OverViewViewModel(
                 navigateTo(screen)
             }
 
-            is OverViewEvent.PressScheduleButton -> {
-                navigateTo(Destination.Home())
-            }
+            /* is OverViewEvent.PressScheduleButton -> {
+                 navigateTo(Destination.Home())
+             }*/
         }
     }
 

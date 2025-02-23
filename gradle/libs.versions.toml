@@ -3,10 +3,9 @@ agp = "8.7.3"
 android-compileSdk = "35"
 android-minSdk = "29"
 android-targetSdk = "35"
-androidx-activityCompose = "1.9.3"
+androidx-activityCompose = "1.10.0"
 androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.13.1"
+androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.3"
 androidx-material = "1.12.0"
@@ -25,11 +24,14 @@ ksp = "2.1.0-1.0.28"
 koin = "4.0.0"
 
 # Room
-room = "2.7.0-alpha12"
-sqlite = "2.5.0-alpha12"
+room = "2.7.0-beta01"
+sqlite = "2.5.0-beta01"
 
 # Navigation
 navigationCompose = "2.8.0-alpha10"
+
+# Charty
+compose_chart = "0.1.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -40,7 +42,6 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
@@ -68,6 +69,9 @@ sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 
 # Navigation
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+
+# Charts
+compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "compose_chart" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

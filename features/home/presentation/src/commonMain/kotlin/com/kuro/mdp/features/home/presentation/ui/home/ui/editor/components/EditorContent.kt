@@ -50,8 +50,8 @@ import com.kuro.mdp.features.home.domain.model.editor.error.TimeRangeError
 import com.kuro.mdp.features.home.presentation.ui.home.mappers.convertToModel
 import com.kuro.mdp.features.home.presentation.ui.home.mappers.convertToParameter
 import com.kuro.mdp.features.home.presentation.ui.home.theme.HomeTheme
-import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.EditorViewState
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.PriorityParameters
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorViewState
 import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.theme.AppTheme
 import com.kuro.mdp.shared.presentation.views.CustomLargeTextField

@@ -45,11 +45,9 @@ import com.kuro.mdp.shared.presentation.views.ViewToggle
 import com.kuro.mdp.shared.utils.extensions.mapToDate
 import com.kuro.mdp.shared.utils.extensions.shiftDays
 import com.kuro.mdp.shared.utils.extensions.startThisDay
+import com.kuro.mdp.shared.utils.functional.getTimeFormatOfMonth
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
-import kotlinx.datetime.format.DayOfWeekNames
-import kotlinx.datetime.format.MonthNames
-import kotlinx.datetime.format.char
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -100,15 +98,10 @@ internal fun HomeDateChooser(
     currentDate: LocalDateTime?,
     onChangeDate: (LocalDateTime) -> Unit,
 ) {
-    val listDayOfWeekName = AppTheme.dayOfWeeks
-    val listOfMonthName = AppTheme.months
-    val dateFormat = LocalDateTime.Format {
-        dayOfWeek(DayOfWeekNames(listDayOfWeekName))
-        chars(", ")
-        dayOfMonth()
-        char(' ')
-        monthName(MonthNames(listOfMonthName))
-    }
+    val dateFormat = getTimeFormatOfMonth(
+        listDayOfWeekName = AppTheme.dayOfWeeks,
+        listOfMonthName = AppTheme.months
+    )
 
     val isDateDialogShow = rememberSaveable { mutableStateOf(false) }
 

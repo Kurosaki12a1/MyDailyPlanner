@@ -2,6 +2,8 @@ package com.kuro.mdp.features.home.domain.mapper.schedules
 
 import com.kuro.mdp.features.home.domain.mapper.categories.mapToDomain
 import com.kuro.mdp.features.home.domain.mapper.categories.mapToUi
+import com.kuro.mdp.features.home.domain.model.editor.EditModelHome
+import com.kuro.mdp.features.home.domain.model.editor.EditParameters
 import com.kuro.mdp.features.home.domain.model.schedules.ScheduleHome
 import com.kuro.mdp.features.home.domain.model.schedules.TaskNotificationsHome
 import com.kuro.mdp.features.home.domain.model.schedules.TimeTaskHome
@@ -12,6 +14,7 @@ import com.kuro.mdp.shared.domain.model.schedules.TimeTask
 import com.kuro.mdp.shared.domain.model.schedules.UndefinedTask
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.TimeRange
+import kotlinx.datetime.LocalDateTime
 
 /**
  * Created by: minhthinh.h on 12/25/2024
@@ -69,6 +72,22 @@ fun UndefinedTask.mapToUi() = UndefinedTaskHome(
     mainCategory = mainCategory.mapToUi(),
     subCategory = subCategory?.mapToUi(),
     priority = priority,
+    note = note,
+)
+
+fun UndefinedTaskHome.convertToEditModel(
+    scheduleDate: LocalDateTime,
+    timeRange: TimeRange,
+) = EditModelHome(
+    date = scheduleDate,
+    timeRange = timeRange,
+    createdAt = createdAt,
+    mainCategory = mainCategory,
+    subCategory = subCategory,
+    parameters = EditParameters(
+        priority = priority,
+    ),
+    undefinedTaskId = id,
     note = note,
 )
 

@@ -29,8 +29,8 @@ import com.kuro.mdp.shared.presentation.extensions.string
 import com.kuro.mdp.shared.presentation.views.DurationPickerDialog
 import com.kuro.mdp.shared.presentation.views.MultiTimePickerDialog
 import com.kuro.mdp.shared.presentation.views.toMinutesAndHoursTitle
+import com.kuro.mdp.shared.utils.functional.getTimeFormatShort
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.format.char
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -50,11 +50,7 @@ internal fun BaseTimeField(
     color: Color = MaterialTheme.colorScheme.surfaceContainerLow,
     onChangeTime: (LocalDateTime) -> Unit,
 ) {
-    val timeFormat = LocalDateTime.Format {
-        hour()
-        char('-')
-        minute()
-    }
+    val timeFormat = getTimeFormatShort()
     var openDialog by rememberSaveable { mutableStateOf(false) }
 
     Surface(

@@ -14,6 +14,7 @@ import com.kuro.mdp.features.home.presentation.ui.home.theme.resources.LocalHome
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.components.HomeContent
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.components.HomeDatePicker
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.components.HomeTopBar
+import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeEvent
 import com.kuro.mdp.features.home.presentation.ui.home.viewmodel.HomeViewModel
 import com.kuro.mdp.shared.presentation.views.ErrorSnackBar
 import com.kuro.mdp.shared.utils.extensions.getLocalDateTimeNow
@@ -94,7 +95,7 @@ internal fun HomeScreen(
                 message = message,
                 withDismissAction = true
             )
-            viewModel.updateState(newState = state.copy(error = null))
+            viewModel.dispatchEvent(HomeEvent.ClearFailure)
         }
     }
 

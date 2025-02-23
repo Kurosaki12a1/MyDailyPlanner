@@ -12,13 +12,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.kuro.mdp.features.home.presentation.Home.home.Home.editor.EditorEvent
 import com.kuro.mdp.features.home.presentation.ui.home.mappers.mapToMessage
 import com.kuro.mdp.features.home.presentation.ui.home.theme.resources.LocalHomeStrings
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.components.EditorContent
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.components.EditorTopAppBar
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.components.TemplatesBottomSheet
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.components.UndefinedTasksBottomSheet
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorError
+import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorEvent
 import com.kuro.mdp.features.home.presentation.ui.home.viewmodel.EditorViewModel
 import com.kuro.mdp.shared.presentation.views.ErrorSnackBar
 import com.kuro.mdp.shared.utils.functional.TimeRange

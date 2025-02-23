@@ -2,6 +2,7 @@ package com.kuro.mdp.features.home.domain.use_case.editor
 
 import com.kuro.mdp.features.home.domain.common.convertToTimeTask
 import com.kuro.mdp.features.home.domain.mapper.editor.mapToDomain
+import com.kuro.mdp.features.home.domain.model.actions.EditorAction
 import com.kuro.mdp.features.home.domain.model.editor.EditModelHome
 import com.kuro.mdp.features.home.domain.repository.home.HomeTimeTaskRepository
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
@@ -20,7 +21,7 @@ class DeleteModelUseCase(
     private val timeTaskAlarmManager: TimeTaskAlarmManager,
     private val navigator: Navigator
 ) {
-    operator fun invoke(editModel: EditModelHome?): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(editModel: EditModelHome?): Flow<ResultState<EditorAction>> = flow {
         if (editModel == null) return@flow
         val domainModel = editModel.mapToDomain()
         if (domainModel.key != 0L) {
@@ -34,5 +35,6 @@ class DeleteModelUseCase(
             }
         }
         navigator.navigateBack(route = null, inclusive = false)
+        emit(ResultState.Success(EditorAction.Navigate))
     }
 }
