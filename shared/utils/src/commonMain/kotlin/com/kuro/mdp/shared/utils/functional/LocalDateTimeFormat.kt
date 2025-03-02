@@ -95,7 +95,7 @@ fun getTimeFormatShort(): DateTimeFormat<LocalDateTime> {
     }
 }
 
-fun getDateFormatMedium() : DateTimeFormat<LocalDateTime> {
+fun getDateFormatMedium(): DateTimeFormat<LocalDateTime> {
     return LocalDateTime.Format {
         dayOfMonth()
         char('-')
@@ -105,7 +105,7 @@ fun getDateFormatMedium() : DateTimeFormat<LocalDateTime> {
     }
 }
 
-fun getDateFormatShort() : DateTimeFormat<LocalDateTime> {
+fun getDateFormatShort(): DateTimeFormat<LocalDateTime> {
     return LocalDateTime.Format {
         dayOfMonth()
         char('-')

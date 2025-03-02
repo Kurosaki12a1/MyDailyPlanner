@@ -20,11 +20,15 @@ class LoadAnalyticsUseCase(
     private val analyticsRepository: AnalyticsRepository
 ) {
 
-    operator fun invoke(period: TimePeriod): Flow<ResultState<AnalyticsAction>> = flow<ResultState<AnalyticsAction>> {
+    operator fun invoke(period: TimePeriod?): Flow<ResultState<AnalyticsAction>> = flow<ResultState<AnalyticsAction>> {
         delay(Constants.Delay.LOAD_ANIMATION)
-        analyticsRepository.fetchAnalytics(period).collectAndHandle(
-            onFailure = { emit(ResultState.Failure(it)) },
-            onSuccess = { analytics -> emit(ResultState.Success(AnalyticsAction.UpdateAnalytics(analytics))) }
-        )
+        if (period == null) {
+            emit(ResultState.Failure(Exception("Time period is required!")))
+        } else {
+            analyticsRepository.fetchAnalytics(period).collectAndHandle(
+                onFailure = { emit(ResultState.Failure(it)) },
+                onSuccess = { analytics -> emit(ResultState.Success(AnalyticsAction.UpdateAnalytics(analytics))) }
+            )
+        }
     }.onStart { emit(ResultState.Success(AnalyticsAction.UpdateLoading(isLoading = true))) }
 }

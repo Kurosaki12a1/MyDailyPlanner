@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToDomain
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.model.template.TemplateUi
 import com.kuro.mdp.features.settings.domain.repository.SettingsRepeatTaskRepository
 import com.kuro.mdp.features.settings.domain.repository.SettingsTemplatesRepository
@@ -22,7 +23,7 @@ class DeleteRepeatTemplatesUseCase(
     private val templatesAlarmManager: TemplatesAlarmManager
 ) {
 
-    operator fun invoke(repeatTime: RepeatTime, template: TemplateUi): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(repeatTime: RepeatTime, template: TemplateUi): Flow<ResultState<TemplatesAction>> = flow {
         val newRepeatTimes = template.repeatTimes.toMutableList().apply { remove(repeatTime) }
         val newTemplate = template.copy(repeatTimes = newRepeatTimes)
         templatesRepository.updateTemplate(newTemplate.mapToDomain()).handle(
@@ -32,7 +33,10 @@ class DeleteRepeatTemplatesUseCase(
                 if (template.repeatEnabled) {
                     repeatTaskRepository.deleteRepeatsTemplates(template.mapToDomain(), repeat).handle(
                         onFailure = { emit(ResultState.Failure(it)) },
-                        onSuccess = { deleteNotifications(template, repeat) }
+                        onSuccess = {
+                            deleteNotifications(template, repeat)
+                            emit(ResultState.Success(TemplatesAction.DeleteRepeatTemplates))
+                        }
                     )
                 }
             }

@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToUi
-import com.kuro.mdp.features.settings.domain.model.template.TemplatesAction
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.model.template.TemplatesSortedType
 import com.kuro.mdp.features.settings.domain.repository.SettingsTemplatesRepository
 import com.kuro.mdp.shared.utils.extensions.duration

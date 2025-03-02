@@ -1,8 +1,8 @@
-package com.kuro.mdp.features.overview.domain.model.details
+package com.kuro.mdp.features.overview.domain.model.actions
 
 import com.kuro.mdp.features.overview.domain.model.schedules.ScheduleOverView
+import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseAction
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.Serializable
 
 /**
  * Created by: minhthinh.h on 2/18/2025
@@ -10,8 +10,7 @@ import kotlinx.serialization.Serializable
  * Description:
  */
 
-@Serializable
-sealed class DetailsAction {
+sealed class DetailsAction : BaseAction {
     data class UpdateSchedules(val date: LocalDateTime, val schedules: List<ScheduleOverView>) : DetailsAction()
     data class UpdateLoading(val isLoading: Boolean) : DetailsAction()
 }

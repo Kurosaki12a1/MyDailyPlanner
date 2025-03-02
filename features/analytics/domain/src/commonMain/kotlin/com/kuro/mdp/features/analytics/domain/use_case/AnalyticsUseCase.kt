@@ -5,7 +5,7 @@ package com.kuro.mdp.features.analytics.domain.use_case
  *
  * Description:
  */
-data class AnalyticsUseCase (
+data class AnalyticsUseCase(
     val loadAnalyticsUseCase: LoadAnalyticsUseCase,
     val loadSettingsUseCase: LoadSettingsUseCase,
     val updateTimePeriodUseCase: UpdateTimePeriodUseCase

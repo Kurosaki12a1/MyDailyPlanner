@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToDomain
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.model.template.TemplateUi
 import com.kuro.mdp.features.settings.domain.repository.SettingsTemplatesRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
@@ -15,10 +16,10 @@ import kotlinx.coroutines.flow.flow
 class AddTemplatesUseCase(
     private val templatesRepository: SettingsTemplatesRepository
 ) {
-    operator fun invoke(template: TemplateUi): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(template: TemplateUi): Flow<ResultState<TemplatesAction>> = flow {
         templatesRepository.addTemplate(template.mapToDomain()).let {
             if (it is ResultState.Failure) emit(ResultState.Failure(it.exception))
-            else emit(ResultState.Success(Unit))
+            else emit(ResultState.Success(TemplatesAction.AddTemplates))
         }
     }
 }

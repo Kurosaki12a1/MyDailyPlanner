@@ -6,8 +6,7 @@ import com.kuro.mdp.features.analytics.domain.use_case.AnalyticsUseCase
 import com.kuro.mdp.features.analytics.presentation.ui.analytics.contract.AnalyticsEvent
 import com.kuro.mdp.features.analytics.presentation.ui.analytics.contract.AnalyticsViewState
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
-import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModelNew
-import kotlinx.coroutines.CoroutineExceptionHandler
+import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 class AnalyticsViewModel(
     private val analyticsUseCase: AnalyticsUseCase,
     navigator: Navigator
-) : BaseViewModelNew<AnalyticsViewState, AnalyticsEvent, AnalyticsAction>(navigator) {
+) : BaseViewModel<AnalyticsViewState, AnalyticsEvent, AnalyticsAction>(navigator) {
 
     init {
         dispatchEvent(AnalyticsEvent.Init)
@@ -30,23 +29,15 @@ class AnalyticsViewModel(
         when (event) {
             is AnalyticsEvent.ChangeTimePeriod -> {
                 viewModelScope.launch {
-                    launch {
-                        analyticsUseCase.updateTimePeriodUseCase(event.period).collectAndHandleWork()
-                    }
-                    launch {
-                        analyticsUseCase.loadAnalyticsUseCase(event.period).collectAndHandleWork()
-                    }
+                    analyticsUseCase.updateTimePeriodUseCase(event.period).collectAndHandleWork()
+                    analyticsUseCase.loadAnalyticsUseCase(event.period).collectAndHandleWork()
                 }
             }
 
             is AnalyticsEvent.Init -> {
                 viewModelScope.launch {
-                    try {
-                        analyticsUseCase.loadSettingsUseCase().collectAndHandleWork()
-                        analyticsUseCase.loadAnalyticsUseCase(checkNotNull(state.value.timePeriod)).collectAndHandleWork()
-                    } catch (e: Exception) {
-                        if (e is CoroutineExceptionHandler) throw e
-                    }
+                    analyticsUseCase.loadSettingsUseCase().collectAndHandleWork()
+                    analyticsUseCase.loadAnalyticsUseCase(state.value.timePeriod).collectAndHandleWork()
                 }
             }
         }

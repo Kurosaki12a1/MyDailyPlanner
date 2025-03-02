@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.overview.domain.use_case.over_view
 
 import com.kuro.mdp.features.overview.domain.api.ScheduleOverViewToUiMapper
-import com.kuro.mdp.features.overview.domain.model.schedules.ScheduleOverView
+import com.kuro.mdp.features.overview.domain.model.actions.OverViewAction
 import com.kuro.mdp.features.overview.domain.repository.over_view.OverViewScheduleRepository
 import com.kuro.mdp.shared.utils.extensions.isIncludeTime
 import com.kuro.mdp.shared.utils.extensions.mapToDate
@@ -12,7 +12,6 @@ import com.kuro.mdp.shared.utils.functional.handle
 import com.kuro.mdp.shared.utils.managers.DateManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.datetime.LocalDateTime
 
 /**
  * Created by: minhthinh.h on 1/22/2025
@@ -24,7 +23,7 @@ class LoadScheduleUseCase(
     private val scheduleRepository: OverViewScheduleRepository,
     private val schedulesUiMapper: ScheduleOverViewToUiMapper
 ) {
-    operator fun invoke(): Flow<ResultState<Pair<LocalDateTime, List<ScheduleOverView>>>> = flow {
+    operator fun invoke(): Flow<ResultState<OverViewAction>> = flow {
         val currentDate = dateManager.fetchBeginningCurrentDay()
         val previewTimeRange = TimeRange(currentDate.shiftDays(-1), currentDate.shiftDays(2))
         scheduleRepository.fetchOverviewSchedules().handle(
@@ -33,7 +32,7 @@ class LoadScheduleUseCase(
             }, onSuccess = { schedules ->
                 val previewSchedules = schedules.filter { previewTimeRange.isIncludeTime(it.date.mapToDate()) }
                     .map { schedulesUiMapper.map(it) }
-                emit(ResultState.Success(Pair(currentDate, previewSchedules)))
+                emit(ResultState.Success(OverViewAction.UpdateSchedules(currentDate, previewSchedules)))
             }
         )
     }

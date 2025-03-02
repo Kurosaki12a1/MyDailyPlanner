@@ -1,7 +1,8 @@
 package com.kuro.mdp.app.domain.use_case
 
+import com.kuro.mdp.app.domain.models.MainAction
 import com.kuro.mdp.features.settings.domain.repository.SettingsMenuRepository
-import com.kuro.mdp.shared.domain.model.settings.Settings
+import com.kuro.mdp.features.settings.presentation.mappers.mapToUi
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.flow.Flow
@@ -16,10 +17,22 @@ class FetchSettingsUseCase(
     private val settingsMenuRepository: SettingsMenuRepository
 ) {
 
-    operator fun invoke(): Flow<ResultState<Settings>> = flow {
+    operator fun invoke(): Flow<ResultState<MainAction>> = flow {
         settingsMenuRepository.fetchAllSettings().collectAndHandle(
             onFailure = { emit(ResultState.Failure(it)) },
-            onSuccess = { emit(ResultState.Success(it)) }
+            onSuccess = {
+                emit(
+                    ResultState.Success(
+                        MainAction.UpdateSettings(
+                            secureMode = it.tasksSettings.secureMode,
+                            isEnableDynamicColors = it.themeSettings.isDynamicColorEnable,
+                            language = it.themeSettings.language.mapToUi(),
+                            theme = it.themeSettings.themeColors.mapToUi(),
+                            colors = it.themeSettings.colorsType.mapToUi()
+                        )
+                    )
+                )
+            }
         )
     }
 }

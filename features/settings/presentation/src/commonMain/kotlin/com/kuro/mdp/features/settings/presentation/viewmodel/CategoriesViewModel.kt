@@ -1,13 +1,12 @@
 package com.kuro.mdp.features.settings.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.kuro.mdp.features.settings.domain.model.categories.CategoriesAction
+import com.kuro.mdp.features.settings.domain.model.actions.CategoriesAction
 import com.kuro.mdp.features.settings.domain.use_case.categories.CategoriesUseCase
 import com.kuro.mdp.features.settings.presentation.ui.categories.CategoriesEvent
 import com.kuro.mdp.features.settings.presentation.ui.categories.CategoriesViewState
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -18,7 +17,8 @@ import kotlinx.coroutines.launch
 internal class CategoriesViewModel(
     private val categoriesUseCase: CategoriesUseCase,
     navigator: Navigator
-) : BaseViewModel<CategoriesViewState, CategoriesEvent>(navigator) {
+) : BaseViewModel<CategoriesViewState, CategoriesEvent, CategoriesAction>(navigator) {
+
     override fun initState(): CategoriesViewState = CategoriesViewState()
 
     init {
@@ -29,20 +29,13 @@ internal class CategoriesViewModel(
         when (event) {
             is CategoriesEvent.AddMainCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.addMainCategoryUseCase(event.name)
-                        .collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                    categoriesUseCase.addMainCategoryUseCase(event.name).collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.AddSubCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.addSubCategoryUseCase(event.name, event.mainCategory)
-                        .collectAndHandle(
-                            onFailure = { showError(it) }
-                        )
+                    categoriesUseCase.addSubCategoryUseCase(event.name, event.mainCategory).collectAndHandleWork()
                 }
             }
 
@@ -52,103 +45,78 @@ internal class CategoriesViewModel(
 
             is CategoriesEvent.CheckSelectedCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.checkSelectedCategoryUseCase(state.value.categories)
-                        .collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                    categoriesUseCase.checkSelectedCategoryUseCase(state.value.categories).collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.ClearFailure -> {
-                updateState(state.value.copy(failure = null))
+                showError(null)
             }
 
             is CategoriesEvent.DeleteMainCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.deleteMainCategoryUseCase(event.mainCategory)
-                        .collectAndHandle(
-                            onFailure = { showError(it) }
-                        )
+                    categoriesUseCase.deleteMainCategoryUseCase(event.mainCategory).collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.DeleteSubCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.deleteSubCategoryUseCase(event.subCategory)
-                        .collectAndHandle(
-                            onFailure = { showError(it) }
-                        )
+                    categoriesUseCase.deleteSubCategoryUseCase(event.subCategory).collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.Init -> {
                 viewModelScope.launch {
-                    categoriesUseCase.loadCategoriesUseCase()
-                        .collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                    categoriesUseCase.loadCategoriesUseCase().collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.RestoreDefaultCategories -> {
                 viewModelScope.launch {
-                    categoriesUseCase.restoreDefaultCategoriesUseCase()
-                        .collectAndHandle(
-                            onFailure = { showError(it) }
-                        )
+                    categoriesUseCase.restoreDefaultCategoriesUseCase().collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.ShowSubCategoryDialog -> {
-                updateState(state.value.copy(isShowSubCategoryDialog = event.shouldShow))
+                update { it.copy(isShowSubCategoryDialog = event.shouldShow) }
             }
 
             is CategoriesEvent.UpdateMainCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.updateMainCategoryUseCase(event.mainCategory)
-                        .collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
+                    categoriesUseCase.updateMainCategoryUseCase(event.mainCategory).collectAndHandleWork()
                 }
             }
 
             is CategoriesEvent.UpdateSubCategory -> {
                 viewModelScope.launch {
-                    categoriesUseCase.updateSubCategoryUseCase(event.subCategory)
-                        .collectAndHandle(
-                            onFailure = { showError(it) },
-                        )
+                    categoriesUseCase.updateSubCategoryUseCase(event.subCategory).collectAndHandleWork()
                 }
             }
         }
     }
 
-    private fun updateState(action: CategoriesAction) {
+    override fun updateState(action: CategoriesAction) {
         when (action) {
             is CategoriesAction.ChangeMainCategory -> {
-                updateState(state.value.copy(selectedMainCategory = action.category))
+                update { it.copy(selectedMainCategory = action.category) }
             }
 
             is CategoriesAction.SetUp -> {
-                updateState(
-                    state.value.copy(
+                update {
+                    it.copy(
                         categories = action.categories,
                         selectedMainCategory = action.selected
                     )
-                )
+                }
             }
 
             is CategoriesAction.UpdateCategories -> {
-                updateState(state.value.copy(categories = action.categories))
+                update { it.copy(categories = action.categories) }
             }
         }
     }
 
-    override fun showError(e: Throwable) {
-        updateState(state.value.copy(failure = e.message))
+    override fun showError(e: Throwable?) {
+        update { it.copy(failure = e?.message) }
     }
-
 }

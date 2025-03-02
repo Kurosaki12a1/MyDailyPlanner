@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.categories
 
 import com.kuro.mdp.features.settings.domain.mapper.categories.mapToDomain
+import com.kuro.mdp.features.settings.domain.model.actions.CategoriesAction
 import com.kuro.mdp.features.settings.domain.model.categories.MainCategoryUi
 import com.kuro.mdp.features.settings.domain.model.categories.SubCategoryUi
 import com.kuro.mdp.features.settings.domain.repository.SettingsSubCategoriesRepository
@@ -15,11 +16,10 @@ class AddSubCategoryUseCase(
     operator fun invoke(
         name: String,
         mainCategory: MainCategoryUi
-    ): Flow<ResultState<Unit>> = flow {
+    ): Flow<ResultState<CategoriesAction>> = flow {
         val subCategory = SubCategoryUi(name = name, mainCategory = mainCategory)
         subCategoryRepository.addSubCategory(subCategory.mapToDomain()).handle(
-            onFailure = { ResultState.Failure(it) },
-            onSuccess = { ResultState.Success(Unit) }
+            onFailure = { ResultState.Failure(it) }
         )
     }
 }

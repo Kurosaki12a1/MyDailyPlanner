@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -133,13 +132,16 @@ internal fun CategoriesAnalyticsChart(
                 value = analytic.duration.toFloat() + 1f,
                 label = AnnotatedString(label),
                 color = fetchPieColorByTop(index),
+                textDisplay = analytic.duration.toMinutesAndHoursTitle()
             )
             add(data)
         }
+        val otherAnalytics = otherList.sumOf { it.duration }
         val otherPieData = PieChartEntry(
-            value = otherList.sumOf { it.duration }.toFloat(),
+            value = otherAnalytics.toFloat(),
             label = AnnotatedString(AnalyticsTheme.strings.otherAnalyticsName.string()),
             color = fetchPieColorByTop(5),
+            textDisplay = otherAnalytics.toMinutesAndHoursTitle()
         )
         add(otherPieData)
     }
@@ -155,8 +157,10 @@ internal fun CategoriesAnalyticsChart(
                     legendShape = RoundedCornerShape(8.dp),
                 )
             },
-            chartSize = 160.dp,
-            sliceWidth = 24.dp,
+            pieSelected = selectedItem,
+            chartSize = 200.dp,
+            sliceWidth = 30.dp,
+            sliceSpacing = 0.dp
         ) { legendEntries ->
             AnalyticsTimeLegend(
                 modifier = Modifier.wrapContentHeight(),
@@ -165,12 +169,12 @@ internal fun CategoriesAnalyticsChart(
                 onSelectedItem = onSelectItem,
             )
         }
-        Text(
-            modifier = Modifier.align(Alignment.TopCenter).offset(x = 0.dp, y = 70.dp),
-            text = analytics[selectedItem].duration.toMinutesAndHoursTitle(),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            style = MaterialTheme.typography.titleMedium,
-        )
+        /* Text(
+             modifier = Modifier.align(Alignment.TopCenter).offset(x = 0.dp, y = 70.dp),
+             text = analytics[selectedItem].duration.toMinutesAndHoursTitle(),
+             color = MaterialTheme.colorScheme.onSurfaceVariant,
+             style = MaterialTheme.typography.titleMedium,
+         )*/
     }
 }
 

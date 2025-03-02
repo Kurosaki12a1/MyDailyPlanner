@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.overview.domain.use_case.over_view
 
 import com.kuro.mdp.features.overview.domain.mapper.schedules.mapToUi
-import com.kuro.mdp.features.overview.domain.model.schedules.UndefinedTaskOverView
+import com.kuro.mdp.features.overview.domain.model.actions.OverViewAction
 import com.kuro.mdp.features.overview.domain.repository.over_view.OverViewUndefinedTasksRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.collectAndHandle
@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.flow
 class UpdateUndefinedTasksUseCase(
     private val undefinedTaskRepository: OverViewUndefinedTasksRepository
 ) {
-    operator fun invoke(): Flow<ResultState<List<UndefinedTaskOverView>>> = flow {
+    operator fun invoke(): Flow<ResultState<OverViewAction>> = flow {
         undefinedTaskRepository.fetchAllUndefinedTasks().collectAndHandle(
             onFailure = { emit(ResultState.Failure(it)) },
-            onSuccess = { tasks -> emit(ResultState.Success(tasks.map { it.mapToUi() })) }
+            onSuccess = { tasks -> emit(ResultState.Success(OverViewAction.UpdateUndefinedTasks(tasks.map { it.mapToUi() }))) }
         )
     }
 }

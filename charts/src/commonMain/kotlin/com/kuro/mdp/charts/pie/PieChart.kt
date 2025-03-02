@@ -39,6 +39,7 @@ fun PieChart(
     legendOffset: Dp = 24.dp,
     chartShapeSize: Dp = 8.dp,
     sliceSpacing: Dp = 2.dp,
+    pieSelected: Int = -1,
     useMinimumSliceAngle: Boolean = true,
     legend: @Composable (RowScope.(entries: List<LegendEntry>) -> Unit)? = {
         VerticalLegend(modifier = Modifier.weight(1f), legendEntries = it)
@@ -79,9 +80,11 @@ fun PieChart(
                 chartSizePx = chartSizePx,
                 sliceWidthPx = sliceWidthPx,
                 sliceSpacingPx = sliceSpacingPx,
+                data = data.entries,
                 fractions = fractions,
                 composeColors = entryColors.takeIf { it.size == data.entries.size } ?: data.colors,
                 animate = data.animate,
+                pieSelected = pieSelected,
                 clickOffset = clickedOffset,
                 onClick = { clickedOffset = it }
             )

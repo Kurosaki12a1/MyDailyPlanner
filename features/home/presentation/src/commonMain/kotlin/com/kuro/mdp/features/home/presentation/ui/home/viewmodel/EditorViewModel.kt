@@ -9,7 +9,7 @@ import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.Editor
 import com.kuro.mdp.features.home.presentation.ui.home.ui.editor.contract.EditorViewState
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
-import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModelNew
+import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.extensions.duration
 import com.kuro.mdp.shared.utils.managers.TimeOverlayException
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 class EditorViewModel(
     private val editorUseCase: EditorUseCase,
     navigator: Navigator
-) : BaseViewModelNew<EditorViewState, EditorEvent, EditorAction>(navigator) {
+) : BaseViewModel<EditorViewState, EditorEvent, EditorAction>(navigator) {
 
     init {
         dispatchEvent(EditorEvent.Init)

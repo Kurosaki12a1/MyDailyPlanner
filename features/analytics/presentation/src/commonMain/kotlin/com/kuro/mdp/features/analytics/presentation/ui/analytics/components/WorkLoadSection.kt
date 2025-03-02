@@ -8,11 +8,9 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -85,7 +83,7 @@ internal fun WorkLoadAnalyticsChart(
     period: TimePeriod,
 ) {
     val data = mutableListOf<BarData>().apply {
-        workLoadMap.onEachIndexed { index, entry ->
+        workLoadMap.onEachIndexed { _, entry ->
             val xValue = when (period == TimePeriod.YEAR || period == TimePeriod.HALF_YEAR) {
                 true -> entry.key.toMonthTitle()
                 false -> entry.key.toDaysTitle()
@@ -93,7 +91,7 @@ internal fun WorkLoadAnalyticsChart(
             add(
                 BarData(
                     xValue = xValue,
-                    yValue = index * 5f,
+                    yValue = entry.value.size.toFloat(),
                     barBackgroundColor = ChartColor.Solid(Color.Transparent)
                 )
             )

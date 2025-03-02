@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.categories.mapToUi
-import com.kuro.mdp.features.settings.domain.model.template.TemplatesAction
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.repository.SettingsCategoriesRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.collectAndHandle

@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToDomain
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.model.template.TemplateUi
 import com.kuro.mdp.features.settings.domain.repository.SettingsRepeatTaskRepository
 import com.kuro.mdp.features.settings.domain.repository.SettingsTemplatesRepository
@@ -23,7 +24,7 @@ class RestartTemplatesRepeatUseCase(
     private val templatesAlarmManager: TemplatesAlarmManager,
     private val timeTaskAlarmManager: TimeTaskAlarmManager
 ) {
-    operator fun invoke(template: TemplateUi): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(template: TemplateUi): Flow<ResultState<TemplatesAction>> = flow {
         val newTemplate = template.copy(repeatEnabled = true)
         templatesRepository.updateTemplate(newTemplate.mapToDomain()).handle(
             onFailure = { emit(ResultState.Failure(it)) },
@@ -36,7 +37,10 @@ class RestartTemplatesRepeatUseCase(
                 )
                 repeatTaskRepository.addRepeatsTemplate(template.mapToDomain(), template.repeatTimes).handle(
                     onFailure = { emit(ResultState.Failure(it)) },
-                    onSuccess = { addNotifications(template, template.repeatTimes) }
+                    onSuccess = {
+                        addNotifications(template, template.repeatTimes)
+                        emit(ResultState.Success(TemplatesAction.RestartTemplatesRepeat))
+                    }
                 )
             }
         )

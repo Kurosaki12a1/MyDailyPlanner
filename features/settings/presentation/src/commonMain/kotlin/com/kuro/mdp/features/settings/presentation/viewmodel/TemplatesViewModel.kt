@@ -1,19 +1,18 @@
 package com.kuro.mdp.features.settings.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.kuro.mdp.features.settings.domain.model.template.TemplatesAction
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.use_case.templates.TemplatesUseCase
 import com.kuro.mdp.features.settings.presentation.ui.template.TemplateViewState
 import com.kuro.mdp.features.settings.presentation.ui.template.TemplatesEvent
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
 
 class TemplatesViewModel(
     private val templatesUseCase: TemplatesUseCase,
     navigator: Navigator
-) : BaseViewModel<TemplateViewState, TemplatesEvent>(navigator) {
+) : BaseViewModel<TemplateViewState, TemplatesEvent, TemplatesAction>(navigator) {
 
     init {
         dispatchEvent(TemplatesEvent.Init)
@@ -25,54 +24,36 @@ class TemplatesViewModel(
         when (event) {
             is TemplatesEvent.AddRepeatTemplate -> {
                 viewModelScope.launch {
-                    templatesUseCase.addRepeatTemplatesUseCase(event.time, event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.addRepeatTemplatesUseCase(event.time, event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.AddTemplate -> {
                 viewModelScope.launch {
-                    templatesUseCase.addTemplatesUseCase(event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.addTemplatesUseCase(event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.ClearFailure -> {
-                updateState(state.value.copy(failure = null))
+                showError(null)
             }
 
             is TemplatesEvent.DeleteRepeatTemplate -> {
                 viewModelScope.launch {
-                    templatesUseCase.deleteRepeatTemplatesUseCase(event.time, event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.deleteRepeatTemplatesUseCase(event.time, event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.DeleteTemplate -> {
                 viewModelScope.launch {
-                    templatesUseCase.deleteTemplatesUseCase(event.id).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.deleteTemplatesUseCase(event.id).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.Init -> {
                 viewModelScope.launch {
-                    launch {
-                        templatesUseCase.loadCategoriesTemplateUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
-                    }
-                    launch {
-                        templatesUseCase.loadTemplatesUseCase(state.value.sortedType).collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = { updateState(it) }
-                        )
-                    }
+                    launch { templatesUseCase.loadCategoriesTemplateUseCase().collectAndHandleWork() }
+                    launch { templatesUseCase.loadTemplatesUseCase(state.value.sortedType).collectAndHandleWork() }
                 }
             }
 
@@ -82,62 +63,64 @@ class TemplatesViewModel(
 
             is TemplatesEvent.RestartTemplateRepeat -> {
                 viewModelScope.launch {
-                    templatesUseCase.restartTemplateRepeatUseCase(event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.restartTemplateRepeatUseCase(event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.ShowTemplateCreator -> {
-                updateState(state.value.copy(isShowTemplateCreator = event.shouldShow))
+                update { it.copy(isShowTemplateCreator = event.shouldShow) }
             }
 
             is TemplatesEvent.StopTemplateRepeat -> {
                 viewModelScope.launch {
-                    templatesUseCase.stopTemplatesRepeatUseCase(event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.stopTemplatesRepeatUseCase(event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.UpdateTemplate -> {
                 val oldModel = state.value.templates?.find { it.templateId == event.template.templateId }
                 viewModelScope.launch {
-                    templatesUseCase.updateTemplatesUseCase(oldModel!!, event.template).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    templatesUseCase.updateTemplatesUseCase(oldModel!!, event.template).collectAndHandleWork()
                 }
             }
 
             is TemplatesEvent.UpdatedSortedType -> {
                 updateState(TemplatesAction.ChangeSortedType(event.type))
                 viewModelScope.launch {
-                    templatesUseCase.loadTemplatesUseCase(event.type).collectAndHandle(
-                        onFailure = { showError(it) },
-                        onSuccess = { updateState(it) }
-                    )
+                    templatesUseCase.loadTemplatesUseCase(event.type).collectAndHandleWork()
                 }
             }
         }
     }
 
-    private fun updateState(action: TemplatesAction) {
+    override fun showError(e: Throwable?) {
+        update { it.copy(failure = e?.message) }
+    }
+
+    override fun updateState(action: TemplatesAction) {
         when (action) {
-            is TemplatesAction.ChangeSortedType -> {
-                updateState(state.value.copy(sortedType = action.type))
+            is TemplatesAction.UpdateTemplates -> update {
+                it.copy(
+                    templates = action.templates
+                )
             }
 
-            is TemplatesAction.UpdateCategories -> {
-                updateState(state.value.copy(categories = action.categories))
+            is TemplatesAction.ChangeSortedType -> update {
+                it.copy(
+                    sortedType = action.type
+                )
             }
 
-            is TemplatesAction.UpdateTemplates -> {
-                updateState(state.value.copy(templates = action.templates))
+            is TemplatesAction.UpdateCategories -> update {
+                it.copy(
+                    categories = action.categories
+                )
+            }
+
+            else -> {
+
             }
         }
     }
 
-    override fun showError(e: Throwable) {
-        updateState(state.value.copy(failure = e.message))
-    }
 }

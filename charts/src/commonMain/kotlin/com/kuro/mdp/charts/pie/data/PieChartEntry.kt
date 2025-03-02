@@ -11,6 +11,7 @@ import androidx.compose.ui.text.AnnotatedString
 data class PieChartEntry(
     val value: Float,
     val label: AnnotatedString,
+    val textDisplay: String,
     /**
      * Color of the pie slice and legend entry, if not provided [PieChartData.colors] will be used
      */

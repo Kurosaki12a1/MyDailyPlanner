@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -17,11 +18,21 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.fastForEachIndexed
 import com.kuro.mdp.charts.common.FDEG2RAD
 import com.kuro.mdp.charts.common.FLOAT_EPSILON
 import com.kuro.mdp.charts.common.calculateMinimumRadiusForSpacedSlice
 import com.kuro.mdp.charts.common.safeGet
+import com.kuro.mdp.charts.pie.data.PieChartEntry
 import kotlin.math.absoluteValue
 import kotlin.math.cos
 import kotlin.math.max
@@ -33,6 +44,7 @@ import kotlin.math.sin
  * Description:
  */
 private const val StartDegree = -90f
+private const val FACTOR_SELECTED_PIE = 1.2f
 
 @Composable
 internal fun PieChartRenderer(
@@ -41,8 +53,10 @@ internal fun PieChartRenderer(
     sliceWidthPx: Float,
     sliceSpacingPx: Float,
     fractions: List<Float>,
+    data: List<PieChartEntry>,
     composeColors: List<Color>,
     animate: Boolean,
+    pieSelected: Int = -1,
     clickOffset: Offset = Offset.Zero,
     onClick: (Offset) -> Unit = {}
 ) {
@@ -68,11 +82,11 @@ internal fun PieChartRenderer(
         (chartSizePx - (sliceWidthPx * 2f)) / 2f
     }
 
+    val textMeasurer = rememberTextMeasurer()
+    val textColor = MaterialTheme.colorScheme.onSurface
+
     Canvas(modifier = modifier.pointerInput(Unit) {
-        detectTapGestures {
-            println("Tap? $it")
-            onClick(it)
-        }
+        detectTapGestures { onClick(it) }
     }) {
         val circleBox = Rect(0f, 0f, size.width, size.height)
 
@@ -84,6 +98,31 @@ internal fun PieChartRenderer(
 
         fractions.fastForEachIndexed { idx, sliceAngle ->
             var innerRadius = userInnerRadius
+            val isPieSelected = pieSelected == idx
+
+            if (isPieSelected) {
+                val textLayoutResult = textMeasurer.measure(
+                    text = "${data[idx].label}\n${data[idx].textDisplay}",
+                    style = TextStyle(
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        lineHeight = 24.sp,
+                        letterSpacing = 0.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    overflow = TextOverflow.Clip,
+                    constraints = Constraints(
+                        maxWidth = (radius - sliceWidthPx).toInt() * 2,
+                        maxHeight = (radius - sliceWidthPx).toInt() * 2
+                    )
+                )
+                drawText(
+                    textLayoutResult = textLayoutResult,
+                    color = textColor,
+                    topLeft = Offset(center.x - textLayoutResult.size.width / 2f, center.y - textLayoutResult.size.height / 2f),
+                )
+            }
 
             val accountForSliceSpacing = sliceSpacingPx > 0f && sliceAngle <= 180f
 
@@ -99,12 +138,21 @@ internal fun PieChartRenderer(
             if (sweepAngleOuter >= 360f && sweepAngleOuter % 360f <= FLOAT_EPSILON) {
                 pathBuffer.addOval(Rect(center = Offset(center.x, center.y), radius))
             } else {
-                pathBuffer.arcTo(
-                    circleBox,
-                    startAngleOuter,
-                    sweepAngleOuter,
-                    false
-                )
+                if (!isPieSelected) {
+                    pathBuffer.arcTo(
+                        circleBox,
+                        startAngleOuter,
+                        sweepAngleOuter,
+                        false
+                    )
+                } else {
+                    pathBuffer.arcTo(
+                        resizeRect(circleBox, 12f),
+                        startAngleOuter,
+                        sweepAngleOuter,
+                        false
+                    )
+                }
             }
 
             val innerRectBuffer = Rect(
@@ -113,6 +161,7 @@ internal fun PieChartRenderer(
                 center.x + innerRadius,
                 center.y + innerRadius
             )
+
 
             if (drawInnerArc && (innerRadius > 0f || accountForSliceSpacing)) {
                 if (accountForSliceSpacing) {
@@ -186,4 +235,13 @@ internal fun PieChartRenderer(
             angle += sliceAngle * phase
         }
     }
+}
+
+private fun resizeRect(rect: Rect, value: Float): Rect {
+    return Rect(
+        left = rect.left - value,
+        right = rect.right + value,
+        top = rect.top - value,
+        bottom = rect.bottom + value
+    )
 }

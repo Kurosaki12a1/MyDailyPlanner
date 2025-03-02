@@ -173,6 +173,7 @@ internal fun createBarEntryShape(shape: EntryDrawShape, size: Size): Path {
                     cornerRadius = CornerRadius(size.height)
                 )
             )
+
             EntryDrawShape.First -> addRoundRect(
                 RoundRect(
                     rect = rect,
@@ -182,6 +183,7 @@ internal fun createBarEntryShape(shape: EntryDrawShape, size: Size): Path {
                     bottomLeft = CornerRadius(size.height),
                 )
             )
+
             EntryDrawShape.Middle -> addRect(rect = rect)
             EntryDrawShape.Last -> addRoundRect(
                 RoundRect(

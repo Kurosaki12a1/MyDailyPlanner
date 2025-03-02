@@ -4,17 +4,15 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
+import com.kuro.mdp.app.domain.models.MainAction
 import com.kuro.mdp.app.domain.use_case.MainUseCase
 import com.kuro.mdp.app.presentation.ui.main.MainEvent
 import com.kuro.mdp.app.presentation.ui.main.MainViewState
-import com.kuro.mdp.features.settings.presentation.mappers.mapToUi
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.NavigationIntent
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -25,7 +23,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val mainUseCase: MainUseCase,
     private val navigator: Navigator
-) : BaseViewModel<MainViewState, MainEvent>(navigator) {
+) : BaseViewModel<MainViewState, MainEvent, MainAction>(navigator) {
     val navigationFlow: SharedFlow<NavigationIntent>
         get() = navigator.navigationFlow
 
@@ -76,50 +74,55 @@ class MainViewModel(
         _graphBackStack.value = _graphBackStack.value.dropLast(1)
     }
 
+    override fun showError(e: Throwable?) {
+
+    }
+
+    override fun updateState(action: MainAction) {
+        when (action) {
+            is MainAction.UpdateEditor -> {}
+            is MainAction.UpdateMainCategoryId -> {}
+            is MainAction.UpdateScheduleDate -> {}
+            is MainAction.UpdateSettings -> update {
+                it.copy(
+                    secureMode = action.secureMode,
+                    isEnableDynamicColors = action.isEnableDynamicColors,
+                    language = action.language,
+                    theme = action.theme,
+                    colors = action.colors
+                )
+            }
+        }
+    }
+
     override fun initState(): MainViewState = MainViewState()
 
     override fun handleEvent(event: MainEvent) {
         when (event) {
             is MainEvent.Init -> {
                 viewModelScope.launch {
-                    mainUseCase.fetchSettingsUseCase().collectAndHandle(
-                        onSuccess = {
-                            updateState(
-                                state.value.copy(
-                                    secureMode = it.tasksSettings.secureMode,
-                                    isEnableDynamicColors = it.themeSettings.isDynamicColorEnable,
-                                    language = it.themeSettings.language.mapToUi(),
-                                    theme = it.themeSettings.themeColors.mapToUi(),
-                                    colors = it.themeSettings.colorsType.mapToUi()
-                                )
-                            )
-                        },
-                        onFailure = { showError(it) }
-                    )
+                    mainUseCase.fetchSettingsUseCase().collectAndHandleWork()
                 }
             }
 
             is MainEvent.UpdateMainCategoryId -> {
                 viewModelScope.launch {
-                    mainUseCase.updateMainCategoryUseCase(event.id).collectLatest {}
+                    mainUseCase.updateMainCategoryUseCase(event.id).collectAndHandleWork()
                 }
             }
 
             is MainEvent.UpdateScheduleDate -> {
                 viewModelScope.launch {
-                    mainUseCase.updateScheduleDateUseCase(event.date).collectLatest {}
+                    mainUseCase.updateScheduleDateUseCase(event.date).collectAndHandleWork()
                 }
             }
 
             is MainEvent.UpdateEditor -> {
                 viewModelScope.launch {
-                    mainUseCase.updateEditorUseCase(event.timeTask, event.template, event.undefinedTaskId).collectLatest {}
+                    mainUseCase.updateEditorUseCase(event.timeTask, event.template, event.undefinedTaskId).collectAndHandleWork()
                 }
             }
         }
     }
 
-    override fun showError(e: Throwable) {
-
-    }
 }

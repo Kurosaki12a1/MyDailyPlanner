@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.domain.use_case.templates
 
 import com.kuro.mdp.features.settings.domain.mapper.templates.mapToDomain
+import com.kuro.mdp.features.settings.domain.model.actions.TemplatesAction
 import com.kuro.mdp.features.settings.domain.model.template.TemplateUi
 import com.kuro.mdp.features.settings.domain.repository.SettingsRepeatTaskRepository
 import com.kuro.mdp.features.settings.domain.repository.SettingsTemplatesRepository
@@ -21,7 +22,7 @@ class UpdateTemplatesUseCase(
     private val repeatTaskRepository: SettingsRepeatTaskRepository,
     private val templatesAlarmManager: TemplatesAlarmManager
 ) {
-    operator fun invoke(oldTemplate: TemplateUi, newTemplate: TemplateUi): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(oldTemplate: TemplateUi, newTemplate: TemplateUi): Flow<ResultState<TemplatesAction>> = flow {
         val oldDomainModel = oldTemplate.mapToDomain()
         val newDomainModel = newTemplate.mapToDomain()
         templatesRepository.updateTemplate(newDomainModel).handle(
@@ -30,7 +31,9 @@ class UpdateTemplatesUseCase(
                 if (newTemplate.repeatEnabled) {
                     repeatTaskRepository.updateRepeatTemplate(oldDomainModel, newDomainModel).handle(
                         onFailure = { emit(ResultState.Failure(it)) },
-                        onSuccess = { updateNotifications(oldDomainModel, newDomainModel) }
+                        onSuccess = {
+                            updateNotifications(oldDomainModel, newDomainModel)
+                        }
                     )
                 }
             }

@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.overview.domain.use_case.details
 
 import com.kuro.mdp.features.overview.domain.api.ScheduleOverViewToUiMapper
-import com.kuro.mdp.features.overview.domain.model.details.DetailsAction
+import com.kuro.mdp.features.overview.domain.model.actions.DetailsAction
 import com.kuro.mdp.features.overview.domain.repository.over_view.OverViewScheduleRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
 import com.kuro.mdp.shared.utils.functional.handle

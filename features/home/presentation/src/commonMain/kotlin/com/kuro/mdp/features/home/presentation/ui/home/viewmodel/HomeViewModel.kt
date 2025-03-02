@@ -11,7 +11,7 @@ import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeEven
 import com.kuro.mdp.features.home.presentation.ui.home.ui.home.contract.HomeViewState
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
-import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModelNew
+import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.functional.TimeShiftException
 import com.kuro.mdp.shared.utils.functional.TimeTaskImportanceException
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 internal class HomeViewModel(
     private val homeUseCase: HomeUseCase,
     navigator: Navigator
-) : BaseViewModelNew<HomeViewState, HomeEvent, HomeAction>(navigator) {
+) : BaseViewModel<HomeViewState, HomeEvent, HomeAction>(navigator) {
 
     private val _isDateDialogShown = mutableStateOf(false)
     val isDateDialogShown: State<Boolean>

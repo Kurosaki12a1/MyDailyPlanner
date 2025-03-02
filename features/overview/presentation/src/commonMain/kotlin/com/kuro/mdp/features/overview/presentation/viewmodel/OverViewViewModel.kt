@@ -2,6 +2,7 @@ package com.kuro.mdp.features.overview.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.features.overview.domain.model.OverViewError
+import com.kuro.mdp.features.overview.domain.model.actions.OverViewAction
 import com.kuro.mdp.features.overview.domain.use_case.over_view.OverViewUseCase
 import com.kuro.mdp.features.overview.presentation.ui.overview.OverViewEvent
 import com.kuro.mdp.features.overview.presentation.ui.overview.OverViewViewState
@@ -11,7 +12,6 @@ import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
 import com.kuro.mdp.shared.utils.functional.TimeShiftException
 import com.kuro.mdp.shared.utils.functional.TimeTaskImportanceException
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -22,71 +22,48 @@ import kotlinx.coroutines.launch
 class OverViewViewModel(
     private val overViewUseCase: OverViewUseCase,
     navigator: Navigator
-) : BaseViewModel<OverViewViewState, OverViewEvent>(navigator) {
+) : BaseViewModel<OverViewViewState, OverViewEvent, OverViewAction>(navigator) {
     init {
         dispatchEvent(OverViewEvent.Init)
     }
+
 
     override fun initState(): OverViewViewState = OverViewViewState()
 
     override fun handleEvent(event: OverViewEvent) {
         when (event) {
             is OverViewEvent.Init, OverViewEvent.Refresh -> {
-                showLoading(true)
+                updateState(OverViewAction.UpdateLoading(true))
                 viewModelScope.launch {
                     launch {
-                        overViewUseCase.loadScheduleUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = {
-                                updateState(
-                                    state.value.copy(
-                                        isLoading = false,
-                                        currentDate = it.first,
-                                        currentSchedule = it.second.find { ownDate -> ownDate.date.date == it.first.date },
-                                        schedules = it.second
-                                    )
-                                )
-                            }
-                        )
+                        overViewUseCase.loadScheduleUseCase().collectAndHandleWork()
                     }
                     launch {
-                        overViewUseCase.updateUndefinedTasksUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = {
-                                updateState(state.value.copy(undefinedTasks = it))
-                            }
-                        )
+                        overViewUseCase.updateUndefinedTasksUseCase().collectAndHandleWork()
                     }
                     launch {
-                        overViewUseCase.updateCategoriesUseCase().collectAndHandle(
-                            onFailure = { showError(it) },
-                            onSuccess = {
-                                updateState(state.value.copy(categories = it))
-                            }
-                        )
+                        overViewUseCase.updateCategoriesUseCase().collectAndHandleWork()
                     }
                 }
             }
 
+            is OverViewEvent.ClearFailure -> showError(null)
+
             is OverViewEvent.CreateOrUpdateUndefinedTask -> {
                 viewModelScope.launch {
-                    overViewUseCase.createOrUpdateTaskUseCase(event.task).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    overViewUseCase.createOrUpdateTaskUseCase(event.task).collectAndHandleWork()
                 }
             }
 
             is OverViewEvent.DeleteUndefinedTask -> {
                 viewModelScope.launch {
-                    overViewUseCase.deleteUndefinedTaskUseCase(event.task).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    overViewUseCase.deleteUndefinedTaskUseCase(event.task).collectAndHandleWork()
                 }
             }
 
             is OverViewEvent.ExecuteUndefinedTask -> {
                 viewModelScope.launch {
-                    overViewUseCase.executeUndefinedTaskUseCase(event.scheduleDate, event.task)
+                    overViewUseCase.executeUndefinedTaskUseCase(event.scheduleDate, event.task).handleWork()
                 }
             }
 
@@ -98,26 +75,54 @@ class OverViewViewModel(
                 val screen = Destination.Home(event.scheduleDate?.toEpochMillis())
                 navigateTo(screen)
             }
-
-            /* is OverViewEvent.PressScheduleButton -> {
-                 navigateTo(Destination.Home())
-             }*/
         }
     }
 
-    override fun showError(e: Throwable) {
-        updateState(
-            newState = state.value.copy(
+    override fun showError(e: Throwable?) {
+        update {
+            it.copy(
                 error = when (e) {
+                    null -> null
                     is TimeShiftException -> OverViewError.ShiftError
                     is TimeTaskImportanceException -> OverViewError.ImportanceError
                     else -> OverViewError.OtherError(e)
                 }
             )
-        )
+        }
     }
 
-    private fun showLoading(show: Boolean) {
-        updateState(newState = state.value.copy(isLoading = show))
+    override fun updateState(action: OverViewAction) {
+        when (action) {
+            is OverViewAction.UpdateCategories -> {
+                update {
+                    it.copy(categories = action.categories)
+                }
+            }
+
+            is OverViewAction.UpdateLoading -> {
+                update {
+                    it.copy(isLoading = action.isLoading)
+                }
+            }
+
+            is OverViewAction.UpdateSchedules -> {
+                update {
+                    it.copy(
+                        isLoading = false,
+                        currentDate = action.date,
+                        currentSchedule = action.schedules.find { ownDate -> ownDate.date.date == action.date },
+                        schedules = action.schedules
+                    )
+                }
+            }
+
+            is OverViewAction.UpdateUndefinedTasks -> {
+                update {
+                    it.copy(undefinedTasks = action.tasks)
+                }
+            }
+
+            else -> {}
+        }
     }
 }

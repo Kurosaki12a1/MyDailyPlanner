@@ -20,5 +20,5 @@ data class MainViewState(
     val theme: ThemeUiType = ThemeUiType(ThemeUiTypeName.DEFAULT),
     val colors: ColorsUiType = ColorsUiType(ColorsUiTypeName.PINK),
     val isEnableDynamicColors: Boolean = false,
-    val secureMode: Boolean = false,
+    val secureMode: Boolean = false
 ) : BaseViewState

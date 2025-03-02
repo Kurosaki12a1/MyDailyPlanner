@@ -12,7 +12,7 @@ import kotlinx.datetime.LocalDateTime
 sealed class OverViewEvent : BaseEvent {
     data object Init : OverViewEvent()
     data object Refresh : OverViewEvent()
-
+    data object ClearFailure : OverViewEvent()
     //   data object PressScheduleButton : OverViewEvent()
     data object OpenAllSchedules : OverViewEvent()
     data class OpenSchedule(val scheduleDate: LocalDateTime?) : OverViewEvent()

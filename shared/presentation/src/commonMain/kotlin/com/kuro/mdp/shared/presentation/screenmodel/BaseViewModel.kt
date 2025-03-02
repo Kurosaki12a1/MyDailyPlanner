@@ -7,18 +7,21 @@ import androidx.lifecycle.viewModelScope
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.graph.NavigationGraph
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
+import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseAction
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseEvent
 import com.kuro.mdp.shared.presentation.screenmodel.contract.BaseViewState
+import com.kuro.mdp.shared.utils.functional.ResultState
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
 /**
- * Created by: minhthinh.h on 12/20/2024
+ * Created by: minhthinh.h on 2/19/2025
  *
  * Description:
  */
-abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
+abstract class BaseViewModel<S : BaseViewState, E : BaseEvent, A : BaseAction>(
     private val navigator: Navigator
 ) : ViewModel() {
 
@@ -38,10 +41,6 @@ abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
         viewModelScope.launch {
             this@BaseViewModel.event.emit(event)
         }
-    }
-
-    fun updateState(newState: S) {
-        _state.value = newState
     }
 
     /**
@@ -105,7 +104,25 @@ abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
         }
     }
 
-    protected abstract fun showError(e: Throwable)
+    fun ResultState<A>.handleWork() = when (this) {
+        is ResultState.Failure -> {
+            showError(this.exception)
+        }
+
+        is ResultState.Success -> {
+            updateState(this.data)
+        }
+    }
+
+    suspend fun Flow<ResultState<A>>.collectAndHandleWork() = collect { result -> result.handleWork() }
+
+    protected fun update(transform: (S) -> S) {
+        _state.value = transform(_state.value)
+    }
+
+    protected abstract fun showError(e: Throwable?)
+
+    protected abstract fun updateState(action: A)
 
     abstract fun initState(): S
 
@@ -115,6 +132,4 @@ abstract class BaseViewModel<S : BaseViewState, E : BaseEvent>(
         super.onCleared()
         eventJob?.cancel()
     }
-
-
 }

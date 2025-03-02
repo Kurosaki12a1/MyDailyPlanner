@@ -83,7 +83,7 @@ fun OverViewScreen(
                 message = message,
                 withDismissAction = true
             )
-            viewModel.updateState(newState = state.copy(error = null))
+            viewModel.dispatchEvent(OverViewEvent.ClearFailure)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.overview.domain.use_case.over_view
 
 import com.kuro.mdp.features.overview.domain.mapper.schedules.mapToDomain
+import com.kuro.mdp.features.overview.domain.model.actions.OverViewAction
 import com.kuro.mdp.features.overview.domain.model.schedules.UndefinedTaskOverView
 import com.kuro.mdp.features.overview.domain.repository.over_view.OverViewUndefinedTasksRepository
 import com.kuro.mdp.shared.utils.functional.ResultState
@@ -17,10 +18,9 @@ class CreateOrUpdateTaskUseCase(
     private val undefinedTasksRepository: OverViewUndefinedTasksRepository
 ) {
 
-    operator fun invoke(task: UndefinedTaskOverView): Flow<ResultState<Unit>> = flow {
+    operator fun invoke(task: UndefinedTaskOverView): Flow<ResultState<OverViewAction>> = flow {
         undefinedTasksRepository.addOrUpdateUndefinedTask(task.mapToDomain()).handle(
             onFailure = { error -> emit(ResultState.Failure(error)) },
-            onSuccess = { emit(ResultState.Success(Unit)) }
         )
     }
 }

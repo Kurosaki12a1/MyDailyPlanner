@@ -1,6 +1,7 @@
 package com.kuro.mdp.features.settings.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.kuro.mdp.features.settings.domain.model.actions.SettingsAction
 import com.kuro.mdp.features.settings.domain.use_case.settings.SettingsUseCase
 import com.kuro.mdp.features.settings.presentation.mappers.mapToDomain
 import com.kuro.mdp.features.settings.presentation.mappers.mapToUi
@@ -9,7 +10,6 @@ import com.kuro.mdp.features.settings.presentation.ui.settings.SettingsViewState
 import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -20,10 +20,34 @@ import kotlinx.coroutines.launch
 internal class SettingsViewModel(
     private val settingsUseCase: SettingsUseCase,
     navigator: Navigator
-) : BaseViewModel<SettingsViewState, SettingsEvent>(navigator) {
+) : BaseViewModel<SettingsViewState, SettingsEvent, SettingsAction>(navigator) {
 
     init {
         dispatchEvent(SettingsEvent.Init)
+    }
+
+    override fun showError(e: Throwable?) {
+        update { it.copy(failure = e?.message) }
+    }
+
+    override fun updateState(action: SettingsAction) {
+        when (action) {
+            is SettingsAction.ChangeAllSettings -> {
+                update {
+                    it.copy(
+                        themeSettings = action.settings.mapToUi().themeSettings,
+                        tasksSettings = action.settings.mapToUi().tasksSettings,
+                        failure = null
+                    )
+                }
+            }
+
+            is SettingsAction.ChangedTasksSettings -> {}
+
+            is SettingsAction.ChangedThemeSettings -> {}
+
+            is SettingsAction.ResetToDefault -> {}
+        }
     }
 
     override fun initState(): SettingsViewState = SettingsViewState()
@@ -32,36 +56,19 @@ internal class SettingsViewModel(
         when (event) {
             is SettingsEvent.ChangedTasksSettings -> {
                 viewModelScope.launch {
-                    settingsUseCase.updateTasksSettingsUseCase(event.tasksSettings.mapToDomain()).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    settingsUseCase.updateTasksSettingsUseCase(event.tasksSettings.mapToDomain()).collectAndHandleWork()
                 }
             }
 
             is SettingsEvent.ChangedThemeSettings -> {
                 viewModelScope.launch {
-                    settingsUseCase.updateThemeSettingsUseCase(event.themeSettings.mapToDomain()).collectAndHandle(
-                        onFailure = { showError(it) }
-                    )
+                    settingsUseCase.updateThemeSettingsUseCase(event.themeSettings.mapToDomain()).collectAndHandleWork()
                 }
             }
 
             is SettingsEvent.Init -> {
                 viewModelScope.launch {
-                    settingsUseCase.loadAllSettingsUseCase().collectAndHandle(
-                        onFailure = {
-                            updateState(state.value.copy(failure = it.message))
-                        },
-                        onSuccess = { settings ->
-                            updateState(
-                                state.value.copy(
-                                    themeSettings = settings.mapToUi().themeSettings,
-                                    tasksSettings = settings.mapToUi().tasksSettings,
-                                    failure = null
-                                )
-                            )
-                        }
-                    )
+                    settingsUseCase.loadAllSettingsUseCase().collectAndHandleWork()
                 }
             }
 
@@ -70,14 +77,12 @@ internal class SettingsViewModel(
             }
 
             is SettingsEvent.ClearFailure -> {
-                updateState(state.value.copy(failure = null))
+                showError(null)
             }
 
             is SettingsEvent.ResetToDefault -> {
                 viewModelScope.launch {
-                    settingsUseCase.resetToDefaultUseCase().collectAndHandle(
-                        onFailure = { updateState(state.value.copy(failure = it.message)) }
-                    )
+                    settingsUseCase.resetToDefaultUseCase().collectAndHandleWork()
                 }
             }
 
@@ -89,9 +94,5 @@ internal class SettingsViewModel(
                 navigateTo(Destination.Templates)
             }
         }
-    }
-
-    override fun showError(e: Throwable) {
-        updateState(state.value.copy(failure = e.message))
     }
 }

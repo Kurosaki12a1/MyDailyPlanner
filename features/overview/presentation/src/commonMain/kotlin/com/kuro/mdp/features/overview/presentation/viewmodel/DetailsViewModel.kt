@@ -1,7 +1,7 @@
 package com.kuro.mdp.features.overview.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.kuro.mdp.features.overview.domain.model.details.DetailsAction
+import com.kuro.mdp.features.overview.domain.model.actions.DetailsAction
 import com.kuro.mdp.features.overview.domain.use_case.details.DetailsUseCase
 import com.kuro.mdp.features.overview.presentation.ui.details.DetailsEvent
 import com.kuro.mdp.features.overview.presentation.ui.details.DetailsViewState
@@ -9,7 +9,6 @@ import com.kuro.mdp.shared.presentation.navigation.destination.Destination
 import com.kuro.mdp.shared.presentation.navigation.navigator.Navigator
 import com.kuro.mdp.shared.presentation.screenmodel.BaseViewModel
 import com.kuro.mdp.shared.utils.extensions.toEpochMillis
-import com.kuro.mdp.shared.utils.functional.collectAndHandle
 import kotlinx.coroutines.launch
 
 /**
@@ -20,7 +19,7 @@ import kotlinx.coroutines.launch
 class DetailsViewModel(
     private val detailsUseCase: DetailsUseCase,
     navigator: Navigator
-) : BaseViewModel<DetailsViewState, DetailsEvent>(navigator) {
+) : BaseViewModel<DetailsViewState, DetailsEvent, DetailsAction>(navigator) {
 
     init {
         dispatchEvent(DetailsEvent.Init)
@@ -32,10 +31,7 @@ class DetailsViewModel(
         when (event) {
             is DetailsEvent.Init -> {
                 viewModelScope.launch {
-                    detailsUseCase.loadAllSchedulesUseCase().collectAndHandle(
-                        onFailure = { showError(it) },
-                        onSuccess = { updateState(it) }
-                    )
+                    detailsUseCase.loadAllSchedulesUseCase().collectAndHandleWork()
                 }
             }
 
@@ -50,29 +46,26 @@ class DetailsViewModel(
         }
     }
 
-    override fun showError(e: Throwable) {
+    override fun showError(e: Throwable?) {
 
     }
 
-    private fun updateState(action: DetailsAction) {
+    override fun updateState(action: DetailsAction) {
         when (action) {
             is DetailsAction.UpdateLoading -> {
-                updateState(
-                    state.value.copy(
-                        isLoading = action.isLoading
-                    )
-                )
+                update { it.copy(isLoading = action.isLoading) }
             }
 
             is DetailsAction.UpdateSchedules -> {
-                updateState(
-                    state.value.copy(
+                update {
+                    it.copy(
                         isLoading = false,
-                        currentSchedule = action.schedules.find { it.date.date == action.date.date },
+                        currentSchedule = action.schedules.find { schedule -> schedule.date.date == action.date.date },
                         schedules = action.schedules
                     )
-                )
+                }
             }
         }
     }
+
 }
